@@ -286,13 +286,30 @@ export default function FibreArc(props: Props) {
             ptrRef.current.onTarget = 0
         }
 
+        let isVisible = true
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                const visible = entry.isIntersecting
+                if (visible !== isVisible) {
+                    isVisible = visible
+                    if (isVisible && !raf) {
+                        last = performance.now()
+                        raf = requestAnimationFrame(render)
+                    }
+                }
+            },
+            { threshold: 0.01 }
+        )
+        observer.observe(canvas)
+
         canvas.addEventListener("pointermove", track)
         canvas.addEventListener("pointerenter", track)
         canvas.addEventListener("pointerleave", onLeave)
         raf = requestAnimationFrame(render)
 
         return () => {
-            cancelAnimationFrame(raf)
+            observer.disconnect()
+            if (raf) cancelAnimationFrame(raf)
             canvas.removeEventListener("pointermove", track)
             canvas.removeEventListener("pointerenter", track)
             canvas.removeEventListener("pointerleave", onLeave)

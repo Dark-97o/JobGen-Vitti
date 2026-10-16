@@ -1,170 +1,115 @@
-import React, { useEffect } from 'react';
-import { ArrowUpRight, Shield, Users, Lightbulb, Compass, CheckCircle2, ChevronRight } from 'lucide-react';
-import PredictiveArc from '../components/originkit/ui/predictive-arc';
+import React, { useState, useEffect } from 'react';
+import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import FibreArc from '../components/originkit/ui/fibre-arc';
+
+const CORE_VALUE_PARTITIONS = [
+  {
+    id: '01',
+    title: 'Integrity',
+    info: "We are committed to unwavering honesty, transparency, and statutory ethical fiduciary practices, prioritising our clients' best interests in every single advisory mandate.",
+    image: '/assets/partner-integrity.jpg',
+  },
+  {
+    id: '02',
+    title: 'Relationships',
+    info: 'We cherish long-term connections, offering personalised attention and genuine care to foster enduring institutional partnerships spanning generations.',
+    image: '/assets/partner-aligned.jpg',
+  },
+  {
+    id: '03',
+    title: 'Innovation',
+    info: 'Thriving on creativity, we constantly explore innovative approaches and cutting-edge financial architectures to unearth exceptional cross-border alpha.',
+    image: '/assets/partner-visionary.jpg',
+  },
+  {
+    id: '04',
+    title: 'Collaboration',
+    info: 'At our core, we believe in the power of teamwork—internally among our sector principals and externally with institutional syndicates—to achieve optimal execution.',
+    image: '/assets/partner-strategic.jpg',
+  },
+  {
+    id: '05',
+    title: 'Excellence',
+    info: 'Exhaustive bottom-up research, rigorous stress-testing, and hands-on transaction management from initial structuring to liquidity realization.',
+    image: '/assets/partner-excellence.jpg',
+  },
+];
 
 export default function AboutUsPage({ onOpenModal, onNavigate }) {
+  const [hoveredIdx, setHoveredIdx] = useState(0);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const coreValues = [
-    {
-      id: 'integrity',
-      title: 'Integrity',
-      subtitle: 'Ethical Foundation',
-      desc: "We are committed to unwavering honesty, transparency, and ethical practices, prioritising our clients' best interests in every advisory mandate.",
-      icon: Shield,
-      tag: 'Core Pillar 01',
-      bgImg: '/assets/partner-integrity.jpg',
-    },
-    {
-      id: 'relationships',
-      title: 'Relationships',
-      subtitle: 'Enduring Partnerships',
-      desc: 'We cherish long-term connections, offering personalised attention and genuine care to foster enduring partnerships spanning generations.',
-      icon: Users,
-      tag: 'Core Pillar 02',
-      bgImg: '/assets/partner-aligned.jpg',
-    },
-    {
-      id: 'innovation',
-      title: 'Innovation',
-      subtitle: 'Alpha Discovery',
-      desc: 'Thriving on creativity, we constantly explore innovative approaches and cutting-edge financial architectures to unearth exceptional cross-border value.',
-      icon: Lightbulb,
-      tag: 'Core Pillar 03',
-      bgImg: '/assets/partner-visionary.jpg',
-    },
-    {
-      id: 'collaboration',
-      title: 'Collaboration',
-      subtitle: 'Syndicate Power',
-      desc: 'At our core, we believe in the power of teamwork—internally among our sector principals and externally with institutional syndicates—to achieve optimal execution.',
-      icon: Compass,
-      tag: 'Core Pillar 04',
-      bgImg: '/assets/partner-strategic.jpg',
-    },
-  ];
-
   return (
     <div className="subpage-wrapper about-us-page">
-      {/* 1. HERO SECTION: Full-width dark stage with PredictiveArc background */}
-      <section className="subpage-hero-section">
-        <div className="subpage-arc-bg-wrap" aria-hidden="true">
-          <PredictiveArc
+      {/* 1. ABOUT OUR COMPANY: Directly starts here with Hero FibreArc background, no image card box, floating tablet.png */}
+      <section className="about-company-hero-section">
+        {/* Background Component used in Hero: FibreArc WebGL Canvas */}
+        <div className="hero-fibre-canvas-wrap" aria-hidden="true">
+          <FibreArc
             background="#07090E"
-            baseColor="#033826"
+            baseColor="#044D34"
             accentColor="#00E599"
             highlight="#FFFFFF"
-            density={75}
-            dotSize={100}
-            speed={45}
-            arch={{ peak: 30, archHeight: 70, thickness: 120, falloff: 260 }}
+            density={26}
+            speed={65}
+            direction={0}
+            hover={180}
+            reach={30}
+            bundle={{
+              curve: 155,
+              spread: 110,
+              thickness: 115,
+              comb: 175,
+            }}
             style={{
               position: 'absolute',
               inset: 0,
               width: '100%',
               height: '100%',
+              minWidth: '100%',
+              minHeight: '100%',
               pointerEvents: 'none',
             }}
           />
-          <div className="subpage-hero-vignette" />
+          <div className="hero-vignette-bottom" />
         </div>
 
-        <div className="container subpage-hero-container">
-          {/* Breadcrumb nav */}
-          <nav className="subpage-breadcrumb" aria-label="Breadcrumb">
-            <button 
-              type="button" 
-              onClick={() => onNavigate && onNavigate('home')}
-              className="breadcrumb-link"
-            >
-              Home
-            </button>
-            <ChevronRight size={13} className="breadcrumb-separator" />
-            <span className="breadcrumb-current">About Us</span>
-          </nav>
-
-          {/* Prominent Bold Headline without top pills (strictly per Project Rules) */}
-          <h1 className="subpage-hero-headline">
-            Building a Brighter<br />Financial Future.
-          </h1>
-
-          <p className="subpage-hero-subtext">
-            Vitti Capital is a premier wholesale financial services organisation specialising in corporate finance consulting, private market syndication, and high-conviction capital markets execution across Australia and the GCC.
-          </p>
-
-          {/* Quick Metrics Ribbon */}
-          <div className="subpage-metrics-ribbon">
-            <div className="subpage-metric-item">
-              <span className="metric-val">AFSL 518031</span>
-              <span className="metric-lbl">CAR 001306367</span>
-            </div>
-            <div className="subpage-metric-divider" />
-            <div className="subpage-metric-item">
-              <span className="metric-val">Sydney & Dubai</span>
-              <span className="metric-lbl">Parramatta Sq & DIFC Desks</span>
-            </div>
-            <div className="subpage-metric-divider" />
-            <div className="subpage-metric-item">
-              <span className="metric-val">Wholesale Only</span>
-              <span className="metric-lbl">Corporations Act 2001 (Cth)</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Australia corner overlay image at 80% transparency on bottom-right */}
-        <img 
-          src="/assets/aus.png" 
-          alt="Australia" 
-          className="section-corner-overlay corner-overlay-aus" 
-          aria-hidden="true" 
-        />
-      </section>
-
-      {/* 2. ABOUT OUR COMPANY: Deep Story & Distinctive Identity */}
-      <section className="about-narrative-section">
-        <div className="container about-narrative-container">
-          <div className="about-narrative-grid">
+        <div className="container about-company-container">
+          <div className="about-company-grid">
             
-            {/* Left Column: Visual Brand Story Card */}
-            <div className="about-story-visual-card">
-              <div 
-                className="about-visual-bg" 
-                style={{ backgroundImage: `url('/assets/hero-cards.jpg')` }}
-              />
-              <div className="about-visual-overlay" />
-              <div className="about-visual-content">
-                <span className="about-visual-tag">Institutional Heritage</span>
-                <h3 className="about-visual-quote">
-                  "Continually supporting the enterprises we back, with unwavering conviction."
-                </h3>
-                <div className="about-visual-signature">
-                  <span className="sig-line">Vitti Capital Corporate Advisory</span>
-                  <span className="sig-sub">Sydney • Dubai</span>
-                </div>
+            {/* Left Column: Floating Tablet Image directly on background (No box, no card frame) */}
+            <div className="about-company-tablet-col">
+              <div className="about-tablet-float-wrap">
+                <img 
+                  src="/assets/tablet.png" 
+                  alt="Vitti Capital Portal" 
+                  className="about-floating-tablet-img" 
+                />
               </div>
             </div>
 
             {/* Right Column: Full Official Narrative from vitti.capital */}
-            <div className="about-story-text-column">
-              <h2 className="about-section-heading">
+            <div className="about-company-text-col">
+              <h1 className="about-company-headline">
                 ABOUT OUR COMPANY
-              </h2>
+              </h1>
               
               <div className="about-story-paragraphs">
                 <p className="lead-paragraph">
-                  <strong>Vitti Capital</strong> stands out as a dynamic and innovative financial services organisation, specialising in corporate finance consulting and stock trading.
+                  <strong>Vitti Capital</strong> stands out as a dynamic and innovative financial services organisation, specialising in corporate finance consulting, stock trading, and wholesale asset allocation.
                 </p>
                 <p>
-                  Our distinctive identity is rooted in building trust and cultivating long-term connections with our diverse clientele. We actively seek high-alpha opportunities in both early and mature stages, aiming to unlock unparalleled growth potential.
+                  Our distinctive identity is rooted in building trust and cultivating long-term connections with our diverse clientele. We actively seek high-alpha opportunities in both early and mature stages, aiming to unlock unparalleled growth potential across Australia, the GCC, and the Asia-Pacific corridor.
                 </p>
                 <p>
-                  What sets our brand apart is our commitment to continually support the companies we present to our clients for investments, demonstrating a profound belief in the prospects we endorse.
+                  What sets our brand apart is our commitment to continually support the enterprises we present to our wholesale partners, demonstrating a profound belief in the prospects we endorse through direct co-investment and active advisory stewardship.
                 </p>
               </div>
 
-              {/* Key Tenets Bento Grid */}
+              {/* Key Tenets Grid */}
               <div className="about-tenets-grid">
                 <div className="about-tenet-card">
                   <CheckCircle2 size={18} className="tenet-icon" />
@@ -185,80 +130,146 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
 
           </div>
         </div>
-      </section>
 
-      {/* 3. CORE VALUES: Circular / Neomorphic Institutional Cards */}
-      <section className="about-values-section">
-        <div className="container about-values-container">
-          <div className="about-values-header text-center">
-            <h2 className="about-section-heading">
-              Our Core Values
-            </h2>
-            <p className="about-section-subtext">
-              The four foundational pillars guiding every client mandate and transaction.
-            </p>
-          </div>
-
-          <div className="about-values-grid">
-            {coreValues.map((val) => {
-              const Icon = val.icon;
-              return (
-                <div key={val.id} className="about-value-card">
-                  <div 
-                    className="about-value-card-bg"
-                    style={{ backgroundImage: `url('${val.bgImg}')` }}
-                  />
-                  <div className="about-value-card-overlay" />
-                  
-                  <div className="about-value-card-content">
-                    <div className="value-icon-bubble">
-                      <Icon size={24} strokeWidth={2.2} />
-                    </div>
-                    <span className="value-tag-badge">{val.tag}</span>
-                    <h3 className="value-card-title">{val.title}</h3>
-                    <h4 className="value-card-sub">{val.subtitle}</h4>
-                    <p className="value-card-desc">{val.desc}</p>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Dubai corner overlay image at 80% transparency on bottom-right */}
+        {/* Australia corner overlay image at 80% transparency on bottom-right */}
         <img 
-          src="/assets/dub.png" 
-          alt="Dubai" 
-          className="section-corner-overlay corner-overlay-dub" 
+          src="/assets/aus.png" 
+          alt="Australia" 
+          className="section-corner-overlay corner-overlay-aus" 
           aria-hidden="true" 
         />
       </section>
 
-      {/* 4. OUR MISSION: Distinctive Institutional Callout Stage */}
-      <section className="about-mission-section">
-        <div className="container about-mission-container">
-          <div className="about-mission-box">
-            <div className="mission-glow-orb" />
-            
-            <div className="about-mission-inner">
-              <h2 className="about-mission-heading">
-                Empowering Growth, Together.
-              </h2>
-              
-              <blockquote className="about-mission-statement">
-                "To introduce you to a realm of investment opportunities poised to redefine your financial future by identifying and leveraging high-conviction investments within the charted and uncharted territories of listed and unlisted entities."
-              </blockquote>
+      {/* 2. OUR CORE VALUES: Copied exact layout & aesthetics from Landing Page WHY section */}
+      <section className="about-values-why-section" id="core-values">
+        <div className="container about-values-why-container">
+          
+          <div className="about-values-stage-header">
+            <h2 className="about-values-main-headline">
+              OUR CORE VALUES
+            </h2>
+            <p className="about-values-stage-subtext">
+              The five foundational pillars guiding every client mandate, investment allocation, and cross-border partnership.
+            </p>
+          </div>
 
-              <div className="mission-author-line">
-                <span className="mission-author-title">The Vitti Capital Investment Committee</span>
-                <span className="mission-author-loc">Sydney & Dubai</span>
+          <div className="about-values-why-stage">
+            {/* Left Column (55%): Interactive Horizontal Partitions with white separators */}
+            <div className="about-values-partitions-col">
+              <div className="partner-partitions-list">
+                {CORE_VALUE_PARTITIONS.map((item, idx) => {
+                  const isHovered = hoveredIdx === idx;
+
+                  return (
+                    <div
+                      key={item.id}
+                      className={`partner-partition-row ${isHovered ? 'is-expanded' : ''}`}
+                      onMouseEnter={() => setHoveredIdx(idx)}
+                      onClick={() => onOpenModal && onOpenModal(`Core Value: ${item.title}`)}
+                      role="button"
+                      tabIndex={0}
+                      aria-expanded={isHovered}
+                    >
+                      {/* Partition Photographic Background (Expands on Hover) */}
+                      <div 
+                        className="partner-partition-bg"
+                        style={{ backgroundImage: `url('${item.image}')` }}
+                      />
+                      <div className="partner-partition-bg-overlay" />
+
+                      {/* Content Row */}
+                      <div className="partner-partition-content">
+                        <div className="partner-partition-main-line">
+                          <div className="partner-partition-title-group">
+                            <span className="partner-partition-num">{item.id}</span>
+                            <h4 className="partner-partition-title">{item.title}</h4>
+                          </div>
+                          <span className="partner-partition-arrow">
+                            {isHovered ? '↓' : '→'}
+                          </span>
+                        </div>
+
+                        {/* Info Text Revealed on Hover/Expansion */}
+                        <div className="partner-partition-info-wrap">
+                          <p className="partner-partition-info-text">{item.info}</p>
+                          <div className="partner-partition-cta-row">
+                            <span className="partner-partition-cta">
+                              Explore Alignment →
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* 3 Sector Square Cards (Infrastructure, Real Estate, Green Technologies) identical to WHY section */}
+              <div className="why-sector-cards-row">
+                <div className="why-sector-card">
+                  <div className="why-sector-logo-wrap">
+                    <img 
+                      src="/assets/Infrastructure.png" 
+                      alt="Infrastructure" 
+                      className="why-sector-logo" 
+                    />
+                  </div>
+                  <span className="why-sector-title">Infrastructure</span>
+                </div>
+
+                <div className="why-sector-connector" aria-hidden="true" />
+
+                <div className="why-sector-card">
+                  <div className="why-sector-logo-wrap">
+                    <img 
+                      src="/assets/RealEstate-removebg-preview.png" 
+                      alt="Real Estate" 
+                      className="why-sector-logo" 
+                    />
+                  </div>
+                  <span className="why-sector-title">Real Estate</span>
+                </div>
+
+                <div className="why-sector-connector" aria-hidden="true" />
+
+                <div className="why-sector-card">
+                  <div className="why-sector-logo-wrap">
+                    <img 
+                      src="/assets/Green.png" 
+                      alt="Green Technologies" 
+                      className="why-sector-logo" 
+                    />
+                  </div>
+                  <span className="why-sector-title">Green Technologies</span>
+                </div>
               </div>
             </div>
+
+            {/* Right Column (45%): Visual Hero Card with "VALUES" overlay, reflecting the active pillar */}
+            <div className="about-values-preview-col">
+              <div className="about-values-preview-card">
+                <div 
+                  className="about-values-preview-bg"
+                  style={{ 
+                    backgroundImage: `url('${CORE_VALUE_PARTITIONS[hoveredIdx]?.image || CORE_VALUE_PARTITIONS[0].image}')` 
+                  }}
+                />
+                <div className="about-values-preview-vignette" />
+                <div className="about-values-preview-overlay">
+                  <span className="about-values-pill-tag">PRINCIPLE {CORE_VALUE_PARTITIONS[hoveredIdx]?.id || '01'}</span>
+                  <span className="about-values-wordmark">VALUES</span>
+                  <h3 className="about-values-active-title">
+                    {CORE_VALUE_PARTITIONS[hoveredIdx]?.title || 'Integrity'}
+                  </h3>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* 5. DUAL-DESK GLOBAL GOVERNANCE */}
+      {/* 3. DUAL-DESK GLOBAL GOVERNANCE (Sydney & Dubai Desks) */}
       <section className="about-governance-section">
         <div className="container about-governance-container">
           <div className="about-governance-header text-center">
@@ -266,7 +277,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
               Dual-Desk Global Presence
             </h2>
             <p className="about-section-subtext">
-              Direct presence across Asia-Pacific and Gulf financial hubs.
+              Direct presence and regulatory licensing across Asia-Pacific and Gulf financial hubs.
             </p>
           </div>
 
@@ -310,7 +321,31 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
         </div>
       </section>
 
-      {/* 6. CALL TO ACTION: Have Questions? */}
+      {/* 4. EMPOWERING GROWTH CARD: Placed below the Dual Desk Sydney & Dubai section */}
+      <section className="about-mission-section">
+        <div className="container about-mission-container">
+          <div className="about-mission-box">
+            <div className="mission-glow-orb" />
+            
+            <div className="about-mission-inner">
+              <h2 className="about-mission-heading">
+                Empowering Growth, Together.
+              </h2>
+              
+              <blockquote className="about-mission-statement">
+                "To introduce you to a realm of investment opportunities poised to redefine your financial future by identifying and leveraging high-conviction investments within the charted and uncharted territories of listed and unlisted entities."
+              </blockquote>
+
+              <div className="mission-author-line">
+                <span className="mission-author-title">The Vitti Capital Investment Committee</span>
+                <span className="mission-author-loc">Sydney & Dubai</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CALL TO ACTION: Have Questions? */}
       <section className="about-cta-section">
         <div className="container about-cta-container">
           <div className="about-cta-banner">
@@ -333,7 +368,16 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
             </button>
           </div>
         </div>
+
+        {/* Dubai corner overlay image at 80% transparency on bottom-right */}
+        <img 
+          src="/assets/dub.png" 
+          alt="Dubai" 
+          className="section-corner-overlay corner-overlay-dub" 
+          aria-hidden="true" 
+        />
       </section>
     </div>
   );
 }
+

@@ -5844,109 +5844,89 @@ img {
    ABOUT US PAGE SPECIFIC SECTIONS
    ========================================================================== */
 
-.about-narrative-section {
-  padding: clamp(60px, 8vh, 100px) 0;
-  background: #0A0E17;
+/* ==========================================================================
+   ABOUT US PAGE: HERO & ABOUT OUR COMPANY STAGE (Direct Start)
+   ========================================================================== */
+
+.about-company-hero-section {
   position: relative;
-  z-index: 1;
+  min-height: 85vh; /* Increased height like an actual prominent section */
+  display: flex;
+  align-items: center;
+  padding: clamp(100px, 14vh, 160px) 0 clamp(80px, 10vh, 120px);
+  overflow: hidden;
+  background-color: #07090E;
 }
 
-.about-narrative-grid {
+.about-company-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 56px);
+}
+
+.about-company-grid {
   display: grid;
-  grid-template-columns: minmax(320px, 1fr) minmax(380px, 1.35fr);
-  gap: clamp(32px, 5vw, 64px);
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(36px, 6vw, 76px);
   align-items: center;
 }
 
-.about-story-visual-card {
+/* Left Column: Floating Tablet (Direct on background, no box, slight float animation) */
+.about-company-tablet-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  min-height: 480px;
-  border-radius: 28px;
-  overflow: hidden;
-  border: 1.5px solid rgba(0, 229, 153, 0.35);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 229, 153, 0.14);
 }
 
-.about-visual-bg {
-  position: absolute;
-  inset: 0;
+.about-tablet-float-wrap {
   width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  transform: scale(1.04);
-  transition: transform 0.6s ease;
+  max-width: 580px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: tabletSlightFloat 5.5s ease-in-out infinite;
+  will-change: transform;
 }
 
-.about-story-visual-card:hover .about-visual-bg {
-  transform: scale(1.08);
+.about-floating-tablet-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  /* Glowing drop shadow behind tablet */
+  filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.75)) drop-shadow(0 0 25px rgba(0, 229, 153, 0.18));
 }
 
-.about-visual-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(7, 9, 14, 0.94) 0%, rgba(7, 9, 14, 0.45) 55%, rgba(7, 9, 14, 0.75) 100%);
+@keyframes tabletSlightFloat {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(-0.5deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
 }
 
-.about-visual-content {
-  position: absolute;
-  inset: 0;
-  padding: 36px 32px;
+/* Right Column: Narrative */
+.about-company-text-col {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  z-index: 2;
 }
 
-.about-visual-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #00E599;
-  margin-bottom: 12px;
-}
-
-.about-visual-quote {
-  font-family: 'Plus Jakarta Sans', var(--font-sans);
-  font-size: clamp(19px, 1.6vw, 23px);
-  font-weight: 700;
-  line-height: 1.45;
-  color: #FFFFFF;
-  margin: 0 0 20px;
-}
-
-.about-visual-signature .sig-line {
-  display: block;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  color: #FFFFFF;
-}
-
-.about-visual-signature .sig-sub {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: #94A3B8;
-}
-
-.about-section-heading {
+.about-company-headline {
   font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: clamp(28px, 3.2vw, 44px);
+  font-size: clamp(34px, 3.8vw, 54px);
   font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
   color: #FFFFFF;
-  margin: 0 0 20px;
-}
-
-.about-section-subtext {
-  font-family: 'Plus Jakarta Sans', var(--font-sans);
-  font-size: 16px;
-  color: #94A3B8;
-  max-width: 620px;
-  margin: 0 auto;
+  margin: 0 0 24px;
 }
 
 .about-story-paragraphs {
@@ -5965,9 +5945,10 @@ img {
 }
 
 .about-story-paragraphs .lead-paragraph {
-  font-size: 17px;
+  font-size: 17.5px;
   color: #FFFFFF;
   font-weight: 500;
+  line-height: 1.65;
 }
 
 .about-story-paragraphs strong {
@@ -5984,10 +5965,13 @@ img {
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 16px 18px;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 18px 20px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .tenet-icon {
@@ -5998,7 +5982,7 @@ img {
 
 .tenet-info h4 {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 800;
   color: #FFFFFF;
   margin: 0 0 4px;
@@ -6012,121 +5996,150 @@ img {
   margin: 0;
 }
 
-/* Core Values Section */
-.about-values-section {
-  padding: clamp(70px, 9vh, 120px) 0;
-  background: #07090E;
+/* ==========================================================================
+   OUR CORE VALUES: Exact Design from Landing Page WHY Section
+   ========================================================================== */
+
+.about-values-why-section {
+  padding: clamp(80px, 11vh, 140px) 0;
+  background-color: #070a10;
   position: relative;
-}
-
-.about-values-header {
-  margin-bottom: clamp(36px, 5vh, 60px);
-}
-
-.about-values-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: clamp(16px, 2.2vw, 28px);
-}
-
-.about-value-card {
-  position: relative;
-  min-height: 380px;
-  border-radius: 24px;
   overflow: hidden;
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
-  background: #0C111C;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
-  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.about-value-card:hover {
-  transform: translateY(-8px);
-  border-color: #00E599;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 28px rgba(0, 229, 153, 0.25);
+.about-values-why-container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 56px);
+  position: relative;
+  z-index: 2;
 }
 
-.about-value-card-bg {
+.about-values-stage-header {
+  margin-bottom: clamp(40px, 6vh, 64px);
+  max-width: 800px;
+}
+
+.about-values-main-headline {
+  font-family: 'Unbounded', 'Syne', sans-serif;
+  font-size: clamp(34px, 4.2vw, 58px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1.08;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  margin: 0 0 14px;
+}
+
+.about-values-stage-subtext {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: clamp(15.5px, 1.2vw, 18px);
+  line-height: 1.6;
+  color: #94A3B8;
+  margin: 0;
+}
+
+.about-values-why-stage {
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;
+  gap: clamp(36px, 5vw, 68px);
+  align-items: stretch;
+}
+
+.about-values-partitions-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Right Preview Card mirroring WHY shrunk card with VALUES wordmark */
+.about-values-preview-col {
+  display: flex;
+  align-items: stretch;
+}
+
+.about-values-preview-card {
+  position: relative;
+  width: 100%;
+  min-height: 520px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 28px 72px rgba(0, 0, 0, 0.65), 0 0 36px rgba(0, 229, 153, 0.16);
+  background: #0b0f19;
+}
+
+.about-values-preview-bg {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
-  opacity: 0.32;
-  transition: opacity 0.4s ease, transform 0.6s ease;
+  transition: background-image 0.4s ease-in-out, transform 0.6s ease;
 }
 
-.about-value-card:hover .about-value-card-bg {
-  opacity: 0.45;
-  transform: scale(1.06);
-}
-
-.about-value-card-overlay {
+.about-values-preview-vignette {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(7, 9, 14, 0.96) 0%, rgba(7, 9, 14, 0.7) 60%, rgba(7, 9, 14, 0.5) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(7, 10, 16, 0.92) 0%,
+    rgba(7, 10, 16, 0.4) 50%,
+    rgba(7, 10, 16, 0.78) 100%
+  );
+  z-index: 2;
 }
 
-.about-value-card-content {
-  position: relative;
-  z-index: 2;
-  padding: 30px 24px;
+.about-values-preview-overlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  box-sizing: border-box;
-}
-
-.value-icon-bubble {
-  width: 52px;
-  height: 52px;
-  border-radius: 16px;
-  background: rgba(0, 229, 153, 0.15);
-  border: 1.5px solid rgba(0, 229, 153, 0.45);
-  display: flex;
   align-items: center;
   justify-content: center;
-  color: #00E599;
-  margin-bottom: 20px;
-  box-shadow: 0 6px 18px rgba(0, 229, 153, 0.25);
+  padding: 32px;
+  text-align: center;
+  z-index: 3;
 }
 
-.value-tag-badge {
+.about-values-pill-tag {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.18em;
   color: #00E599;
+  background: rgba(0, 229, 153, 0.14);
+  border: 1px solid rgba(0, 229, 153, 0.4);
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 18px;
   text-transform: uppercase;
-  margin-bottom: 6px;
 }
 
-.value-card-title {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 21px;
+.about-values-wordmark {
+  font-family: 'Unbounded', 'Syne', sans-serif;
+  font-size: clamp(52px, 6vw, 84px);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  text-shadow: 0 8px 36px rgba(0, 0, 0, 0.95);
+  margin-bottom: 12px;
+}
+
+.about-values-active-title {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: clamp(20px, 2vw, 26px);
   font-weight: 800;
   color: #FFFFFF;
   letter-spacing: -0.02em;
-  margin: 0 0 4px;
-}
-
-.value-card-sub {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: #94A3B8;
-  margin: 0 0 14px;
-}
-
-.value-card-desc {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: #CBD5E1;
   margin: 0;
-  margin-top: auto;
 }
+
 
 /* Our Mission Callout Stage */
 .about-mission-section {
