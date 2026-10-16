@@ -5436,7 +5436,7 @@ img {
 /* Statutory Regulatory Disclosures Section (Placed cleanly above Footer) */
 .regulatory-disclosures-section {
   background-color: #040609;
-  padding: 0 0 clamp(32px, 4vh, 48px);
+  padding: clamp(64px, 8.5vh, 100px) 0 clamp(36px, 4vh, 52px);
   position: relative;
   z-index: 10;
 }
@@ -6247,10 +6247,10 @@ img {
 
 .about-desk-card {
   position: relative;
-  min-height: 320px;
+  min-height: 380px;
   border-radius: 24px;
   overflow: hidden;
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
 }
 
@@ -6261,13 +6261,28 @@ img {
   height: 100%;
   background-size: cover;
   background-position: center;
-  opacity: 0.38;
+  opacity: 1; /* Fully visible, crisp landmark photography */
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-desk-card:hover .desk-card-bg {
+  transform: scale(1.04);
 }
 
 .desk-card-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(7, 9, 14, 0.96) 0%, rgba(7, 9, 14, 0.6) 65%, rgba(7, 9, 14, 0.4) 100%);
+  /* Top remains transparent so Sydney & Dubai landmark imagery is fully visible;
+     Black gradient only covers the lower text area for crisp readability */
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 38%,
+    rgba(7, 9, 14, 0.45) 55%,
+    rgba(7, 9, 14, 0.88) 72%,
+    rgba(7, 9, 14, 0.98) 100%
+  );
+  pointer-events: none;
 }
 
 .desk-card-content {
@@ -6311,7 +6326,7 @@ img {
 }
 
 /* ==========================================================================
-   HAVE QUESTIONS? FULL-WIDTH EDGE-TO-EDGE BAND
+   HAVE QUESTIONS? FULL-WIDTH EDGE-TO-EDGE BAND (50/50 Green & Dark Split)
    ========================================================================== */
 .about-questions-band {
   background-color: #07090E;
@@ -6325,21 +6340,29 @@ img {
 
 .about-questions-band-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
-  min-height: 200px;
-  padding: clamp(36px, 4.5vw, 60px) clamp(24px, 5vw, 68px);
-  box-sizing: border-box;
-  gap: 32px;
-  max-width: 1440px;
-  margin: 0 auto;
+  min-height: 220px;
+  margin: 0;
+  padding: 0;
   position: relative;
   z-index: 2;
 }
 
+/* Left Half (50%): Green Background, Black Typography */
+.about-questions-band-left {
+  flex: 0 0 50%;
+  width: 50%;
+  background: #00E599;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: clamp(40px, 5.5vw, 68px) clamp(28px, 4.5vw, 72px);
+  box-sizing: border-box;
+}
+
 .about-questions-band-left-inner {
-  max-width: 720px;
+  max-width: 640px;
+  width: 100%;
 }
 
 .about-questions-band-headline {
@@ -6347,8 +6370,8 @@ img {
   font-size: clamp(32px, 3.5vw, 50px);
   font-weight: 900;
   line-height: 1.1;
-  color: #FFFFFF !important;
-  -webkit-text-fill-color: #FFFFFF !important;
+  color: #07090E !important;
+  -webkit-text-fill-color: #07090E !important;
   letter-spacing: -0.03em;
   text-transform: uppercase;
   margin: 0 0 10px;
@@ -6358,8 +6381,24 @@ img {
   font-family: 'Plus Jakarta Sans', var(--font-sans);
   font-size: clamp(14.5px, 1.2vw, 17px);
   line-height: 1.55;
-  color: #94A3B8;
+  color: #07090E !important;
+  font-weight: 600;
   margin: 0;
+  opacity: 0.95;
+}
+
+/* Right Half (50%): Left as it is (Dark background, CTA button, subtle corner overlay) */
+.about-questions-band-right {
+  flex: 0 0 50%;
+  width: 50%;
+  background: #07090E;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: clamp(40px, 5.5vw, 68px) clamp(28px, 4.5vw, 72px);
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
 }
 
 .about-questions-band-btn {
@@ -6387,12 +6426,16 @@ img {
   box-shadow: 0 12px 30px rgba(0, 229, 153, 0.65);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 860px) {
   .about-questions-band-container {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 36px 20px;
-    gap: 24px;
+  }
+  .about-questions-band-left,
+  .about-questions-band-right {
+    flex: 0 0 100%;
+    width: 100%;
+    justify-content: flex-start;
+    padding: clamp(32px, 5vw, 44px) 24px;
   }
   .about-questions-band-btn {
     width: 100%;
