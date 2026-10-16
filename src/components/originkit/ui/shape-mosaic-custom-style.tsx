@@ -212,6 +212,9 @@ class MosaicScene {
         el.addEventListener("pointerdown", this.onPointerMove)
         el.addEventListener("pointerleave", this.onPointerLeave)
         el.addEventListener("pointercancel", this.onPointerLeave)
+        if (typeof window !== "undefined") {
+            window.addEventListener("pointermove", this.onGlobalPointerMove, { passive: true })
+        }
     }
 
     private onPointerMove = (e: PointerEvent) => {
@@ -223,6 +226,27 @@ class MosaicScene {
         this.target.set(x, y)
         if (this.wantHold === 0) this.eased.copy(this.target)
         this.wantHold = 1
+    }
+
+    private onGlobalPointerMove = (e: PointerEvent | MouseEvent) => {
+        if (!this.renderer || !this.renderer.domElement || this.disposed) return
+        const rect = this.renderer.domElement.getBoundingClientRect()
+        if (rect.width <= 0 || rect.height <= 0) return
+
+        if (
+            e.clientX >= rect.left &&
+            e.clientX <= rect.right &&
+            e.clientY >= rect.top &&
+            e.clientY <= rect.bottom
+        ) {
+            const x = ((e.clientX - rect.left) / rect.width) * this.width
+            const y = (1 - (e.clientY - rect.top) / rect.height) * this.height
+            this.target.set(x, y)
+            if (this.wantHold === 0) this.eased.copy(this.target)
+            this.wantHold = 1
+        } else if (this.wantHold === 1) {
+            this.wantHold = 0
+        }
     }
 
     private onPointerLeave = () => {
@@ -293,6 +317,9 @@ class MosaicScene {
         el.removeEventListener("pointerdown", this.onPointerMove)
         el.removeEventListener("pointerleave", this.onPointerLeave)
         el.removeEventListener("pointercancel", this.onPointerLeave)
+        if (typeof window !== "undefined") {
+            window.removeEventListener("pointermove", this.onGlobalPointerMove)
+        }
         this.geometry.dispose()
         this.material.dispose()
         this.renderer.dispose()

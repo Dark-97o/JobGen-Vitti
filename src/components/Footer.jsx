@@ -9,14 +9,14 @@ export default function Footer() {
       <div className="footer-mosaic-bg-wrap" aria-hidden="true">
         <ShapeMosaic
           ink="#15261d"
-          lit="#00E599"
-          cell={34}
-          size={8}
+          lit="#00FFA1"
+          cell={32}
+          size={9}
           kinds={6}
           fill={0}
-          spin={15}
-          turn={20}
-          reach={16}
+          spin={18}
+          turn={25}
+          reach={18}
           style={{
             position: 'absolute',
             inset: 0,
