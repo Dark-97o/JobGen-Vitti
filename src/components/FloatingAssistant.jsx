@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Download, FileText, X } from 'lucide-react';
+import { Download, X } from 'lucide-react';
 
 const SECTION_INSIGHTS = [
   {
@@ -174,7 +174,7 @@ export default function FloatingAssistant() {
       }}
       aria-label="Vitti Capital Assistant"
     >
-      {/* Speech / Chat Box (Appears left or right of character, not up top) */}
+      {/* Speech / Chat Box: Just 'Download guide here' and a download icon button */}
       {!isClosed && (
         <div 
           className={`floating-chat-bubble ${isLightSection ? 'bubble-light' : 'bubble-dark'} ${isLeft ? 'bubble-on-right' : 'bubble-on-left'}`}
@@ -192,29 +192,20 @@ export default function FloatingAssistant() {
             aria-label="Close message"
             title="Close"
           >
-            <X size={12} strokeWidth={2.8} />
+            <X size={11} strokeWidth={2.8} />
           </button>
 
           <div className="floating-chat-body">
-            {/* Line 1: Short 1-line text about Vitti Capital (no pill) */}
-            <p className="floating-chat-line-1">
-              {activeInsight.text}
-            </p>
-
-            {/* Line 2: Compact download guide row with PDF download button */}
-            <div className="floating-chat-download-row">
-              <span className="floating-chat-line-2">Download guide here:</span>
-              <a 
-                href="/assets/Vitti_Capital_Guide.pdf" 
-                download="Vitti_Capital_Guide.pdf"
-                className="floating-pdf-btn"
-                title="Download Vitti Capital Guide (PDF)"
-              >
-                <FileText size={13} className="floating-pdf-icon" />
-                <span>Download Guide</span>
-                <Download size={12} className="floating-download-icon" />
-              </a>
-            </div>
+            <span className="floating-chat-text">Download guide here</span>
+            <a 
+              href="/assets/Vitti_Capital_Guide.pdf" 
+              download="Vitti_Capital_Guide.pdf"
+              className="floating-download-icon-btn"
+              title="Download Guide (PDF)"
+              aria-label="Download Guide (PDF)"
+            >
+              <Download size={13} strokeWidth={2.6} />
+            </a>
           </div>
         </div>
       )}

@@ -5601,17 +5601,19 @@ img {
 /* Alternating Position: Left vs Right per Section */
 .floating-assistant-wrap.position-left {
   left: clamp(20px, 2.5vw, 42px);
+  right: auto;
   flex-direction: row; /* Character on left, chat bubble on right */
 }
 
 .floating-assistant-wrap.position-right {
-  left: calc(100% - clamp(95px, 8.5vw, 125px) - clamp(20px, 2.5vw, 42px) - clamp(220px, 18vw, 270px) - 12px);
+  left: auto;
+  right: clamp(20px, 2.5vw, 42px);
   flex-direction: row-reverse; /* Character on right, chat bubble on left */
 }
 
 /* Small 3D Model Embed Container */
 .floating-embed-container {
-  width: clamp(95px, 8.5vw, 125px);
+  width: clamp(90px, 8vw, 120px);
   cursor: pointer;
   border-radius: 20px;
   overflow: visible;
@@ -5643,16 +5645,19 @@ img {
   white-space: nowrap;
 }
 
-/* Genuine Speech / Chat Bubble (Appears to the side, not up top) */
+/* Compact Speech / Chat Bubble: Appears beside character */
 .floating-chat-bubble {
   position: relative;
-  width: clamp(220px, 18vw, 270px);
-  border-radius: 16px;
-  padding: 10px 14px 10px 12px;
+  width: auto;
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 8px 30px 8px 14px; /* Room on right for red close button */
   box-sizing: border-box;
   animation: floatPopIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  margin-bottom: 8px; /* Aligned nicely alongside the 3D model */
+  margin-bottom: 12px; /* Aligned vertically with model */
   transition: all 0.35s ease;
+  display: flex;
+  align-items: center;
 }
 
 @keyframes floatPopIn {
@@ -5668,20 +5673,21 @@ img {
 
 /* Chat bubble speech pointer tails */
 .floating-chat-bubble.bubble-on-right {
-  border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 4px;
 }
 
 .floating-chat-bubble.bubble-on-left {
-  border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 4px;
 }
 
 /* Red Cross Close Button */
 .floating-chat-close-red {
   position: absolute;
-  top: 7px;
-  right: 7px;
-  width: 18px;
-  height: 18px;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
   border-radius: 50%;
   background: #EF4444;
   color: #FFFFFF;
@@ -5691,15 +5697,15 @@ img {
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.45);
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.45);
   padding: 0;
   z-index: 5;
 }
 
 .floating-chat-close-red:hover {
   background: #DC2626;
-  transform: scale(1.15) rotate(90deg);
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.7);
+  transform: translateY(-50%) scale(1.15) rotate(90deg);
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.7);
 }
 
 /* Dark Theme Chat Bubble (Default on Dark Sections) */
@@ -5709,27 +5715,23 @@ img {
   -webkit-backdrop-filter: blur(20px);
   border: 1.5px solid rgba(0, 229, 153, 0.45);
   color: #FFFFFF;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.65), 0 0 20px rgba(0, 229, 153, 0.18);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 18px rgba(0, 229, 153, 0.16);
 }
 
-.floating-chat-bubble.bubble-dark .floating-chat-line-1 {
-  color: rgba(255, 255, 255, 0.94);
+.floating-chat-bubble.bubble-dark .floating-chat-text {
+  color: #FFFFFF;
 }
 
-.floating-chat-bubble.bubble-dark .floating-chat-line-2 {
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.floating-chat-bubble.bubble-dark .floating-pdf-btn {
+.floating-chat-bubble.bubble-dark .floating-download-icon-btn {
   background: #00E599;
   color: #07090E;
-  box-shadow: 0 3px 10px rgba(0, 229, 153, 0.35);
+  box-shadow: 0 2px 8px rgba(0, 229, 153, 0.4);
 }
 
-.floating-chat-bubble.bubble-dark .floating-pdf-btn:hover {
+.floating-chat-bubble.bubble-dark .floating-download-icon-btn:hover {
   background: #33FFB5;
-  box-shadow: 0 5px 16px rgba(0, 229, 153, 0.55);
-  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 229, 153, 0.65);
+  transform: scale(1.12);
 }
 
 /* Light Theme Chat Bubble (On White Sections: Who We Are & Sydney Capital Markets) */
@@ -5739,84 +5741,50 @@ img {
   -webkit-backdrop-filter: blur(20px);
   border: 1.5px solid rgba(0, 179, 119, 0.45);
   color: #0A0E17;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18), 0 0 20px rgba(0, 179, 119, 0.14);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18), 0 0 18px rgba(0, 179, 119, 0.14);
 }
 
-.floating-chat-bubble.bubble-light .floating-chat-line-1 {
+.floating-chat-bubble.bubble-light .floating-chat-text {
   color: #0A0E17;
-  font-weight: 600;
 }
 
-.floating-chat-bubble.bubble-light .floating-chat-line-2 {
-  color: #475569;
-}
-
-.floating-chat-bubble.bubble-light .floating-pdf-btn {
+.floating-chat-bubble.bubble-light .floating-download-icon-btn {
   background: #00875A;
   color: #FFFFFF;
-  box-shadow: 0 3px 10px rgba(0, 135, 90, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 135, 90, 0.35);
 }
 
-.floating-chat-bubble.bubble-light .floating-pdf-btn:hover {
+.floating-chat-bubble.bubble-light .floating-download-icon-btn:hover {
   background: #006644;
-  box-shadow: 0 5px 16px rgba(0, 135, 90, 0.45);
-  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(0, 135, 90, 0.55);
+  transform: scale(1.12);
 }
 
-/* Chat Body */
+/* Chat Body (Single Horizontal Row) */
 .floating-chat-body {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-right: 14px; /* Space for close button */
+  align-items: center;
+  gap: 9px;
 }
 
-.floating-chat-line-1 {
+.floating-chat-text {
   font-family: 'Plus Jakarta Sans', var(--font-sans);
-  font-size: 11.5px;
-  line-height: 1.38;
-  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
   letter-spacing: -0.01em;
+  white-space: nowrap;
+  line-height: 1;
 }
 
-.floating-chat-download-row {
+.floating-download-icon-btn {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding-top: 4px;
-  border-top: 1px solid rgba(125, 125, 125, 0.15);
-}
-
-.floating-chat-line-2 {
-  font-family: 'Plus Jakarta Sans', var(--font-sans);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-}
-
-.floating-pdf-btn {
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-  gap: 5px;
-  font-family: 'Plus Jakarta Sans', var(--font-sans);
-  font-size: 10.5px;
-  font-weight: 800;
-  padding: 5px 11px;
-  border-radius: 999px;
   text-decoration: none;
   transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.floating-pdf-icon {
-  flex-shrink: 0;
-}
-
-.floating-download-icon {
   flex-shrink: 0;
 }
 
@@ -5825,21 +5793,16 @@ img {
     left: 10px;
   }
   .floating-assistant-wrap.position-right {
-    left: calc(100% - 75px - 10px - 200px - 8px);
+    right: 10px;
   }
   .floating-embed-container {
     width: 75px;
   }
+  .floating-chat-text {
+    font-size: 11px;
+  }
   .floating-chat-bubble {
-    width: 200px;
-    padding: 8px 10px;
-  }
-  .floating-chat-line-1 {
-    font-size: 10.5px;
-  }
-  .floating-chat-download-row {
-    flex-direction: column;
-    align-items: flex-start;
+    padding: 7px 26px 7px 11px;
   }
 }
 
