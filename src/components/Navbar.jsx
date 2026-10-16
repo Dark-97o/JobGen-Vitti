@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { MapPin, ChevronDown, Check } from 'lucide-react';
 
 export default function Navbar({ onOpenModal }) {
   const [scrolled, setScrolled] = useState(false);
   const [location, setLocation] = useState('AU'); // 'AU' for Australia, 'AE' for Dubai
+  const [locationMenuOpen, setLocationMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,8 +16,19 @@ export default function Navbar({ onOpenModal }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setLocationMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const handleSelectLocation = (loc) => {
     setLocation(loc);
+    setLocationMenuOpen(false);
     // Smoothly scroll to the offices section to highlight the selected desk
     const officesSection = document.getElementById('offices');
     if (officesSection) {
@@ -26,7 +40,7 @@ export default function Navbar({ onOpenModal }) {
     <header className={`site-navbar ${scrolled ? 'scrolled-floating-rect' : 'transparent-hero'}`}>
       <div className="container nav-fullscreen-container">
         
-        {/* Official Vitti Full Logo */}
+        {/* Official Vitti Full Logo (Bigger) */}
         <a href="#" className="nav-brand-logo-wrap" aria-label="Vitti Capital Home">
           <img 
             src="/assets/vitti-full.png" 
@@ -45,41 +59,54 @@ export default function Navbar({ onOpenModal }) {
           <a href="#offices" className="nav-item-link">Offices</a>
         </nav>
 
-        {/* Nav Actions: Location Selector (Australia / Dubai) + Action Button */}
-        <div className="nav-cta-group">
-          {/* Location Selector of Australia and Dubai */}
-          <div className="nav-location-toggle" role="group" aria-label="Jurisdiction Selector">
+        {/* Nav Actions: Location Favicon Dropdown Selector (Australia & Dubai) */}
+        <div className="nav-cta-group" ref={menuRef}>
+          <div className="nav-location-dropdown-wrap">
             <button 
               type="button"
-              className={`nav-location-pill ${location === 'AU' ? 'active' : ''}`}
-              onClick={() => handleSelectLocation('AU')}
-              title="Sydney, Australia Office & Desks"
+              className={`nav-location-favicon-btn ${locationMenuOpen ? 'is-active' : ''}`}
+              onClick={() => setLocationMenuOpen(!locationMenuOpen)}
+              aria-label="Select Location Desk"
+              aria-expanded={locationMenuOpen}
+              title={`Selected Desk: ${location === 'AU' ? 'Australia' : 'Dubai'}`}
             >
-              <span className="location-flag">🇦🇺</span>
-              <span className="location-text">Australia</span>
+              <MapPin size={18} strokeWidth={2.4} className="nav-location-pin-icon" />
+              <span className="nav-location-tag">{location === 'AU' ? 'Australia' : 'Dubai'}</span>
+              <ChevronDown size={14} className={`nav-location-chevron ${locationMenuOpen ? 'rotated' : ''}`} />
             </button>
-            <button 
-              type="button"
-              className={`nav-location-pill ${location === 'AE' ? 'active' : ''}`}
-              onClick={() => handleSelectLocation('AE')}
-              title="Dubai, UAE Office & Desks"
-            >
-              <span className="location-flag">🇦🇪</span>
-              <span className="location-text">Dubai</span>
-            </button>
-          </div>
 
-          {/* Action Button on Hero / Floating Nav */}
-          <button 
-            type="button"
-            className="btn btn-primary-glow btn-sm nav-book-call-btn"
-            onClick={() => onOpenModal && onOpenModal(`Book a Call (${location === 'AU' ? 'Sydney Desk' : 'Dubai Desk'})`)}
-          >
-            <span>Book a Call</span>
-            <svg viewBox="0 0 16 16" fill="none" width="14" height="14">
-              <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-          </button>
+            {locationMenuOpen && (
+              <div className="nav-location-dropdown-menu" role="menu">
+                <button
+                  type="button"
+                  className={`nav-location-dropdown-item ${location === 'AU' ? 'selected' : ''}`}
+                  onClick={() => handleSelectLocation('AU')}
+                  role="menuitem"
+                >
+                  <span className="dropdown-item-flag">🇦🇺</span>
+                  <div className="dropdown-item-info">
+                    <span className="dropdown-item-title">Australia</span>
+                    <span className="dropdown-item-sub">Sydney Desk</span>
+                  </div>
+                  {location === 'AU' && <Check size={16} className="dropdown-item-check" />}
+                </button>
+                <div className="nav-location-dropdown-divider" />
+                <button
+                  type="button"
+                  className={`nav-location-dropdown-item ${location === 'AE' ? 'selected' : ''}`}
+                  onClick={() => handleSelectLocation('AE')}
+                  role="menuitem"
+                >
+                  <span className="dropdown-item-flag">🇦🇪</span>
+                  <div className="dropdown-item-info">
+                    <span className="dropdown-item-title">Dubai</span>
+                    <span className="dropdown-item-sub">DET License No. 1537728</span>
+                  </div>
+                  {location === 'AE' && <Check size={16} className="dropdown-item-check" />}
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
       </div>

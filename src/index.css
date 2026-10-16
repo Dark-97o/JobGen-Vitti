@@ -192,7 +192,7 @@ img {
 }
 
 .nav-brand-full-logo {
-  height: clamp(30px, 3.2vh, 38px);
+  height: clamp(38px, 4.4vh, 52px);
   width: auto;
   object-fit: contain;
   display: block;
@@ -234,58 +234,155 @@ img {
   display: flex;
   align-items: center;
   gap: 12px;
+  position: relative;
 }
 
-/* Location Selector for Australia and Dubai */
-.nav-location-toggle {
+/* Location Favicon Button with Dropdown (Australia & Dubai) */
+.nav-location-dropdown-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-location-favicon-btn {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   background: #080c14;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: var(--radius-pill);
-  padding: 4px;
-  gap: 3px;
-  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.7), inset -1px -1px 4px rgba(255, 255, 255, 0.05);
-}
-
-.nav-location-pill {
-  padding: 6px 14px;
-  font-size: 12.5px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.75);
-  border-radius: var(--radius-pill);
-  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-}
-
-.nav-location-pill:hover {
+  padding: 8px 16px;
   color: #FFFFFF;
-  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 4px 6px 16px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
-.nav-location-pill:active {
-  transform: translateY(1px) scale(0.97);
+.nav-location-favicon-btn:hover,
+.nav-location-favicon-btn.is-active {
+  border-color: #00E599;
+  background: #0e1622;
+  box-shadow: 0 0 20px rgba(0, 229, 153, 0.32), inset 0 1px 1px rgba(255, 255, 255, 0.22);
 }
 
-.nav-location-pill.active {
-  color: #04070A;
-  background: linear-gradient(135deg, #00FFA1 0%, #00B377 100%);
-  font-weight: 800;
-  box-shadow: 3px 4px 12px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+.nav-location-pin-icon {
+  color: #00E599;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
 }
 
-.location-flag {
+.nav-location-favicon-btn:hover .nav-location-pin-icon {
+  transform: scale(1.15);
+}
+
+.nav-location-tag {
+  font-family: var(--font-sans);
   font-size: 13px;
-  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #FFFFFF;
 }
 
-.nav-book-call-btn {
+.nav-location-chevron {
+  color: rgba(255, 255, 255, 0.65);
+  transition: transform 0.25s ease;
+}
+
+.nav-location-chevron.rotated {
+  transform: rotate(180deg);
+}
+
+.nav-location-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 210px;
+  background: rgba(8, 12, 18, 0.96);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 24px rgba(0, 229, 153, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 1000;
+  animation: dropdownFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.nav-location-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: #CBD5E1;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.nav-location-dropdown-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.nav-location-dropdown-item.selected {
+  background: rgba(0, 229, 153, 0.14);
+  border-color: rgba(0, 229, 153, 0.35);
+  color: #00FFA1;
+}
+
+.dropdown-item-flag {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.dropdown-item-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.dropdown-item-title {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
   font-weight: 700;
+  line-height: 1.2;
+}
+
+.dropdown-item-sub {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: #94A3B8;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+.dropdown-item-check {
+  color: #00FFA1;
+  flex-shrink: 0;
+}
+
+.nav-location-dropdown-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 3px 6px;
 }
 
 /* ==========================================================================
@@ -345,12 +442,12 @@ img {
   height: 100%;
 }
 
-/* TOP HEADER: WHO WE ARE in all caps, with generous spacing after */
+/* TOP HEADER: WHO WE ARE in all caps, with compact spacing */
 .who-header-top {
   text-align: center;
   margin-top: -5px;
   transform: translateY(-10px);
-  margin-bottom: clamp(52px, 6.5vh, 80px); /* Generous ample spacing after WHO WE ARE */
+  margin-bottom: clamp(14px, 1.8vh, 24px); /* Tightened space after WHO WE ARE */
   width: 100%;
 }
 
@@ -383,14 +480,14 @@ img {
   background: transparent;
   border: none;
   border-radius: 0;
-  padding: clamp(12px, 1.5vh, 24px) 24px clamp(12px, 1.5vh, 24px) 0;
+  padding: clamp(8px, 1.2vh, 18px) 24px clamp(8px, 1.2vh, 18px) 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   box-shadow: none;
   box-sizing: border-box;
   overflow: visible;
-  transform: translateY(0);
+  transform: translateY(-24px);
 }
 
 /* Second headline in Who We Are section: Wholesale Investment Advisory in green */
@@ -401,7 +498,7 @@ img {
   color: #00B377 !important;
   -webkit-text-fill-color: #00B377 !important;
   line-height: 1.25;
-  margin: 0 0 clamp(16px, 2vh, 24px) 0;
+  margin: 0 0 clamp(10px, 1.4vh, 16px) 0;
   letter-spacing: -0.025em;
   text-align: left;
 }
@@ -412,8 +509,8 @@ img {
   font-size: clamp(15.5px, 1.2vw, 18px);
   color: #000000 !important; /* All dark black */
   font-weight: 600;
-  line-height: 1.82;
-  margin: 0 0 22px 0;
+  line-height: 1.78;
+  margin: 0 0 16px 0;
   text-align: left;
 }
 
@@ -427,8 +524,8 @@ img {
   display: flex;
   align-items: center;
   width: 100%;
-  transform: translateY(-20px); /* Move text button a little up by 20px */
-  margin-bottom: -10px;
+  transform: translateY(-24px); /* Moved up by 50px combined */
+  margin-bottom: -16px;
 }
 
 /* ==========================================================================
@@ -475,7 +572,7 @@ img {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
-  margin-top: 24px;
+  margin-top: 10px; /* Moved up */
   max-width: 100%;
   width: 100%;
 }
@@ -1947,7 +2044,7 @@ img {
   pointer-events: none;
 }
 
-/* Whole screen turns into green & blue gradient background when rectangle expands (lines removed) */
+/* Whole screen turns into lush green gradient background when rectangle expands */
 .sydney-creme-backdrop {
   position: absolute;
   inset: 0;
@@ -1958,7 +2055,7 @@ img {
       rgba(255, 255, 255, 0.72) 75%,
       rgba(255, 255, 255, 0.28) 100%
     ),
-    linear-gradient(135deg, #00E599 0%, #10B981 22%, #06B6D4 52%, #3B82F6 78%, #1D4ED8 100%) !important;
+    linear-gradient(135deg, #00FFA1 0%, #00E599 24%, #10B981 48%, #059669 72%, #047857 100%) !important;
   z-index: 2;
   pointer-events: none;
   will-change: opacity;
@@ -2033,7 +2130,7 @@ img {
       rgba(255, 255, 255, 0.72) 75%,
       rgba(255, 255, 255, 0.28) 100%
     ),
-    linear-gradient(135deg, #00E599 0%, #10B981 22%, #06B6D4 52%, #3B82F6 78%, #1D4ED8 100%) !important;
+    linear-gradient(135deg, #00FFA1 0%, #00E599 24%, #10B981 48%, #059669 72%, #047857 100%) !important;
   will-change: opacity;
 }
 
@@ -2625,8 +2722,8 @@ img {
 .sydney-story-direct-lead {
   font-family: 'Plus Jakarta Sans', var(--font-sans);
   font-size: clamp(18px, 1.25vw, 20.5px);
-  font-weight: 600;
-  color: #0F172A;
+  font-weight: 700;
+  color: #0A0E17 !important; /* Darker High-Contrast Info Text */
   line-height: 1.6;
   margin: 0 0 14px;
   letter-spacing: -0.01em;
@@ -2635,38 +2732,41 @@ img {
 .sydney-story-direct-body {
   font-family: 'Plus Jakarta Sans', var(--font-sans);
   font-size: clamp(16.5px, 1.1vw, 18.5px);
-  color: #475569;
+  color: #0A0E17 !important; /* Darker High-Contrast Info Text */
+  opacity: 0.92;
+  font-weight: 600;
   line-height: 1.68;
-  margin: 0 0 20px;
+  margin: 0 0 24px;
 }
 
-/* 4 Core Value Options: Integrity, Innovation, Collaboration, Excellence (Circular Cards with Text Inside) */
+/* 4 Core Value Favicons: Integrity, Innovation, Collaboration, Excellence (Increased Size & Spread Out) */
 .sydney-values-grid {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: clamp(12px, 1.8vw, 24px);
-  border-top: 1px solid rgba(10, 14, 23, 0.12);
-  padding-top: 22px;
-  margin-top: 12px;
+  justify-content: space-between; /* Spread them out across the cards */
+  width: 100%;
+  gap: clamp(14px, 2.2vw, 28px);
+  border-top: 1px solid rgba(10, 14, 23, 0.14);
+  padding-top: 24px;
+  margin-top: 14px;
   flex-wrap: wrap;
 }
 
 .sydney-value-item {
-  width: clamp(92px, 8.8vw, 114px);
-  height: clamp(92px, 8.8vw, 114px);
+  width: clamp(108px, 10.2vw, 132px); /* Increased favicon card size */
+  height: clamp(108px, 10.2vw, 132px);
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background: #FFFFFF;
-  border: 1.5px solid rgba(0, 0, 0, 0.09);
-  box-shadow: 6px 8px 20px rgba(0, 0, 0, 0.06), -5px -5px 16px rgba(255, 255, 255, 0.95), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+  border: 1.5px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 6px 10px 24px rgba(0, 0, 0, 0.08), -5px -5px 18px rgba(255, 255, 255, 0.98), inset 0 1px 1px rgba(255, 255, 255, 0.95);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 5px;
-  padding: 8px;
+  gap: 7px;
+  padding: 10px;
   box-sizing: border-box;
   transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
   cursor: default;
@@ -2675,7 +2775,7 @@ img {
 .sydney-value-item:hover {
   transform: translateY(-4px) scale(1.05);
   border-color: #00875A;
-  box-shadow: 10px 14px 28px rgba(0, 0, 0, 0.1), -6px -6px 20px rgba(255, 255, 255, 1), 0 0 16px rgba(0, 135, 90, 0.2);
+  box-shadow: 10px 14px 28px rgba(0, 0, 0, 0.12), -6px -6px 20px rgba(255, 255, 255, 1), 0 0 18px rgba(0, 135, 90, 0.25);
 }
 
 .sydney-value-item:active {
@@ -2702,7 +2802,7 @@ img {
 
 .sydney-value-label {
   font-family: 'Plus Jakarta Sans', var(--font-sans);
-  font-size: clamp(10.5px, 0.85vw, 12px);
+  font-size: clamp(12px, 1.05vw, 13.5px);
   font-weight: 800;
   color: #0A0E17;
   letter-spacing: 0.01em;
@@ -3905,13 +4005,13 @@ img {
 }
 
 .market-band-left {
-  flex: 0 0 28%;
-  width: 28%;
+  flex: 0 0 25%;
+  width: 25%;
   background: transparent;
   border-right: none;
   display: flex;
   align-items: center;
-  padding: clamp(28px, 3.5vw, 48px) clamp(24px, 3vw, 44px);
+  padding: clamp(28px, 3.5vw, 48px) clamp(20px, 2.5vw, 36px);
   position: relative;
   z-index: 5;
   box-shadow: none;
@@ -3934,8 +4034,8 @@ img {
 }
 
 .market-band-right {
-  flex: 0 0 72%;
-  width: 72%;
+  flex: 0 0 75%;
+  width: 75%;
   background: transparent;
   display: flex;
   align-items: center;
@@ -4075,7 +4175,7 @@ img {
       rgba(255, 255, 255, 0.72) 75%,
       rgba(255, 255, 255, 0.28) 100%
     ),
-    linear-gradient(135deg, #00E599 0%, #10B981 22%, #06B6D4 52%, #3B82F6 78%, #1D4ED8 100%) !important;
+    linear-gradient(135deg, #00FFA1 0%, #00E599 24%, #10B981 48%, #059669 72%, #047857 100%) !important;
 }
 
 .light-theme-grid-bg::before {
@@ -4407,13 +4507,13 @@ img {
 }
 
 .blog-band-left {
-  flex: 0 0 28%;
-  width: 28%;
+  flex: 0 0 25%;
+  width: 25%;
   background: transparent;
   border-right: none;
   display: flex;
   align-items: center;
-  padding: clamp(28px, 3.5vw, 48px) clamp(24px, 3vw, 44px);
+  padding: clamp(28px, 3.5vw, 48px) clamp(20px, 2.5vw, 36px);
   position: relative;
   z-index: 5;
   box-shadow: none;
@@ -4436,8 +4536,8 @@ img {
 }
 
 .blog-band-right {
-  flex: 0 0 72%;
-  width: 72%;
+  flex: 0 0 75%;
+  width: 75%;
   background: transparent;
   display: flex;
   align-items: center;
@@ -4791,24 +4891,28 @@ img {
 
 .inner-form-row {
   display: flex;
-  gap: 10px;
+  align-items: stretch;
+  gap: 12px;
   margin-bottom: 14px;
 }
 
 .inner-input-wrap {
   flex: 1;
+  display: flex;
 }
 
 .inner-email-input {
   width: 100%;
+  height: 54px;
   background: #06090e;
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 9999px;
-  padding: 15px 24px;
+  padding: 0 24px;
   font-family: var(--font-sans);
   font-size: 15px;
   color: #FFFFFF;
   outline: none;
+  box-sizing: border-box;
   transition: all 0.25s ease;
   box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.75), inset -2px -2px 6px rgba(255, 255, 255, 0.04);
 }
@@ -4824,11 +4928,12 @@ img {
 }
 
 .inner-submit-btn {
+  height: 54px;
   background: linear-gradient(135deg, #00E599 0%, #36BB91 100%);
   color: #04070A;
   border: 1px solid rgba(255, 255, 255, 0.45);
   border-radius: 9999px;
-  padding: 15px 30px;
+  padding: 0 32px;
   font-family: var(--font-sans);
   font-size: 14.5px;
   font-weight: 800;
@@ -4836,6 +4941,8 @@ img {
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
   gap: 8px;
   transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
   box-shadow: 5px 7px 18px rgba(0, 0, 0, 0.5), -4px -4px 12px rgba(0, 229, 153, 0.3), 0 0 24px rgba(0, 229, 153, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.5);
@@ -4950,11 +5057,15 @@ img {
 
 .footer-top-grid {
   display: grid;
-  grid-template-columns: minmax(175px, 1.15fr) minmax(165px, 1fr) minmax(220px, 1.45fr) minmax(175px, 1.05fr) minmax(185px, 1.1fr);
+  grid-template-columns: minmax(170px, 1.1fr) minmax(150px, 0.95fr) minmax(240px, 1.45fr) minmax(185px, 1.1fr) minmax(180px, 1.1fr);
   gap: clamp(16px, 2.2vw, 36px);
   margin-bottom: 48px;
   align-items: start;
   width: 100%;
+}
+
+.footer-nav-column {
+  align-self: start;
 }
 
 .footer-brand-column {
@@ -4962,20 +5073,24 @@ img {
   flex-direction: column;
 }
 
-/* Center Column: Big Vitti Full Logo in the Middle (100% bigger) */
+/* Center Column: Big Vitti Full Logo in the Middle (Aligned at bottom, balanced spacing) */
 .footer-brand-middle {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end; /* Aligned at the bottom */
+  align-self: end; /* Aligned to the bottom baseline */
   text-align: center;
-  padding: 0 8px;
+  padding: 0 clamp(14px, 1.8vw, 24px);
+  margin-top: auto;
+  margin-left: 12px; /* Equalizes space between left Intelligence column and right Global Desks column */
+  margin-bottom: 6px;
 }
 
 .footer-brand-middle .footer-brand-header {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   margin: 0;
   width: 100%;
 }
@@ -4983,7 +5098,7 @@ img {
 .footer-brand-middle .footer-brand-full-logo {
   height: clamp(96px, 11.5vh, 145px);
   width: auto;
-  max-width: 520px;
+  max-width: 100%;
   object-fit: contain;
   display: block;
   margin: 0 auto;
