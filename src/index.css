@@ -4207,6 +4207,7 @@ img {
   width: max-content;
   animation: tickerScrollAnim 38s linear infinite;
   will-change: transform;
+  transform: translateZ(0);
 }
 
 .market-ticker-track:hover {
@@ -4709,6 +4710,7 @@ img {
   width: max-content;
   animation: blogScrollAnim 42s linear infinite;
   will-change: transform;
+  transform: translateZ(0);
 }
 
 .blog-ticker-track:hover {

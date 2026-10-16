@@ -231,8 +231,13 @@ export default function PredictiveArc(props: Props) {
         let raf = 0
         let last = performance.now()
         let clock = 0
+        let isVisible = true
 
         const render = (now: number) => {
+            if (!isVisible) {
+                raf = 0
+                return
+            }
             const dt = Math.min(0.05, (now - last) / 1000)
             last = now
             const v = vRef.current
@@ -287,10 +292,26 @@ export default function PredictiveArc(props: Props) {
             raf = requestAnimationFrame(render)
         }
 
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                const visible = entry.isIntersecting
+                if (visible !== isVisible) {
+                    isVisible = visible
+                    if (isVisible && !raf) {
+                        last = performance.now()
+                        raf = requestAnimationFrame(render)
+                    }
+                }
+            },
+            { threshold: 0.01 }
+        )
+        observer.observe(canvas)
+
         raf = requestAnimationFrame(render)
 
         return () => {
-            cancelAnimationFrame(raf)
+            observer.disconnect()
+            if (raf) cancelAnimationFrame(raf)
         }
     }, [])
 

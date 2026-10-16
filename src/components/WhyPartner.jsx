@@ -78,42 +78,7 @@ export default function WhyPartner({ onOpenModal }) {
     };
   }, []);
 
-  // Free scrolling with snap on scroll stop
-  useEffect(() => {
-    let scrollStopTimer = null;
 
-    const handleScrollActivity = () => {
-      if (isMobile || !trackRef.current) return;
-      clearTimeout(scrollStopTimer);
-
-      scrollStopTimer = setTimeout(() => {
-        const rect = trackRef.current.getBoundingClientRect();
-        const trackTop = trackRef.current.offsetTop;
-        const scrollableDistance = trackRef.current.offsetHeight - window.innerHeight;
-        const scrollY = window.scrollY || window.pageYOffset;
-
-        // Only snap if currently within the why-partner section's active track range
-        if (scrollY >= trackTop - 30 && scrollY <= trackTop + scrollableDistance + 30) {
-          const progress = Math.min(Math.max((scrollY - trackTop) / scrollableDistance, 0), 1);
-
-          // If near beginning, snap to top fullscreen state
-          if (progress > 0.04 && progress < 0.16) {
-            if (window.__lenis) {
-              window.__lenis.scrollTo(trackTop, { duration: 0.6 });
-            } else {
-              window.scrollTo({ top: trackTop, behavior: 'smooth' });
-            }
-          }
-        }
-      }, 140); // fires 140ms after scrolling stops
-    };
-
-    window.addEventListener('scroll', handleScrollActivity, { passive: true });
-    return () => {
-      clearTimeout(scrollStopTimer);
-      window.removeEventListener('scroll', handleScrollActivity);
-    };
-  }, [isMobile]);
 
   // Morph progress: completes briskly over first 0.22 of the track so transitioning to next section is fast
   const rawProgress = Math.min(Math.max(scrollProgress / 0.22, 0), 1);
