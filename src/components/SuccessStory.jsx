@@ -134,6 +134,13 @@ export default function SuccessStory({ onOpenModal }) {
           </div>
         </div>
 
+        {/* Overlay image dub in bottom corner at 50% transparency */}
+        <img 
+          src="/assets/dub.png" 
+          alt="Dubai" 
+          className="section-corner-overlay corner-overlay-dub" 
+          aria-hidden="true" 
+        />
       </div>
     </section>
   );

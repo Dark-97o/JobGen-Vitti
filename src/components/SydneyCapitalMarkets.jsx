@@ -584,17 +584,11 @@ export default function SydneyCapitalMarkets() {
             </div>
           </div>
 
-          {/* Overlay images aus and dub in the bottom corners at 50% transparency */}
+          {/* Overlay image aus in bottom corner at 50% transparency */}
           <img 
             src="/assets/aus.png" 
             alt="Australia" 
-            className="white-section-corner-overlay corner-overlay-aus" 
-            aria-hidden="true" 
-          />
-          <img 
-            src="/assets/dub.png" 
-            alt="Dubai" 
-            className="white-section-corner-overlay corner-overlay-dub" 
+            className="section-corner-overlay corner-overlay-aus" 
             aria-hidden="true" 
           />
         </div>

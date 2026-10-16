@@ -123,6 +123,14 @@ export default function StayInTheLoopCard() {
         </div>
 
       </div>
+
+      {/* Overlay image aus in bottom corner at 50% transparency */}
+      <img 
+        src="/assets/aus.png" 
+        alt="Australia" 
+        className="section-corner-overlay corner-overlay-aus" 
+        aria-hidden="true" 
+      />
     </section>
   );
 }

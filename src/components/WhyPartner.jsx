@@ -300,6 +300,8 @@ export default function WhyPartner({ onOpenModal }) {
                 <span className="why-sector-title">Infrastructure</span>
               </div>
 
+              <div className="why-sector-connector" aria-hidden="true" />
+
               <div className="why-sector-card">
                 <div className="why-sector-logo-wrap">
                   <img 
@@ -310,6 +312,8 @@ export default function WhyPartner({ onOpenModal }) {
                 </div>
                 <span className="why-sector-title">Real Estate</span>
               </div>
+
+              <div className="why-sector-connector" aria-hidden="true" />
 
               <div className="why-sector-card">
                 <div className="why-sector-logo-wrap">
@@ -325,6 +329,13 @@ export default function WhyPartner({ onOpenModal }) {
           </div>
         </div>
 
+        {/* Overlay image aus in bottom corner at 50% transparency */}
+        <img 
+          src="/assets/aus.png" 
+          alt="Australia" 
+          className="section-corner-overlay corner-overlay-aus" 
+          aria-hidden="true" 
+        />
       </div>
     </section>
   );

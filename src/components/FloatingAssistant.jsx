@@ -174,10 +174,10 @@ export default function FloatingAssistant() {
       }}
       aria-label="Vitti Capital Assistant"
     >
-      {/* Speech / Chat Box (Only shown if not closed) */}
+      {/* Speech / Chat Box (Appears left or right of character, not up top) */}
       {!isClosed && (
         <div 
-          className={`floating-chat-bubble ${isLightSection ? 'bubble-light' : 'bubble-dark'} ${isLeft ? 'tail-left' : 'tail-right'}`}
+          className={`floating-chat-bubble ${isLightSection ? 'bubble-light' : 'bubble-dark'} ${isLeft ? 'bubble-on-right' : 'bubble-on-left'}`}
           role="complementary"
           aria-live="polite"
         >
@@ -185,36 +185,36 @@ export default function FloatingAssistant() {
           <button 
             type="button" 
             className="floating-chat-close-red" 
-            onClick={() => setIsClosed(true)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsClosed(true);
+            }}
             aria-label="Close message"
             title="Close"
           >
-            <X size={13} strokeWidth={2.8} />
+            <X size={12} strokeWidth={2.8} />
           </button>
 
-          {/* Line 1: Short 1-line text about Vitti Capital */}
-          <div className="floating-chat-header">
-            <span className="floating-chat-badge">Vitti Capital</span>
+          <div className="floating-chat-body">
+            {/* Line 1: Short 1-line text about Vitti Capital (no pill) */}
             <p className="floating-chat-line-1">
               {activeInsight.text}
             </p>
-          </div>
 
-          <div className="floating-chat-divider" />
-
-          {/* Line 2: "Download guide here" and PDF download button */}
-          <div className="floating-chat-footer">
-            <span className="floating-chat-line-2">Download guide here:</span>
-            <a 
-              href="/assets/Vitti_Capital_Guide.pdf" 
-              download="Vitti_Capital_Guide.pdf"
-              className="floating-pdf-btn"
-              title="Download Vitti Capital Guide (PDF)"
-            >
-              <FileText size={14} className="floating-pdf-icon" />
-              <span>Download Guide (PDF)</span>
-              <Download size={13} className="floating-download-icon" />
-            </a>
+            {/* Line 2: Compact download guide row with PDF download button */}
+            <div className="floating-chat-download-row">
+              <span className="floating-chat-line-2">Download guide here:</span>
+              <a 
+                href="/assets/Vitti_Capital_Guide.pdf" 
+                download="Vitti_Capital_Guide.pdf"
+                className="floating-pdf-btn"
+                title="Download Vitti Capital Guide (PDF)"
+              >
+                <FileText size={13} className="floating-pdf-icon" />
+                <span>Download Guide</span>
+                <Download size={12} className="floating-download-icon" />
+              </a>
+            </div>
           </div>
         </div>
       )}
