@@ -435,6 +435,37 @@ img {
   overflow: hidden;
 }
 
+/* WHO WE ARE: Top Green Background until the headline */
+.who-we-are-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(230px, 27vh, 300px);
+  background: linear-gradient(
+    to bottom,
+    #00FFA1 0%,
+    #00E599 clamp(160px, 20vh, 230px),
+    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.who-we-are-snap-section {
+  position: relative;
+  background: linear-gradient(
+    to bottom,
+    #00FFA1 0%,
+    #00E599 clamp(160px, 20vh, 230px),
+    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
+    #FBFBF5 clamp(260px, 30vh, 330px),
+    #FBFBF5 100%
+  ) !important;
+}
+
 /* Section Corner Overlay Images (Australia and Dubai on right corner, 80% transparent) */
 .section-corner-overlay,
 .white-section-corner-overlay {
@@ -589,8 +620,10 @@ img {
   inset: 0;
   pointer-events: none !important;
   z-index: 2;
-  background: radial-gradient(circle at 65% 50%, rgba(251, 251, 245, 0.45) 0%, rgba(251, 251, 245, 0.78) 65%, #FBFBF5 100%),
-              linear-gradient(to right, #FBFBF5 0%, rgba(251, 251, 245, 0.6) 45%, rgba(251, 251, 245, 0.28) 100%);
+  background: 
+    linear-gradient(to bottom, #00FFA1 0%, #00E599 clamp(160px, 20vh, 230px), rgba(0, 229, 153, 0.3) clamp(210px, 25vh, 280px), transparent clamp(260px, 30vh, 330px)),
+    radial-gradient(circle at 65% 50%, rgba(251, 251, 245, 0.45) 0%, rgba(251, 251, 245, 0.78) 65%, #FBFBF5 100%),
+    linear-gradient(to right, #FBFBF5 0%, rgba(251, 251, 245, 0.6) 45%, rgba(251, 251, 245, 0.28) 100%);
 }
 
 /* ==========================================================================
@@ -2090,18 +2123,18 @@ img {
   pointer-events: none;
 }
 
-/* Whole screen turns into lush green gradient background when rectangle expands */
+/* Whole screen turns into top green gradient background until the headline */
 .sydney-creme-backdrop {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-      to bottom,
-      #ffffff 0%,
-      #ffffff 36%,
-      rgba(255, 255, 255, 0.72) 75%,
-      rgba(255, 255, 255, 0.28) 100%
-    ),
-    linear-gradient(135deg, #00FFA1 0%, #00E599 24%, #10B981 48%, #059669 72%, #047857 100%) !important;
+    to bottom,
+    #00FFA1 0%,
+    #00E599 clamp(160px, 20vh, 230px),
+    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
+    #FBFBF5 clamp(260px, 30vh, 330px),
+    #FBFBF5 100%
+  ) !important;
   z-index: 2;
   pointer-events: none;
   will-change: opacity;
@@ -2410,7 +2443,28 @@ img {
   background: transparent;
 }
 
+/* YOUR MONEY REIMAGINED: Top Green Background until the headline */
+.sydney-reimagined-stage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(220px, 26vh, 290px);
+  background: linear-gradient(
+    to bottom,
+    #00FFA1 0%,
+    #00E599 clamp(160px, 20vh, 230px),
+    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
 .sydney-reimagined-header {
+  position: relative;
+  z-index: 2;
   margin-bottom: clamp(56px, 7.5vh, 88px); /* Ample generous spacing after YOUR MONEY, REIMAGINED */
   transform: translateY(-10px);
   text-align: center;
@@ -4318,19 +4372,19 @@ img {
 }
 
 /* ==========================================================================
-   LIGHT THEME GREEN & BLUE SHADES GRADIENT BACKGROUND (Lines Removed)
+   LIGHT THEME: TOP BACKGROUND GREEN UNTIL THE HEADLINE
    ========================================================================== */
 .light-theme-grid-bg {
   position: relative;
   overflow: hidden;
   background: linear-gradient(
-      to bottom,
-      #ffffff 0%,
-      #ffffff 36%,
-      rgba(255, 255, 255, 0.72) 75%,
-      rgba(255, 255, 255, 0.28) 100%
-    ),
-    linear-gradient(135deg, #00FFA1 0%, #00E599 24%, #10B981 48%, #059669 72%, #047857 100%) !important;
+    to bottom,
+    #00FFA1 0%,
+    #00E599 clamp(160px, 20vh, 230px),
+    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
+    #FBFBF5 clamp(260px, 30vh, 330px),
+    #FBFBF5 100%
+  ) !important;
 }
 
 .light-theme-grid-bg::before {
@@ -4343,7 +4397,7 @@ img {
 }
 
 /* ==========================================================================
-   CONTACT SECTION ("Can We Help?" - UNBOXED LIGHT THEME, ALL DARK BLACK TEXT)
+   CONTACT SECTION ("Can We Help?" - TOP GREEN UNTIL HEADLINE, ALL DARK BLACK TEXT)
    ========================================================================== */
 .contact-card-section {
   padding: clamp(80px, 10vh, 130px) 0;
@@ -4351,6 +4405,14 @@ img {
   z-index: 10;
   border-top: 1px solid rgba(10, 14, 23, 0.08);
   border-bottom: 1px solid rgba(10, 14, 23, 0.08);
+  background: linear-gradient(
+    to bottom,
+    #00FFA1 0%,
+    #00E599 clamp(160px, 20vh, 230px),
+    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
+    #FBFBF5 clamp(260px, 30vh, 330px),
+    #FBFBF5 100%
+  ) !important;
 }
 
 .contact-header-block {
@@ -4820,15 +4882,22 @@ img {
 }
 
 /* ==========================================================================
-   FAQ SECTION (7 Real FAQs from vitti.capital - LIGHT THEME)
+   FAQ SECTION (TOP GREEN UNTIL HEADLINE, LIGHT THEME)
    ========================================================================== */
 .faq-section-wrap {
-  background-color: #FBFBF5;
   padding: clamp(70px, 9vh, 120px) 0;
   position: relative;
   z-index: 10;
   border-top: 1px solid rgba(10, 14, 23, 0.08);
   border-bottom: 1px solid rgba(10, 14, 23, 0.08);
+  background: linear-gradient(
+    to bottom,
+    #00FFA1 0%,
+    #00E599 clamp(160px, 20vh, 230px),
+    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
+    #FBFBF5 clamp(260px, 30vh, 330px),
+    #FBFBF5 100%
+  ) !important;
 }
 
 .faq-header-center {
@@ -4851,7 +4920,8 @@ img {
 
 .faq-subtitle {
   font-family: var(--font-sans);
-  color: #475569;
+  color: #1E293B;
+  font-weight: 600;
   font-size: clamp(15px, 1.2vw, 17px);
   line-height: 1.6;
   margin: 0 auto;
