@@ -435,31 +435,27 @@ img {
   overflow: hidden;
 }
 
-/* Section Corner Overlay Images (Australia and Dubai at 50% transparency, 100% bigger) */
+/* Section Corner Overlay Images (Australia and Dubai on right corner, 80% transparent) */
 .section-corner-overlay,
 .white-section-corner-overlay {
   position: absolute;
   bottom: 0;
+  right: 0;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.2; /* 80% transparent */
   z-index: 1;
   user-select: none;
   transition: opacity 0.3s ease;
-}
-
-.corner-overlay-aus {
-  left: 0;
-  max-height: clamp(280px, 40vh, 520px); /* 100% bigger */
-  max-width: clamp(320px, 44vw, 600px);  /* 100% bigger */
+  max-height: clamp(280px, 40vh, 520px);
+  max-width: clamp(320px, 44vw, 600px);
   object-fit: contain;
-  object-position: bottom left;
+  object-position: bottom right;
 }
 
+.corner-overlay-aus,
 .corner-overlay-dub {
   right: 0;
-  max-height: clamp(280px, 40vh, 520px); /* 100% bigger */
-  max-width: clamp(320px, 44vw, 600px);  /* 100% bigger */
-  object-fit: contain;
+  left: auto;
   object-position: bottom right;
 }
 
@@ -5254,19 +5250,19 @@ img {
 }
 
 .footer-brand-middle .footer-brand-full-logo {
-  height: clamp(135px, 16.1vh, 204px); /* 40% bigger */
+  height: clamp(189px, 22.5vh, 285px); /* Increased by 40% */
   width: auto;
   max-width: 100%;
   object-fit: contain;
   display: block;
   margin: 0 auto;
-  transform: translateX(-15px); /* Move 15px to the left without moving anything else */
+  transform: translateX(-20px); /* Move 20px to the left */
   filter: drop-shadow(0 0 28px rgba(0, 229, 153, 0.4));
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .footer-brand-middle .footer-brand-full-logo:hover {
-  transform: translateX(-15px) scale(1.03);
+  transform: translateX(-20px) scale(1.03);
   filter: drop-shadow(0 0 36px rgba(0, 229, 153, 0.55));
 }
 
@@ -5584,227 +5580,86 @@ img {
 }
 
 /* ==========================================================================
-   FLOATING 3D MODEL EMBED & SECTION-AWARE CHAT BUBBLE
+   FLOATING 3D MODEL EMBED (FIXED LEFT SECTION, DIRECT GUIDE DOWNLOAD)
    ========================================================================== */
 
-.floating-assistant-wrap {
+.floating-assistant-fixed-left {
   position: fixed;
-  bottom: clamp(16px, 2.5vh, 32px);
+  bottom: clamp(16px, 2.5vh, 28px);
+  left: clamp(16px, 2.2vw, 36px);
   z-index: 9999;
   display: flex;
-  align-items: flex-end;
-  gap: 12px;
-  transition: left 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-direction: column;
+  align-items: center;
   pointer-events: auto;
 }
 
-/* Alternating Position: Left vs Right per Section */
-.floating-assistant-wrap.position-left {
-  left: clamp(20px, 2.5vw, 42px);
-  right: auto;
-  flex-direction: row; /* Character on left, chat bubble on right */
-}
-
-.floating-assistant-wrap.position-right {
-  left: auto;
-  right: clamp(20px, 2.5vw, 42px);
-  flex-direction: row-reverse; /* Character on right, chat bubble on left */
-}
-
-/* Small 3D Model Embed Container */
-.floating-embed-container {
-  width: clamp(90px, 8vw, 120px);
+/* Small 3D Model Embed Container (20% smaller) */
+.floating-assistant-fixed-left .floating-embed-container {
+  width: clamp(72px, 6.4vw, 96px); /* 20% smaller than previous */
   cursor: pointer;
   border-radius: 20px;
   overflow: visible;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
   position: relative;
   user-select: none;
   flex-shrink: 0;
 }
 
-.floating-embed-container:hover {
+.floating-assistant-fixed-left .floating-embed-container:hover {
   transform: scale(1.08) translateY(-4px);
-  filter: drop-shadow(0 16px 36px rgba(0, 229, 153, 0.45));
+  filter: drop-shadow(0 14px 32px rgba(0, 229, 153, 0.45));
 }
 
-.floating-embed-minimized-hint {
+/* Guide Download Pill */
+.floating-guide-pill {
   position: absolute;
   bottom: -4px;
   left: 50%;
   transform: translateX(-50%);
   background: #00E599;
   color: #07090E;
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
   font-size: 10px;
   font-weight: 800;
-  padding: 2px 8px;
+  letter-spacing: 0.02em;
+  padding: 3px 9px 3px 7px;
   border-radius: 999px;
-  box-shadow: 0 2px 8px rgba(0, 229, 153, 0.5);
+  box-shadow: 0 3px 10px rgba(0, 229, 153, 0.55);
   white-space: nowrap;
-}
-
-/* Compact Speech / Chat Bubble: Appears beside character */
-.floating-chat-bubble {
-  position: relative;
-  width: auto;
-  white-space: nowrap;
-  border-radius: 999px;
-  padding: 8px 30px 8px 14px; /* Room on right for red close button */
-  box-sizing: border-box;
-  animation: floatPopIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  margin-bottom: 12px; /* Aligned vertically with model */
-  transition: all 0.35s ease;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  gap: 4px;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
 }
 
-@keyframes floatPopIn {
-  from {
-    opacity: 0;
-    transform: scale(0.92) translateX(8px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateX(0);
-  }
-}
-
-/* Chat bubble speech pointer tails */
-.floating-chat-bubble.bubble-on-right {
-  border-bottom-left-radius: 4px;
-}
-
-.floating-chat-bubble.bubble-on-left {
-  border-bottom-right-radius: 4px;
-}
-
-/* Red Cross Close Button */
-.floating-chat-close-red {
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  transform: translateY(-50%);
-  width: 17px;
-  height: 17px;
-  border-radius: 50%;
-  background: #EF4444;
-  color: #FFFFFF;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
-  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.45);
-  padding: 0;
-  z-index: 5;
-}
-
-.floating-chat-close-red:hover {
-  background: #DC2626;
-  transform: translateY(-50%) scale(1.15) rotate(90deg);
-  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.7);
-}
-
-/* Dark Theme Chat Bubble (Default on Dark Sections) */
-.floating-chat-bubble.bubble-dark {
-  background: rgba(10, 14, 23, 0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1.5px solid rgba(0, 229, 153, 0.45);
-  color: #FFFFFF;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65), 0 0 18px rgba(0, 229, 153, 0.16);
-}
-
-.floating-chat-bubble.bubble-dark .floating-chat-text {
-  color: #FFFFFF;
-}
-
-.floating-chat-bubble.bubble-dark .floating-download-icon-btn {
-  background: #00E599;
-  color: #07090E;
-  box-shadow: 0 2px 8px rgba(0, 229, 153, 0.4);
-}
-
-.floating-chat-bubble.bubble-dark .floating-download-icon-btn:hover {
+.floating-assistant-fixed-left .floating-embed-container:hover .floating-guide-pill {
   background: #33FFB5;
-  box-shadow: 0 4px 14px rgba(0, 229, 153, 0.65);
-  transform: scale(1.12);
+  box-shadow: 0 4px 14px rgba(0, 229, 153, 0.8);
+  transform: translateX(-50%) scale(1.08);
 }
 
-/* Light Theme Chat Bubble (On White Sections: Who We Are & Sydney Capital Markets) */
-.floating-chat-bubble.bubble-light {
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1.5px solid rgba(0, 179, 119, 0.45);
-  color: #0A0E17;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18), 0 0 18px rgba(0, 179, 119, 0.14);
-}
-
-.floating-chat-bubble.bubble-light .floating-chat-text {
-  color: #0A0E17;
-}
-
-.floating-chat-bubble.bubble-light .floating-download-icon-btn {
-  background: #00875A;
-  color: #FFFFFF;
-  box-shadow: 0 2px 8px rgba(0, 135, 90, 0.35);
-}
-
-.floating-chat-bubble.bubble-light .floating-download-icon-btn:hover {
-  background: #006644;
-  box-shadow: 0 4px 14px rgba(0, 135, 90, 0.55);
-  transform: scale(1.12);
-}
-
-/* Chat Body (Single Horizontal Row) */
-.floating-chat-body {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-}
-
-.floating-chat-text {
-  font-family: 'Plus Jakarta Sans', var(--font-sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  line-height: 1;
-}
-
-.floating-download-icon-btn {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+.guide-pill-icon {
   flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
-  .floating-assistant-wrap.position-left {
-    left: 10px;
+  .floating-assistant-fixed-left {
+    left: 12px;
+    bottom: 14px;
   }
-  .floating-assistant-wrap.position-right {
-    right: 10px;
+  .floating-assistant-fixed-left .floating-embed-container {
+    width: 60px; /* 20% smaller on mobile */
   }
-  .floating-embed-container {
-    width: 75px;
-  }
-  .floating-chat-text {
-    font-size: 11px;
-  }
-  .floating-chat-bubble {
-    padding: 7px 26px 7px 11px;
+  .floating-guide-pill {
+    font-size: 9px;
+    padding: 2px 7px 2px 5px;
+    bottom: -3px;
   }
 }
+
 
 
 

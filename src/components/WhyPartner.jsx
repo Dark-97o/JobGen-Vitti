@@ -132,11 +132,11 @@ export default function WhyPartner({ onOpenModal }) {
   // then shrinks to occupy 45% of the right side (left: 55%, right: 40px, top: 9vh, bottom: 9vh)
   const imageCardStyle = isMobile
     ? {
-        transform: 'translateY(10px)',
+        transform: 'translateY(40px)',
       }
     : {
-        top: p > 0.001 ? `calc(${(p * 16).toFixed(2)}vh + ${(p * 12).toFixed(1)}px)` : '0px',
-        bottom: p > 0.001 ? `calc(${(p * 16).toFixed(2)}vh + ${(p * 12).toFixed(1)}px)` : '0px',
+        top: p > 0.001 ? `calc(${(p * 16).toFixed(2)}vh + ${(p * 12 + 30).toFixed(1)}px)` : '0px',
+        bottom: p > 0.001 ? `calc(${(p * 16).toFixed(2)}vh + ${(p * 12 - 30).toFixed(1)}px)` : '0px',
         right: p > 0.001 ? `${(p * 40).toFixed(1)}px` : '0px',
         left: p > 0.001 ? `calc(${(p * 55).toFixed(2)}% + ${(p * 18).toFixed(1)}px)` : '0px',
         borderRadius: p > 0.001 ? `${(p * 26).toFixed(1)}px` : '0px',
@@ -215,7 +215,7 @@ export default function WhyPartner({ onOpenModal }) {
           className="partner-hero-headline-wrap"
           style={{
             opacity: headlineOpacity,
-            transform: `translate(-50%, calc(-50% + ${headlineTranslateY.toFixed(1)}px))`,
+            transform: `translate(-50%, calc(-50% + ${(headlineTranslateY + 30).toFixed(1)}px))`,
             pointerEvents: p > 0.08 ? 'none' : 'auto',
           }}
         >
@@ -231,7 +231,7 @@ export default function WhyPartner({ onOpenModal }) {
           className="partner-partitions-container"
           style={{
             opacity: leftOpacity,
-            transform: `translateX(${leftTranslateX.toFixed(1)}px)`,
+            transform: `translate(${leftTranslateX.toFixed(1)}px, 30px)`,
             pointerEvents: p > 0.22 ? 'auto' : 'none',
           }}
           aria-hidden={p < 0.12}
@@ -292,7 +292,7 @@ export default function WhyPartner({ onOpenModal }) {
               <div className="why-sector-card">
                 <div className="why-sector-logo-wrap">
                   <img 
-                    src="/assets/Infrastructure.webp" 
+                    src="/assets/Infrastructure.png" 
                     alt="Infrastructure" 
                     className="why-sector-logo" 
                   />
@@ -305,7 +305,7 @@ export default function WhyPartner({ onOpenModal }) {
               <div className="why-sector-card">
                 <div className="why-sector-logo-wrap">
                   <img 
-                    src="/assets/RealEstate-removebg-preview.webp" 
+                    src="/assets/RealEstate-removebg-preview.png" 
                     alt="Real Estate" 
                     className="why-sector-logo" 
                   />
@@ -318,7 +318,7 @@ export default function WhyPartner({ onOpenModal }) {
               <div className="why-sector-card">
                 <div className="why-sector-logo-wrap">
                   <img 
-                    src="/assets/Green.webp" 
+                    src="/assets/Green.png" 
                     alt="Green Technologies" 
                     className="why-sector-logo" 
                   />
