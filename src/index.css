@@ -5557,6 +5557,290 @@ img {
   }
 }
 
+/* ==========================================================================
+   FLOATING 3D MODEL EMBED & SECTION-AWARE CHAT BUBBLE
+   ========================================================================== */
+
+.floating-assistant-wrap {
+  position: fixed;
+  bottom: clamp(16px, 2.8vh, 32px);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: left 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: auto;
+}
+
+/* Alternating Position: Left vs Right per Section */
+.floating-assistant-wrap.position-left {
+  left: clamp(20px, 2.5vw, 42px);
+  align-items: flex-start;
+}
+
+.floating-assistant-wrap.position-right {
+  left: calc(100% - clamp(95px, 8.5vw, 130px) - clamp(20px, 2.5vw, 42px));
+  align-items: flex-end;
+}
+
+/* Small 3D Model Embed Container */
+.floating-embed-container {
+  width: clamp(95px, 8.5vw, 130px);
+  cursor: pointer;
+  border-radius: 20px;
+  overflow: visible;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45));
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), filter 0.3s ease;
+  position: relative;
+  user-select: none;
+}
+
+.floating-embed-container:hover {
+  transform: scale(1.08) translateY(-4px);
+  filter: drop-shadow(0 16px 36px rgba(0, 229, 153, 0.45));
+}
+
+.floating-embed-minimized-hint {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00E599;
+  color: #07090E;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 229, 153, 0.5);
+  white-space: nowrap;
+}
+
+/* Speech / Chat Bubble */
+.floating-chat-bubble {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  width: clamp(260px, 23vw, 320px);
+  border-radius: 18px;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  animation: floatPopIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transform-origin: bottom center;
+  transition: all 0.35s ease;
+}
+
+@keyframes floatPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.floating-chat-bubble.tail-left {
+  left: 0;
+}
+
+.floating-chat-bubble.tail-right {
+  right: 0;
+}
+
+/* Red Cross Close Button */
+.floating-chat-close-red {
+  position: absolute;
+  top: 9px;
+  right: 9px;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  background: #EF4444;
+  color: #FFFFFF;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.45);
+  padding: 0;
+  z-index: 5;
+}
+
+.floating-chat-close-red:hover {
+  background: #DC2626;
+  transform: scale(1.15) rotate(90deg);
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.7);
+}
+
+/* Dark Theme Chat Bubble (Default on Dark Sections) */
+.floating-chat-bubble.bubble-dark {
+  background: rgba(10, 14, 23, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(0, 229, 153, 0.4);
+  color: #FFFFFF;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.65), 0 0 24px rgba(0, 229, 153, 0.15);
+}
+
+.floating-chat-bubble.bubble-dark .floating-chat-badge {
+  background: rgba(0, 229, 153, 0.15);
+  color: #00E599;
+  border: 1px solid rgba(0, 229, 153, 0.35);
+}
+
+.floating-chat-bubble.bubble-dark .floating-chat-line-1 {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.floating-chat-bubble.bubble-dark .floating-chat-divider {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.floating-chat-bubble.bubble-dark .floating-chat-line-2 {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.floating-chat-bubble.bubble-dark .floating-pdf-btn {
+  background: #00E599;
+  color: #07090E;
+  box-shadow: 0 4px 14px rgba(0, 229, 153, 0.35);
+}
+
+.floating-chat-bubble.bubble-dark .floating-pdf-btn:hover {
+  background: #33FFB5;
+  box-shadow: 0 6px 20px rgba(0, 229, 153, 0.55);
+  transform: translateY(-1.5px);
+}
+
+/* Light Theme Chat Bubble (On White Sections: Who We Are & Sydney Capital Markets) */
+.floating-chat-bubble.bubble-light {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1.5px solid rgba(0, 179, 119, 0.45);
+  color: #0A0E17;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.18), 0 0 24px rgba(0, 179, 119, 0.12);
+}
+
+.floating-chat-bubble.bubble-light .floating-chat-badge {
+  background: rgba(0, 179, 119, 0.1);
+  color: #00875A;
+  border: 1px solid rgba(0, 179, 119, 0.3);
+}
+
+.floating-chat-bubble.bubble-light .floating-chat-line-1 {
+  color: #0A0E17;
+  font-weight: 600;
+}
+
+.floating-chat-bubble.bubble-light .floating-chat-divider {
+  background: rgba(10, 14, 23, 0.12);
+}
+
+.floating-chat-bubble.bubble-light .floating-chat-line-2 {
+  color: #475569;
+}
+
+.floating-chat-bubble.bubble-light .floating-pdf-btn {
+  background: #00875A;
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(0, 135, 90, 0.3);
+}
+
+.floating-chat-bubble.bubble-light .floating-pdf-btn:hover {
+  background: #006644;
+  box-shadow: 0 6px 20px rgba(0, 135, 90, 0.45);
+  transform: translateY(-1.5px);
+}
+
+/* Common Chat Bubble Elements */
+.floating-chat-header {
+  padding-right: 18px; /* Room for red close button */
+}
+
+.floating-chat-badge {
+  font-family: var(--font-mono);
+  font-size: 8.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  border-radius: 999px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.floating-chat-line-1 {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 12.5px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.floating-chat-divider {
+  height: 1px;
+  width: 100%;
+  margin: 10px 0 8px;
+}
+
+.floating-chat-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.floating-chat-line-2 {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.floating-pdf-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 7px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  width: fit-content;
+}
+
+.floating-pdf-icon {
+  flex-shrink: 0;
+}
+
+.floating-download-icon {
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .floating-assistant-wrap.position-left {
+    left: 12px;
+  }
+  .floating-assistant-wrap.position-right {
+    left: calc(100% - 85px - 12px);
+  }
+  .floating-embed-container {
+    width: 85px;
+  }
+  .floating-chat-bubble {
+    width: 250px;
+    padding: 12px 14px;
+  }
+  .floating-chat-line-1 {
+    font-size: 11.5px;
+  }
+}
+
 
 
 

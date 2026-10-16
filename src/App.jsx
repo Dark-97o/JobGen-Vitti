@@ -15,6 +15,7 @@ import StayInTheLoopCard from './components/StayInTheLoopCard';
 import RegulatoryDisclosures from './components/RegulatoryDisclosures';
 import Footer from './components/Footer';
 import InquiryModal from './components/InquiryModal';
+import FloatingAssistant from './components/FloatingAssistant';
 
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -132,6 +133,9 @@ export default function App() {
 
       {/* 13. REFINED INSTITUTIONAL FOOTER */}
       <Footer />
+
+      {/* FLOATING 3D MODEL ASSISTANT & SECTION-AWARE CHAT */}
+      <FloatingAssistant />
 
       {/* GLOBAL MODAL */}
       <InquiryModal 
