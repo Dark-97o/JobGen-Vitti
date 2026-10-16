@@ -65,11 +65,25 @@ export default function Navbar({ onOpenModal, location = 'AU', onSelectLocation,
         {/* Navigation Bar Options */}
         <nav className="nav-menu">
           <a 
+            href="/" 
+            onClick={(e) => handleLinkClick(e, 'home')}
+            className={`nav-item-link ${currentRoute === 'home' ? 'is-active-route' : ''}`}
+          >
+            Home
+          </a>
+          <a 
             href="/about-us" 
             onClick={(e) => handleLinkClick(e, 'about')}
             className={`nav-item-link ${currentRoute === 'about' ? 'is-active-route' : ''}`}
           >
             About Us
+          </a>
+          <a 
+            href="/#divisions" 
+            onClick={(e) => handleLinkClick(e, 'home', '#divisions')}
+            className="nav-item-link"
+          >
+            Expertise
           </a>
           <a 
             href="/saturn-unit-trust-fund" 
@@ -79,39 +93,11 @@ export default function Navbar({ onOpenModal, location = 'AU', onSelectLocation,
             Saturn Fund
           </a>
           <a 
-            href="/#divisions" 
-            onClick={(e) => handleLinkClick(e, 'home', '#divisions')}
-            className="nav-item-link"
-          >
-            Divisions
-          </a>
-          <a 
-            href="/#why-partner" 
-            onClick={(e) => handleLinkClick(e, 'home', '#why-partner')}
-            className="nav-item-link"
-          >
-            Methodology
-          </a>
-          <a 
-            href="/#success-story" 
-            onClick={(e) => handleLinkClick(e, 'home', '#success-story')}
-            className="nav-item-link"
-          >
-            Mandates
-          </a>
-          <a 
-            href="/#market-updates" 
-            onClick={(e) => handleLinkClick(e, 'home', '#market-updates')}
-            className="nav-item-link"
-          >
-            Lens
-          </a>
-          <a 
             href="/#contact" 
             onClick={(e) => handleLinkClick(e, 'home', '#contact')}
             className="nav-item-link"
           >
-            Contact
+            Contact Us
           </a>
         </nav>
 

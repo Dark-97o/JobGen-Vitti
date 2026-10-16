@@ -54,6 +54,8 @@ export default function SuccessStory({ onOpenModal }) {
   return (
     <section className="success-scroll-track" ref={trackRef} id="success-story">
       <div className="success-sticky-frame">
+        {/* White line separator attached to the top */}
+        <div className="section-top-white-line" aria-hidden="true" />
         
         {/* ===================================================================
             1. SUCCESS IMAGE BACKGROUND: Nasdaq Bell Ringing Photo

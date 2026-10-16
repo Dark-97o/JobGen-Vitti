@@ -151,6 +151,8 @@ export default function WhyPartner({ onOpenModal }) {
   return (
     <section className="partner-scroll-track" ref={trackRef} id="why-partner">
       <div className="partner-sticky-frame">
+        {/* White line separator attached to the top */}
+        <div className="section-top-white-line" aria-hidden="true" />
         
         {/* Background Originkit Predictive Arc: Strictly background (z-index 0, pointer-events none) */}
         <div className="connected-arc-bg-wrap" style={{ height: '100%', zIndex: 0 }} aria-hidden="true">

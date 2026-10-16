@@ -140,6 +140,15 @@ export default function Footer({ onNavigate }) {
             <a href="#footer">Financial Services Guide (FSG)</a>
             <span className="legal-dot">•</span>
             <a href="#footer">Terms of Advisory</a>
+            <span className="legal-dot">•</span>
+            <span className="footer-powered-by">
+              <span>Powered by JobGen</span>
+              <img 
+                src="/assets/Whitelogo.webp" 
+                alt="JobGen" 
+                className="footer-jobgen-logo" 
+              />
+            </span>
           </div>
         </div>
 
