@@ -1,9 +1,34 @@
 import React from 'react';
 import { ShieldCheck, ArrowUpRight } from 'lucide-react';
+import ShapeMosaic from './originkit/ui/shape-mosaic-custom-style';
 
 export default function Footer() {
   return (
     <footer className="refined-footer" id="footer">
+      {/* Originkit Shape Mosaic Background Canvas */}
+      <div className="footer-mosaic-bg-wrap" aria-hidden="true">
+        <ShapeMosaic
+          ink="#15261d"
+          lit="#00E599"
+          cell={34}
+          size={8}
+          kinds={6}
+          fill={0}
+          spin={15}
+          turn={20}
+          reach={16}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            minWidth: '100%',
+            minHeight: '100%',
+          }}
+        />
+        <div className="footer-mosaic-vignette" />
+      </div>
+
       <div className="container footer-container">
         
         {/* Top Tier: Brand, Global Desks & Navigation Columns */}
