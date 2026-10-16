@@ -5874,6 +5874,10 @@ img {
   align-items: center;
 }
 
+.about-company-grid-switched {
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
 /* Left Column: Floating Tablet (Direct on background, no box, slight float animation) */
 .about-company-tablet-col {
   display: flex;
@@ -6158,6 +6162,13 @@ img {
   overflow: hidden;
 }
 
+.about-mission-box-black {
+  background: #000000 !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85) !important;
+  margin-top: clamp(48px, 7vh, 80px);
+}
+
 .mission-glow-orb {
   position: absolute;
   top: -50px;
@@ -6219,6 +6230,15 @@ img {
   margin-bottom: clamp(32px, 5vh, 52px);
 }
 
+.about-governance-main-title {
+  font-family: 'Unbounded', 'Syne', sans-serif;
+  font-size: clamp(32px, 3.8vw, 52px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin: 0 0 12px;
+}
+
 .about-desks-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -6261,28 +6281,14 @@ img {
   box-sizing: border-box;
 }
 
-.desk-badge {
-  display: inline-block;
-  align-self: flex-start;
-  background: rgba(0, 229, 153, 0.18);
-  border: 1px solid rgba(0, 229, 153, 0.45);
-  color: #00E599;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  padding: 4px 10px;
-  border-radius: 999px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
+.desk-card-title,
 .desk-card-content h3 {
-  font-family: 'Unbounded', sans-serif;
-  font-size: 24px;
-  font-weight: 800;
+  font-family: 'Unbounded', 'Syne', sans-serif;
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 900;
   color: #FFFFFF;
-  margin: 0 0 8px;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
 }
 
 .desk-address {
@@ -6302,6 +6308,96 @@ img {
   color: #94A3B8;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   padding-top: 12px;
+}
+
+/* ==========================================================================
+   HAVE QUESTIONS? FULL-WIDTH EDGE-TO-EDGE BAND
+   ========================================================================== */
+.about-questions-band {
+  background-color: #07090E;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.about-questions-band-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 200px;
+  padding: clamp(36px, 4.5vw, 60px) clamp(24px, 5vw, 68px);
+  box-sizing: border-box;
+  gap: 32px;
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.about-questions-band-left-inner {
+  max-width: 720px;
+}
+
+.about-questions-band-headline {
+  font-family: 'Unbounded', 'Syne', sans-serif;
+  font-size: clamp(32px, 3.5vw, 50px);
+  font-weight: 900;
+  line-height: 1.1;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+}
+
+.about-questions-band-subtext {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: clamp(14.5px, 1.2vw, 17px);
+  line-height: 1.55;
+  color: #94A3B8;
+  margin: 0;
+}
+
+.about-questions-band-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #00E599;
+  color: #07090E;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14.5px;
+  font-weight: 800;
+  padding: 16px 34px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 229, 153, 0.4);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+}
+
+.about-questions-band-btn:hover {
+  background: #33FFB5;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 229, 153, 0.65);
+}
+
+@media (max-width: 768px) {
+  .about-questions-band-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 36px 20px;
+    gap: 24px;
+  }
+  .about-questions-band-btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* Call to Action Sections */

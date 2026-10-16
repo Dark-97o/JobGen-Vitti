@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
-import FibreArc from '../components/originkit/ui/fibre-arc';
+import PredictiveArc from '../components/originkit/ui/predictive-arc';
 
 const CORE_VALUE_PARTITIONS = [
   {
@@ -44,54 +44,39 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
 
   return (
     <div className="subpage-wrapper about-us-page">
-      {/* 1. ABOUT OUR COMPANY: Directly starts here with Hero FibreArc background, no image card box, floating tablet.png */}
+      {/* 1. ABOUT OUR COMPANY: PredictiveArc background used in Why section, Text on Left, Floating Tablet on Right */}
       <section className="about-company-hero-section">
-        {/* Background Component used in Hero: FibreArc WebGL Canvas */}
-        <div className="hero-fibre-canvas-wrap" aria-hidden="true">
-          <FibreArc
+        {/* Background Component used in WHY section: PredictiveArc Canvas */}
+        <div className="connected-arc-bg-wrap" style={{ height: '100%', zIndex: 0 }} aria-hidden="true">
+          <PredictiveArc
             background="#07090E"
-            baseColor="#044D34"
+            baseColor="#033826"
             accentColor="#00E599"
             highlight="#FFFFFF"
-            density={26}
-            speed={65}
-            direction={0}
-            hover={180}
-            reach={30}
-            bundle={{
-              curve: 155,
-              spread: 110,
-              thickness: 115,
-              comb: 175,
-            }}
+            density={85}
+            dotSize={110}
+            speed={55}
+            arch={{ peak: 26, archHeight: 65, thickness: 110, falloff: 240 }}
             style={{
               position: 'absolute',
-              inset: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
               width: '100%',
               height: '100%',
               minWidth: '100%',
               minHeight: '100%',
               pointerEvents: 'none',
+              zIndex: 0,
             }}
           />
-          <div className="hero-vignette-bottom" />
+          <div className="connected-vignette-overlay" />
         </div>
 
         <div className="container about-company-container">
-          <div className="about-company-grid">
+          <div className="about-company-grid about-company-grid-switched">
             
-            {/* Left Column: Floating Tablet Image directly on background (No box, no card frame) */}
-            <div className="about-company-tablet-col">
-              <div className="about-tablet-float-wrap">
-                <img 
-                  src="/assets/tablet.png" 
-                  alt="Vitti Capital Portal" 
-                  className="about-floating-tablet-img" 
-                />
-              </div>
-            </div>
-
-            {/* Right Column: Full Official Narrative from vitti.capital */}
+            {/* Left Column (Switched): Full Official Narrative from vitti.capital */}
             <div className="about-company-text-col">
               <h1 className="about-company-headline">
                 ABOUT OUR COMPANY
@@ -128,6 +113,17 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
               </div>
             </div>
 
+            {/* Right Column (Switched): Floating Tablet Image directly on background (No box, no card frame) */}
+            <div className="about-company-tablet-col">
+              <div className="about-tablet-float-wrap">
+                <img 
+                  src="/assets/tablet.png" 
+                  alt="Vitti Capital Portal" 
+                  className="about-floating-tablet-img" 
+                />
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -140,7 +136,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
         />
       </section>
 
-      {/* 2. OUR CORE VALUES: Copied exact layout & aesthetics from Landing Page WHY section */}
+      {/* 2. OUR CORE VALUES: Copied exact layout & aesthetics from Landing Page WHY section (Infrastructure cards removed) */}
       <section className="about-values-why-section" id="core-values">
         <div className="container about-values-why-container">
           
@@ -203,49 +199,9 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
                   );
                 })}
               </div>
-
-              {/* 3 Sector Square Cards (Infrastructure, Real Estate, Green Technologies) identical to WHY section */}
-              <div className="why-sector-cards-row">
-                <div className="why-sector-card">
-                  <div className="why-sector-logo-wrap">
-                    <img 
-                      src="/assets/Infrastructure.png" 
-                      alt="Infrastructure" 
-                      className="why-sector-logo" 
-                    />
-                  </div>
-                  <span className="why-sector-title">Infrastructure</span>
-                </div>
-
-                <div className="why-sector-connector" aria-hidden="true" />
-
-                <div className="why-sector-card">
-                  <div className="why-sector-logo-wrap">
-                    <img 
-                      src="/assets/RealEstate-removebg-preview.png" 
-                      alt="Real Estate" 
-                      className="why-sector-logo" 
-                    />
-                  </div>
-                  <span className="why-sector-title">Real Estate</span>
-                </div>
-
-                <div className="why-sector-connector" aria-hidden="true" />
-
-                <div className="why-sector-card">
-                  <div className="why-sector-logo-wrap">
-                    <img 
-                      src="/assets/Green.png" 
-                      alt="Green Technologies" 
-                      className="why-sector-logo" 
-                    />
-                  </div>
-                  <span className="why-sector-title">Green Technologies</span>
-                </div>
-              </div>
             </div>
 
-            {/* Right Column (45%): Visual Hero Card with "VALUES" overlay, reflecting the active pillar */}
+            {/* Right Column (45%): Visual Hero Card with "VALUES" overlay (Pill and innovation text removed) */}
             <div className="about-values-preview-col">
               <div className="about-values-preview-card">
                 <div 
@@ -256,11 +212,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
                 />
                 <div className="about-values-preview-vignette" />
                 <div className="about-values-preview-overlay">
-                  <span className="about-values-pill-tag">PRINCIPLE {CORE_VALUE_PARTITIONS[hoveredIdx]?.id || '01'}</span>
                   <span className="about-values-wordmark">VALUES</span>
-                  <h3 className="about-values-active-title">
-                    {CORE_VALUE_PARTITIONS[hoveredIdx]?.title || 'Integrity'}
-                  </h3>
                 </div>
               </div>
             </div>
@@ -269,11 +221,11 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
         </div>
       </section>
 
-      {/* 3. DUAL-DESK GLOBAL GOVERNANCE (Sydney & Dubai Desks) */}
+      {/* 3. DUAL-DESK GLOBAL GOVERNANCE with Empowering Growth Card nested inside (black background) */}
       <section className="about-governance-section">
         <div className="container about-governance-container">
           <div className="about-governance-header text-center">
-            <h2 className="about-section-heading">
+            <h2 className="about-governance-main-title">
               Dual-Desk Global Presence
             </h2>
             <p className="about-section-subtext">
@@ -282,7 +234,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
           </div>
 
           <div className="about-desks-grid">
-            {/* Sydney Desk */}
+            {/* Sydney Desk (Pills removed, clean typography) */}
             <div className="about-desk-card">
               <div 
                 className="desk-card-bg"
@@ -290,8 +242,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
               />
               <div className="desk-card-overlay" />
               <div className="desk-card-content">
-                <span className="desk-badge">Australian Headquarters</span>
-                <h3>Sydney Desk</h3>
+                <h3 className="desk-card-title">Sydney Desk</h3>
                 <p className="desk-address">Level 49, 8 Parramatta Square, 10 Darcy St, Parramatta NSW 2150</p>
                 <div className="desk-meta">
                   <span>Phone: (02) 8528 4508</span>
@@ -300,7 +251,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
               </div>
             </div>
 
-            {/* Dubai Desk */}
+            {/* Dubai Desk (Pills removed, clean typography) */}
             <div className="about-desk-card">
               <div 
                 className="desk-card-bg"
@@ -308,8 +259,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
               />
               <div className="desk-card-overlay" />
               <div className="desk-card-content">
-                <span className="desk-badge">GCC Gateway</span>
-                <h3>Dubai Desk</h3>
+                <h3 className="desk-card-title">Dubai Desk</h3>
                 <p className="desk-address">DIFC Capital Gate, Dubai, United Arab Emirates</p>
                 <div className="desk-meta">
                   <span>Licensing: DET License No. 1537728</span>
@@ -318,13 +268,9 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* 4. EMPOWERING GROWTH CARD: Placed below the Dual Desk Sydney & Dubai section */}
-      <section className="about-mission-section">
-        <div className="container about-mission-container">
-          <div className="about-mission-box">
+          {/* Empowering Growth Card: Black background, shifted inside Dual Desk section */}
+          <div className="about-mission-box about-mission-box-black">
             <div className="mission-glow-orb" />
             
             <div className="about-mission-inner">
@@ -342,31 +288,38 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* 5. CALL TO ACTION: Have Questions? */}
-      <section className="about-cta-section">
-        <div className="container about-cta-container">
-          <div className="about-cta-banner">
-            <div className="about-cta-content">
-              <h2 className="about-cta-heading">
-                Have Questions? We Are Here To Help You.
+      {/* 4. HAVE QUESTIONS: Full-width Edge-to-Edge Band (matching Market Updates & Blog Band) */}
+      <section className="about-questions-band" id="have-questions">
+        <div className="about-questions-band-container">
+          
+          {/* Left: Headline in Unbounded style */}
+          <div className="about-questions-band-left">
+            <div className="about-questions-band-left-inner">
+              <h2 className="about-questions-band-headline">
+                HAVE QUESTIONS?
               </h2>
-              <p className="about-cta-sub">
+              <p className="about-questions-band-subtext">
                 Speak directly with our senior corporate advisory principals in Sydney or Dubai.
               </p>
             </div>
-            
+          </div>
+
+          {/* Right: CTA button */}
+          <div className="about-questions-band-right">
             <button 
               type="button" 
-              className="about-cta-btn"
+              className="about-questions-band-btn"
               onClick={() => onOpenModal && onOpenModal('Corporate Advisory Mandate')}
             >
               <span>Speak With A Principal</span>
               <ArrowUpRight size={18} />
             </button>
           </div>
+
         </div>
 
         {/* Dubai corner overlay image at 80% transparency on bottom-right */}
