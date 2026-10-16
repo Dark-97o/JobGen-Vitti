@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   ArrowUpRight, 
   TrendingUp, 
@@ -9,7 +9,6 @@ import {
   Plus, 
   Minus, 
   Download, 
-  CheckCircle2, 
   Activity, 
   Search, 
   FileCheck, 
@@ -25,15 +24,17 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
 
   const [openFaq, setOpenFaq] = useState(0);
 
+  // 1. Key Features Cards with relevant photography
   const keyFeatures = [
     {
       id: 'return',
       metric: '10–12%',
       metricSub: 'p.a. Target Return',
       title: 'Target Return',
-      desc: '10–12% p.a. with cashflow smoothed through indicative monthly distributions—ideal for investors seeking reliable, institutional-grade income.',
+      desc: '10–12% p.a. with cashflow smoothed through indicative monthly distributions—ideal for wholesale allocators seeking dependable, institutional-grade yield.',
       icon: TrendingUp,
       accent: '#00E599',
+      image: '/assets/inv-private-credit.jpg',
     },
     {
       id: 'mix',
@@ -43,6 +44,7 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
       desc: '60% Collateralised Debt & Convertible Notes anchor the fund, 30% Growth‑Infused Equities drive upside, and 10% Opportunistic Special Situations capture mis‑priced windows.',
       icon: PieChart,
       accent: '#33FFB5',
+      image: '/assets/inv-structured-finance.jpg',
     },
     {
       id: 'risk',
@@ -52,6 +54,7 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
       desc: 'First‑rank security interests, diversified borrower pool, and active covenant monitoring help shield principal through all market cycles.',
       icon: ShieldCheck,
       accent: '#00FFA1',
+      image: '/assets/partner-integrity.jpg',
     },
     {
       id: 'liquidity',
@@ -61,99 +64,146 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
       desc: 'A 12‑month commitment protects the portfolio from early liquidity drains; post‑lockup redemptions require just 90 days’ notice.',
       icon: Clock,
       accent: '#FFFFFF',
+      image: '/assets/natural-corp-strategic.jpg',
     },
   ];
 
+  // 2. Five-Stage Process with circular cards and summarized info
   const processStages = [
     {
       num: '01',
-      title: 'Discovery Consultation',
-      desc: 'We map your investment objectives, liquidity needs, tax constraints, and ESG preferences in detail.',
+      title: 'Discovery',
+      fullTitle: 'Discovery Consultation',
+      desc: 'Mapping mandate objectives, liquidity horizon, and risk tolerance profile.',
       icon: Search,
     },
     {
       num: '02',
-      title: 'Opportunity Origination',
-      desc: 'Our proprietary research engine and institutional partner network surface high-conviction deals matching your mandate profile.',
+      title: 'Origination',
+      fullTitle: 'Opportunity Origination',
+      desc: 'Sourcing high-conviction credit tranches and unlisted growth equity.',
       icon: Activity,
     },
     {
       num: '03',
-      title: 'Deep‑Dive Due Diligence',
-      desc: 'We scrutinise financials, management calibre, technical margins of safety, and underlying legal frameworks.',
+      title: 'Due Diligence',
+      fullTitle: 'Deep‑Dive Diligence',
+      desc: 'Institutional balance-sheet stress-testing and first-rank collateral analysis.',
       icon: FileCheck,
     },
     {
       num: '04',
-      title: 'Execution & Settlement',
-      desc: 'Negotiation, documentation, clearance, and settlement are handled seamlessly, keeping you informed at every milestone.',
+      title: 'Execution',
+      fullTitle: 'Execution & Settlement',
+      desc: 'Structured documentation, legal clearance, and capital allocation.',
       icon: Layers,
     },
     {
       num: '05',
-      title: 'Active Monitoring & Reporting',
-      desc: 'You receive quarterly reporting packs, bespoke KPI dashboards, and proactive rebalancing recommendations.',
+      title: 'Governance',
+      fullTitle: 'Active Governance',
+      desc: 'Indicative monthly cash distributions and quarterly portfolio surveillance.',
       icon: BarChart3,
     },
   ];
 
+  // Scroll listener for five-stage process to turn cards green one by one
+  const processRef = useRef(null);
+  const [activeStep, setActiveStep] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!processRef.current) return;
+      const rect = processRef.current.getBoundingClientRect();
+      const winH = window.innerHeight;
+      
+      // Progress across section: starts turning when entering view, fills as user scrolls through
+      const triggerTop = winH * 0.75;
+      const triggerBottom = winH * 0.25;
+      const totalSpan = rect.height + (triggerTop - triggerBottom);
+      const currentScroll = triggerTop - rect.top;
+      const progress = Math.min(Math.max(currentScroll / totalSpan, 0), 1);
+      
+      // Step 1 to 5
+      const calculatedStep = Math.min(Math.max(Math.ceil(progress * 5), 1), 5);
+      setActiveStep(calculatedStep);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // 3. Market Insights Radar: 4 rectangles forming a square
   const marketInsights = [
     {
-      title: 'Equity Sector Pulse',
-      desc: 'Quarterly scorecards ranking ASX sectors on valuation, momentum, and earnings revision.',
-      tag: 'Equities',
-    },
-    {
+      id: 'debt',
       title: 'Private Credit Barometer',
       desc: 'Real‑time spreads, covenant trends, and supply‑demand dynamics in Australia’s non‑bank lending arena.',
       tag: 'Credit',
+      image: '/assets/radar-debt.jpg',
     },
     {
-      title: 'Macro Lens',
+      id: 'equities',
+      title: 'Equity Sector Pulse',
+      desc: 'Quarterly scorecards ranking ASX sectors on valuation, momentum, and earnings revision.',
+      tag: 'Equities',
+      image: '/assets/radar-equities.jpg',
+    },
+    {
+      id: 'convert',
+      title: 'Hybrid Convertible Notes',
+      desc: 'Deep analysis on hybrid convertible notes balancing senior security with equity participation upside.',
+      tag: 'Structured',
+      image: '/assets/radar-convertible.jpg',
+    },
+    {
+      id: 'liquidity',
+      title: 'Macro & Liquidity Lens',
       desc: 'Clear commentary on interest‑rate trajectories, fiscal policy, and global capital flows shaping local markets.',
-      tag: 'Macro',
-    },
-    {
-      title: 'Regulatory Radar',
-      desc: 'What ASIC, APRA, and Treasury mean for your portfolio—summarised in actionable bullet points.',
-      tag: 'Compliance',
+      tag: 'Liquidity',
+      image: '/assets/radar-liquidity.jpg',
     },
   ];
 
+  // 4. Saturn Fund FAQs matching Landing Page
   const saturnFaqs = [
     {
       q: 'What is the Saturn Unit Trust Fund?',
-      a: "The Saturn Unit Trust Fund is a wholesale managed fund structure that pools capital from eligible investors into a single trust, which is then deployed according to the fund's stated investment strategy and mandate.",
+      a: "The Saturn Unit Trust Fund is a wholesale managed fund structure that pools capital from eligible wholesale investors into a single vehicle, deployed according to a mandate emphasizing collateralised private credit and growth equity.",
     },
     {
       q: 'How does a wholesale managed fund in Australia operate?',
-      a: "A wholesale managed fund in Australia pools money from wholesale investors, with a trustee or responsible entity managing the pooled capital according to a defined mandate. Investors hold units representing a proportional interest in the fund's underlying assets.",
+      a: "A wholesale managed fund in Australia pools capital from wholesale and sophisticated investors. A professional trustee or committee manages assets under a transparent mandate, distributing unit certificates and monthly income yields.",
     },
     {
       q: 'What is a unit trust investment and how do units work?',
-      a: "In a unit trust investment, the fund's assets are divided into units, and each investor's holding is represented by a number of units proportional to their contribution. Unit prices move with the value of the underlying assets, and income is distributed to unit holders.",
+      a: "In a unit trust investment, fund assets are divided into units. Each investor holds units proportional to their subscription. Unit pricing reflects underlying net asset values, and cashflow distributions are paid per unit held.",
     },
     {
       q: 'Who is eligible to invest in the Saturn Unit Trust Fund?',
-      a: 'Eligibility is generally restricted to wholesale investors who satisfy the net asset or income tests under the Corporations Act 2001 (Cth), or who hold a sophisticated investor certificate (Accountant Certificate pursuant to Section 761G/761GA), consistent with how the fund is offered.',
+      a: 'Eligibility is restricted to wholesale and sophisticated investors satisfying the statutory criteria under Section 708 / 761G of the Corporations Act 2001 (Cth), verified via an Accountant Certificate.',
     },
     {
       q: 'What is the underlying investment strategy of the fund?',
-      a: "The fund's underlying strategy and asset allocation are set out in its offer documents (Information Memorandum), which detail target sectors, risk profiles, return objectives (60% secured private credit, 30% growth equities, 10% special situations).",
+      a: "The fund targets 60% secured private debt & convertible notes for cashflow yield, 30% growth equities for upside participation, and 10% opportunistic special situations to capture market mispricings.",
     },
     {
       q: 'How are distributions and returns calculated in a unit trust?',
-      a: "Distributions in a unit trust are generally paid from the income and realised gains generated by the underlying assets, calculated per unit held, with the frequency (indicative monthly distributions) and structure of payments set out in the trust's constitution and offer documents.",
+      a: "Distributions are generated from portfolio loan coupons, hybrid income, and realized equity gains. Indicative distributions are calculated and disbursed on a smoothed monthly cadence.",
     },
     {
       q: 'What are the risks and fees associated with investing in the fund?',
-      a: "As with any managed fund, risks include market and asset-specific risk, liquidity constraints tied to the fund's redemption terms, and manager risk. Fees typically include management fees and may include performance fees—full details are transparently set out in the fund's Information Memorandum.",
+      a: "Risks include credit defaults, market volatility, and liquidity lock-in periods. All management fees and performance hurdle benchmarks are transparently disclosed in the Information Memorandum (IM).",
     },
   ];
 
   return (
     <div className="subpage-wrapper saturn-fund-page">
-      {/* 1. HERO SECTION: Full-width dark stage with ShapeMosaic canvas */}
+      
+      {/* ===================================================================
+          1. HERO SECTION: Full-width dark stage (Metrics Ribbon Removed)
+          =================================================================== */}
       <section className="subpage-hero-section">
         <div className="subpage-mosaic-bg-wrap" aria-hidden="true">
           <ShapeMosaic
@@ -197,26 +247,8 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
           </h1>
 
           <p className="subpage-hero-subtext">
-            The <strong>Saturn Unit Trust Fund</strong> is our flagship pooled vehicle, offering qualified investors a dependable gateway to Australia’s surging private credit and mid‑market equity landscape.
+            The <strong>Saturn Unit Trust Fund</strong> is our flagship pooled vehicle, offering qualified wholesale investors a dependable gateway to Australia’s surging private credit and mid‑market equity landscape.
           </p>
-
-          {/* Quick Metrics Ribbon */}
-          <div className="subpage-metrics-ribbon">
-            <div className="subpage-metric-item">
-              <span className="metric-val">10–12%</span>
-              <span className="metric-lbl">Target Return p.a.</span>
-            </div>
-            <div className="subpage-metric-divider" />
-            <div className="subpage-metric-item">
-              <span className="metric-val">Monthly</span>
-              <span className="metric-lbl">Cashflow Distributions</span>
-            </div>
-            <div className="subpage-metric-divider" />
-            <div className="subpage-metric-item">
-              <span className="metric-val">1st Rank</span>
-              <span className="metric-lbl">Collateralised Security</span>
-            </div>
-          </div>
         </div>
 
         {/* Australia corner overlay image at 80% transparency on bottom-right */}
@@ -228,35 +260,62 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
         />
       </section>
 
-      {/* 2. KEY FEATURES & WHAT YOU RECEIVE */}
+      {/* ===================================================================
+          2. KEY FEATURES: Title & Background Only, Black Overlay Behind Title Only,
+             Flips on X axis to reveal info on hover
+          =================================================================== */}
       <section className="saturn-features-section">
         <div className="container saturn-features-container">
           <div className="saturn-section-header text-center">
-            <h2 className="about-section-heading">
-              Key Features & What You Receive
+            <h2 className="saturn-section-headline">
+              KEY FEATURES & WHAT YOU RECEIVE
             </h2>
-            <p className="about-section-subtext">
+            <p className="saturn-section-subtext">
               Engineered for predictable yield, disciplined capital protection, and structural upside.
             </p>
           </div>
 
-          <div className="saturn-features-grid">
+          <div className="saturn-features-flip-grid">
             {keyFeatures.map((feat) => {
               const Icon = feat.icon;
               return (
-                <div key={feat.id} className="saturn-feature-card">
-                  <div className="saturn-card-header">
-                    <div className="feature-icon-wrap">
-                      <Icon size={24} style={{ color: feat.accent }} />
+                <div key={feat.id} className="saturn-flip-card-perspective">
+                  <div className="saturn-flip-card-inner">
+                    
+                    {/* FRONT FACE: Background image + Title with black overlay ONLY behind title */}
+                    <div 
+                      className="saturn-flip-card-front"
+                      style={{ backgroundImage: `url('${feat.image}')` }}
+                    >
+                      <div className="saturn-flip-title-overlay-pill">
+                        <div className="saturn-flip-icon-dot" style={{ color: feat.accent }}>
+                          <Icon size={18} />
+                        </div>
+                        <span className="saturn-flip-title-text">{feat.title}</span>
+                      </div>
                     </div>
-                    <div className="feature-metric-block">
-                      <span className="feature-metric-num" style={{ color: feat.accent }}>{feat.metric}</span>
-                      <span className="feature-metric-sub">{feat.metricSub}</span>
-                    </div>
-                  </div>
 
-                  <h3 className="saturn-card-title">{feat.title}</h3>
-                  <p className="saturn-card-desc">{feat.desc}</p>
+                    {/* BACK FACE: Revealed on X-axis hover flip */}
+                    <div className="saturn-flip-card-back">
+                      <div className="saturn-back-top-row">
+                        <div className="saturn-back-icon-pod" style={{ color: feat.accent }}>
+                          <Icon size={22} />
+                        </div>
+                        <div className="saturn-back-metric-box">
+                          <span className="saturn-back-metric-num" style={{ color: feat.accent }}>
+                            {feat.metric}
+                          </span>
+                          <span className="saturn-back-metric-label">
+                            {feat.metricSub}
+                          </span>
+                        </div>
+                      </div>
+
+                      <h3 className="saturn-back-card-title">{feat.title}</h3>
+                      <p className="saturn-back-card-desc">{feat.desc}</p>
+                    </div>
+
+                  </div>
                 </div>
               );
             })}
@@ -264,33 +323,145 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
         </div>
       </section>
 
-      {/* 3. OUR FIVE-STAGE PROCESS */}
-      <section className="saturn-process-section">
+      {/* ===================================================================
+          3. OUR FIVE-STAGE PROCESS: Circular Favicons, Alternating Up/Down,
+             Connected Through Line, White initially -> Turning Green on Scroll
+          =================================================================== */}
+      <section className="saturn-process-section" ref={processRef}>
         <div className="container saturn-process-container">
           <div className="saturn-section-header text-center">
-            <h2 className="about-section-heading">
-              Our Five-Stage Process
+            <h2 className="saturn-section-headline">
+              OUR FIVE-STAGE PROCESS
             </h2>
-            <p className="about-section-subtext">
+            <p className="saturn-section-subtext">
               Rigorous underwriting, institutional due diligence, and ongoing lifecycle governance.
             </p>
           </div>
 
-          <div className="saturn-process-timeline">
-            {processStages.map((step, idx) => {
-              const StepIcon = step.icon;
-              return (
-                <div key={step.num} className="saturn-process-step">
-                  <div className="step-num-badge">{step.num}</div>
-                  <div className="step-card">
-                    <div className="step-icon-wrap">
-                      <StepIcon size={20} className="step-icon" />
+          <div className="saturn-circular-process-track">
+            {/* Connecting Line Through The Center */}
+            <div className="saturn-process-connecting-line" aria-hidden="true">
+              <div 
+                className="saturn-process-line-progress" 
+                style={{ width: `${Math.min(100, Math.max(0, ((activeStep - 1) / 4) * 100))}%` }}
+              />
+            </div>
+
+            <div className="saturn-circular-nodes-row">
+              {processStages.map((step, idx) => {
+                const StepIcon = step.icon;
+                const isGreen = idx < activeStep;
+                const isAlternateUp = idx % 2 === 0;
+
+                return (
+                  <div 
+                    key={step.num} 
+                    className={`saturn-process-node-col ${isAlternateUp ? 'is-up' : 'is-down'}`}
+                  >
+                    <div className={`saturn-circular-node-card ${isGreen ? 'is-green-state' : 'is-white-state'}`}>
+                      {/* Step Number Badge */}
+                      <span className="node-step-number">{step.num}</span>
+                      
+                      {/* Circular Favicon Pod */}
+                      <div className="node-favicon-pod">
+                        <StepIcon size={22} className="node-icon-svg" />
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="node-card-title">{step.title}</h3>
+
+                      {/* Summarized Info */}
+                      <p className="node-card-desc">{step.desc}</p>
                     </div>
-                    <h3 className="step-title">{step.title}</h3>
-                    <p className="step-desc">{step.desc}</p>
                   </div>
-                  {idx < processStages.length - 1 && (
-                    <div className="step-connector-line" aria-hidden="true" />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===================================================================
+          4. MARKET INSIGHTS RADAR: A Square Made Up of 4 Rectangles with Generated Backgrounds
+          =================================================================== */}
+      <section className="saturn-insights-section">
+        <div className="container saturn-insights-container">
+          <div className="saturn-section-header text-center">
+            <h2 className="saturn-section-headline">
+              MARKET INSIGHTS RADAR
+            </h2>
+            <p className="saturn-section-subtext">
+              We distil complex macro and sector data into actionable wholesale intelligence.
+            </p>
+          </div>
+
+          {/* Cohesive 2x2 Square of 4 Rectangles */}
+          <div className="saturn-radar-square">
+            {marketInsights.map((ins) => (
+              <div 
+                key={ins.id} 
+                className="saturn-radar-quadrant-rect"
+                style={{ backgroundImage: `url('${ins.image}')` }}
+                onClick={() => onOpenModal && onOpenModal(`Market Insight: ${ins.title}`)}
+                role="button"
+                tabIndex={0}
+              >
+                <div className="saturn-radar-quadrant-overlay" />
+                
+                <div className="saturn-radar-quadrant-content">
+                  <span className="saturn-radar-tag-badge">{ins.tag}</span>
+                  <h3 className="saturn-radar-quadrant-title">{ins.title}</h3>
+                  <p className="saturn-radar-quadrant-desc">{ins.desc}</p>
+                  
+                  <div className="saturn-radar-quadrant-footer">
+                    <span className="saturn-radar-link-text">Institutional Analysis</span>
+                    <ArrowUpRight size={16} className="saturn-radar-arrow-icon" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===================================================================
+          5. SATURN FUND FAQS: Just like the one in landing page
+          =================================================================== */}
+      <section className="faq-section-wrap light-theme-grid-bg" id="saturn-faqs">
+        <div className="container">
+          <div className="faq-header-center">
+            <h2 className="faq-main-title">
+              FREQUENTLY ASKED QUESTIONS
+            </h2>
+            <p className="faq-subtitle">
+              Statutory transparency regarding fund structure, eligibility, and distributions.
+            </p>
+          </div>
+
+          <div className="faq-list-container">
+            {saturnFaqs.map((faq, idx) => {
+              const isOpen = openFaq === idx;
+              return (
+                <div 
+                  key={idx} 
+                  className={`faq-accordion-item ${isOpen ? 'is-open' : ''}`}
+                >
+                  <button
+                    type="button"
+                    className="faq-question-btn"
+                    onClick={() => setOpenFaq(isOpen ? -1 : idx)}
+                    aria-expanded={isOpen}
+                  >
+                    <span className="faq-q-text">{faq.q}</span>
+                    <span className="faq-toggle-icon-box">
+                      {isOpen ? <Minus size={18} /> : <Plus size={18} />}
+                    </span>
+                  </button>
+
+                  {isOpen && (
+                    <div className="faq-answer-block">
+                      <p className="faq-answer-text">{faq.a}</p>
+                    </div>
                   )}
                 </div>
               );
@@ -299,31 +470,48 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
         </div>
       </section>
 
-      {/* 4. MARKET INSIGHTS RADAR */}
-      <section className="saturn-insights-section">
-        <div className="container saturn-insights-container">
-          <div className="saturn-section-header text-center">
-            <h2 className="about-section-heading">
-              Market Insights Radar
-            </h2>
-            <p className="about-section-subtext">
-              We distil complex macro and sector data into actionable wholesale intelligence.
-            </p>
+      {/* ===================================================================
+          6. READY TO ALLOCATE: Full-width Edge-to-Edge Band matching "Have Questions?"
+          =================================================================== */}
+      <section className="about-questions-band" id="ready-to-allocate">
+        <div className="about-questions-band-container">
+          
+          {/* Left (50% Green): Headline in Unbounded style */}
+          <div className="about-questions-band-left">
+            <div className="about-questions-band-left-inner">
+              <h2 className="about-questions-band-headline">
+                READY TO ALLOCATE?
+              </h2>
+              <p className="about-questions-band-subtext">
+                Request the full Information Memorandum (IM) or arrange a confidential briefing with our investment managers.
+              </p>
+            </div>
           </div>
 
-          <div className="saturn-insights-grid">
-            {marketInsights.map((ins, idx) => (
-              <div key={idx} className="saturn-insight-card">
-                <div className="insight-badge">{ins.tag}</div>
-                <h3 className="insight-title">{ins.title}</h3>
-                <p className="insight-desc">{ins.desc}</p>
-                <div className="insight-footer">
-                  <span className="insight-link-label">Institutional Analysis</span>
-                  <ArrowUpRight size={14} className="insight-arrow" />
-                </div>
-              </div>
-            ))}
+          {/* Right (50% Dark): CTA button and Factsheet download */}
+          <div className="about-questions-band-right">
+            <div className="saturn-band-actions-wrap">
+              <button 
+                type="button" 
+                className="about-questions-band-btn"
+                onClick={() => onOpenModal && onOpenModal('Saturn Fund Allocation')}
+              >
+                <span>Request Information Memorandum</span>
+                <ArrowUpRight size={18} />
+              </button>
+
+              <a 
+                href="/assets/Vitti_Capital_Guide.pdf"
+                download="Vitti_Capital_Guide.pdf"
+                className="saturn-band-factsheet-btn"
+                title="Download Vitti Capital Guide (PDF)"
+              >
+                <Download size={16} />
+                <span>Download Factsheet (PDF)</span>
+              </a>
+            </div>
           </div>
+
         </div>
 
         {/* Dubai corner overlay image at 80% transparency on bottom-right */}
@@ -335,86 +523,6 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
         />
       </section>
 
-      {/* 5. SATURN FUND FAQS */}
-      <section className="saturn-faqs-section">
-        <div className="container saturn-faqs-container">
-          <div className="saturn-section-header text-center">
-            <h2 className="about-section-heading">
-              Frequently Asked Questions
-            </h2>
-            <p className="about-section-subtext">
-              Statutory transparency regarding fund structure, eligibility, and distributions.
-            </p>
-          </div>
-
-          <div className="saturn-accordion-wrap">
-            {saturnFaqs.map((faq, idx) => {
-              const isOpen = openFaq === idx;
-              return (
-                <div 
-                  key={idx} 
-                  className={`saturn-accordion-item ${isOpen ? 'is-open' : ''}`}
-                >
-                  <button
-                    type="button"
-                    className="saturn-accordion-trigger"
-                    onClick={() => setOpenFaq(isOpen ? -1 : idx)}
-                    aria-expanded={isOpen}
-                  >
-                    <span className="accordion-q-text">{faq.q}</span>
-                    <span className="accordion-icon-box">
-                      {isOpen ? <Minus size={16} /> : <Plus size={16} />}
-                    </span>
-                  </button>
-
-                  {isOpen && (
-                    <div className="saturn-accordion-body">
-                      <p>{faq.a}</p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 6. CALL TO ACTION: Request Information Memorandum (IM) */}
-      <section className="saturn-cta-section">
-        <div className="container saturn-cta-container">
-          <div className="saturn-cta-banner">
-            <div className="saturn-cta-text">
-              <h2 className="saturn-cta-heading">
-                Ready to Allocate to the Saturn Fund?
-              </h2>
-              <p className="saturn-cta-sub">
-                Request the full Information Memorandum (IM) or arrange a confidential briefing with our investment managers.
-              </p>
-            </div>
-
-            <div className="saturn-cta-actions">
-              <button 
-                type="button" 
-                className="saturn-primary-cta-btn"
-                onClick={() => onOpenModal && onOpenModal('Saturn Fund Allocation')}
-              >
-                <span>Request Information Memorandum</span>
-                <ArrowUpRight size={18} />
-              </button>
-
-              <a 
-                href="/assets/Vitti_Capital_Guide.pdf"
-                download="Vitti_Capital_Guide.pdf"
-                className="saturn-secondary-cta-btn"
-                title="Download Vitti Capital Guide (PDF)"
-              >
-                <Download size={16} />
-                <span>Download Factsheet (PDF)</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
