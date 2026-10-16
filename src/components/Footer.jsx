@@ -26,6 +26,7 @@ export default function Footer() {
             minHeight: '100%',
           }}
         />
+        <div className="footer-mosaic-overlay" />
         <div className="footer-mosaic-vignette" />
       </div>
 
