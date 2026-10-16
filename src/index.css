@@ -6600,11 +6600,12 @@ img {
   margin: 0 auto;
 }
 
-/* 1. KEY FEATURES: Title & Relevant Background Only, Black Overlay Behind Title Only, Flip on X-Axis on Hover */
+/* 1. KEY FEATURES: Reverted Flip Cards (Title & Relevant Background, Black Overlay Behind Title Only, Flip on X-Axis on Hover) */
 .saturn-features-section {
   padding: clamp(70px, 9vh, 110px) 0;
-  background: #0A0E17;
+  background: #07090E;
   position: relative;
+  overflow: hidden;
 }
 
 .saturn-features-flip-grid {
@@ -6773,7 +6774,7 @@ img {
   margin: 0;
 }
 
-/* 2. FIVE-STAGE PROCESS: Circular Favicons, Alternating Up/Down, Connected Through Line, White -> Green on Scroll */
+/* 2. FIVE-STAGE PROCESS: Circular Favicons Only, Text Outside, Angled Connecting Lines (No Numbers) */
 .saturn-process-section {
   padding: clamp(80px, 10vh, 130px) 0;
   background: #07090E;
@@ -6781,232 +6782,195 @@ img {
   overflow: hidden;
 }
 
-.saturn-circular-process-track {
+.saturn-angled-process-track {
   position: relative;
   width: 100%;
-  padding: 80px 0;
-  margin-top: 20px;
+  min-height: 380px;
+  margin-top: 30px;
 }
 
-.saturn-process-connecting-line {
+.saturn-process-angled-svg {
   position: absolute;
-  top: 50%;
-  left: 5%;
-  right: 5%;
-  height: 3px;
-  background: rgba(255, 255, 255, 0.15);
-  transform: translateY(-50%);
-  z-index: 1;
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.saturn-process-line-progress {
+  inset: 0;
+  width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #00E599 0%, #33FFB5 100%);
-  box-shadow: 0 0 14px rgba(0, 229, 153, 0.8);
-  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 1;
 }
 
-.saturn-circular-nodes-row {
+.saturn-angled-nodes-grid {
   position: relative;
   z-index: 2;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 16px;
-  align-items: center;
+  min-height: 380px;
 }
 
-.saturn-process-node-col {
-  display: flex;
-  justify-content: center;
-  transition: transform 0.4s ease;
-}
-
-.saturn-process-node-col.is-up {
-  transform: translateY(-54px);
-}
-
-.saturn-process-node-col.is-down {
-  transform: translateY(54px);
-}
-
-/* Circular Node Card */
-.saturn-circular-node-card {
-  width: min(220px, 100%);
-  aspect-ratio: 1 / 1;
-  border-radius: 50%;
+.saturn-angled-node-col {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
-  padding: clamp(14px, 1.8vw, 22px);
-  box-sizing: border-box;
-  position: relative;
-  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  cursor: default;
-}
-
-.saturn-circular-node-card:hover {
-  transform: scale(1.05);
-}
-
-/* WHITE STATE (Initial) */
-.saturn-circular-node-card.is-white-state {
-  background: #FFFFFF;
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-}
-
-.saturn-circular-node-card.is-white-state .node-step-number {
-  background: #0A0E17;
-  color: #FFFFFF;
-}
-
-.saturn-circular-node-card.is-white-state .node-favicon-pod {
-  background: #0A0E17;
-  color: #FFFFFF;
-  border: 1px solid rgba(10, 14, 23, 0.2);
-}
-
-.saturn-circular-node-card.is-white-state .node-card-title {
-  color: #0A0E17;
-}
-
-.saturn-circular-node-card.is-white-state .node-card-desc {
-  color: #475569;
-}
-
-/* GREEN STATE (Active on scroll) */
-.saturn-circular-node-card.is-green-state {
-  background: #00E599;
-  border: 2px solid #33FFB5;
-  box-shadow: 0 16px 40px rgba(0, 229, 153, 0.45), 0 0 28px rgba(0, 229, 153, 0.3);
-}
-
-.saturn-circular-node-card.is-green-state .node-step-number {
-  background: #07090E;
-  color: #00E599;
-}
-
-.saturn-circular-node-card.is-green-state .node-favicon-pod {
-  background: #07090E;
-  color: #00E599;
-  border: 1px solid rgba(0, 229, 153, 0.4);
-}
-
-.saturn-circular-node-card.is-green-state .node-card-title {
-  color: #07090E;
-}
-
-.saturn-circular-node-card.is-green-state .node-card-desc {
-  color: #0B2016;
-}
-
-/* Elements inside the circular node card */
-.node-step-number {
-  position: absolute;
-  top: 10px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 999px;
-  letter-spacing: 0.05em;
-  transition: all 0.4s ease;
-}
-
-.node-favicon-pod {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 8px;
-  margin-top: 10px;
-  flex-shrink: 0;
-  transition: all 0.4s ease;
-}
-
-.node-card-title {
-  font-family: 'Unbounded', sans-serif;
-  font-size: clamp(13px, 1.1vw, 15px);
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  margin: 0 0 4px;
-  line-height: 1.2;
-  transition: color 0.4s ease;
-}
-
-.node-card-desc {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(10px, 0.8vw, 11.5px);
-  line-height: 1.35;
-  margin: 0;
-  max-width: 170px;
-  transition: color 0.4s ease;
-}
-
-/* 3. MARKET INSIGHTS RADAR: A Square made up of 4 rectangles with background images */
-.saturn-insights-section {
-  padding: clamp(70px, 9vh, 110px) 0;
-  background: #0A0E17;
   position: relative;
 }
 
-.saturn-radar-square {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 18px;
-  max-width: 960px;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  margin: 0 auto;
+/* UP NODE: Text sits above, circle is at Y~110 */
+.saturn-angled-node-col.is-up-node {
+  justify-content: flex-start;
+  padding-top: 10px;
 }
 
-.saturn-radar-quadrant-rect {
-  position: relative;
-  border-radius: 24px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  border: 1.5px solid rgba(255, 255, 255, 0.12);
+.saturn-angled-node-col.is-up-node .saturn-node-text-outer.text-above {
+  margin-bottom: 18px;
+  min-height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: clamp(24px, 3.2vw, 36px);
+}
+
+/* DOWN NODE: Text sits below, circle is at Y~250 */
+.saturn-angled-node-col.is-down-node {
+  justify-content: flex-end;
+  padding-bottom: 10px;
+}
+
+.saturn-angled-node-col.is-down-node .saturn-pure-circle-favicon {
+  margin-top: 130px;
+  margin-bottom: 18px;
+}
+
+.saturn-angled-node-col.is-down-node .saturn-node-text-outer.text-below {
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Pure Circle Favicon Node (ONLY Favicon inside, No Numbers) */
+.saturn-pure-circle-favicon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+  cursor: default;
+}
+
+.saturn-pure-circle-favicon:hover {
+  transform: scale(1.1);
+}
+
+/* WHITE STATE (Initial) */
+.saturn-pure-circle-favicon.is-white-state {
+  background: #FFFFFF;
+  border: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  color: #07090E;
+}
+
+/* GREEN STATE (Active on Scroll) */
+.saturn-pure-circle-favicon.is-green-state {
+  background: #00E599;
+  border: 2px solid #33FFB5;
+  box-shadow: 0 12px 32px rgba(0, 229, 153, 0.55), 0 0 24px rgba(0, 229, 153, 0.4);
+  color: #07090E;
+}
+
+.node-favicon-icon {
+  transition: transform 0.3s ease;
+}
+
+.saturn-pure-circle-favicon:hover .node-favicon-icon {
+  transform: scale(1.12);
+}
+
+/* Text Outside the Circular Card */
+.saturn-node-text-outer {
+  max-width: 190px;
+  margin: 0 auto;
+}
+
+.node-text-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin: 0 0 6px;
+  line-height: 1.25;
+}
+
+.node-text-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #94A3B8;
+  margin: 0;
+}
+
+/* 3. MARKET INSIGHTS RADAR: Row of Square Cards with White Outline & Text-Only Black Overlay */
+.saturn-insights-section {
+  padding: clamp(70px, 9vh, 110px) 0;
+  background: #07090E;
+  position: relative;
+  overflow: hidden;
+}
+
+.saturn-radar-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 1.8vw, 24px);
+  width: 100%;
+}
+
+.saturn-radar-square-card {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: 22px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid #FFFFFF; /* Crisp white outline */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 16px;
   cursor: pointer;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 16px rgba(255, 255, 255, 0.12);
   transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   box-sizing: border-box;
 }
 
-.saturn-radar-quadrant-rect:hover {
-  border-color: #00E599;
-  transform: translateY(-4px);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 28px rgba(0, 229, 153, 0.22);
+.saturn-radar-square-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.65), 0 0 28px rgba(255, 255, 255, 0.3);
+  border-color: #FFFFFF;
 }
 
-.saturn-radar-quadrant-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(7, 9, 14, 0.5) 0%, rgba(7, 9, 14, 0.9) 100%);
-  transition: background 0.35s ease;
-  z-index: 1;
-}
-
-.saturn-radar-quadrant-rect:hover .saturn-radar-quadrant-overlay {
-  background: linear-gradient(180deg, rgba(7, 9, 14, 0.38) 0%, rgba(7, 9, 14, 0.85) 100%);
-}
-
-.saturn-radar-quadrant-content {
-  position: relative;
-  z-index: 2;
+/* Black overlay ONLY on the text area, rest of image fully visible */
+.saturn-radar-text-overlay-box {
+  background: rgba(7, 9, 14, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+  transition: border-color 0.3s ease;
+}
+
+.saturn-radar-square-card:hover .saturn-radar-text-overlay-box {
+  border-color: rgba(0, 229, 153, 0.5);
 }
 
 .saturn-radar-tag-badge {
@@ -7015,53 +6979,57 @@ img {
   border: 1px solid rgba(0, 229, 153, 0.4);
   color: #00E599;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  padding: 4px 10px;
+  padding: 3px 8px;
   border-radius: 999px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .saturn-radar-quadrant-title {
   font-family: 'Unbounded', sans-serif;
-  font-size: clamp(18px, 1.8vw, 24px);
+  font-size: clamp(14px, 1.15vw, 16.5px);
   font-weight: 800;
   color: #FFFFFF;
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   letter-spacing: -0.02em;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .saturn-radar-quadrant-desc {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: clamp(13px, 1.1vw, 14.5px);
-  line-height: 1.6;
+  font-size: 11.5px;
+  line-height: 1.5;
   color: #CBD5E1;
-  margin: 0 0 18px;
+  margin: 0 0 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .saturn-radar-quadrant-footer {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   color: #00E599;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px;
+  font-size: 11.5px;
   font-weight: 700;
   transition: gap 0.2s ease;
 }
 
-.saturn-radar-quadrant-rect:hover .saturn-radar-quadrant-footer {
-  gap: 12px;
+.saturn-radar-square-card:hover .saturn-radar-quadrant-footer {
+  gap: 9px;
 }
 
 .saturn-radar-arrow-icon {
   transition: transform 0.2s ease;
 }
 
-.saturn-radar-quadrant-rect:hover .saturn-radar-arrow-icon {
+.saturn-radar-square-card:hover .saturn-radar-arrow-icon {
   transform: translate(2px, -2px);
 }
 
@@ -7112,46 +7080,56 @@ img {
   .saturn-features-flip-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .saturn-radar-square {
-    max-width: 100%;
-    aspect-ratio: auto;
-  }
-  .saturn-radar-quadrant-rect {
-    min-height: 280px;
+  .saturn-radar-row {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 860px) {
-  .saturn-circular-process-track {
-    padding: 30px 0;
+  .saturn-angled-process-track {
+    min-height: auto;
   }
-  .saturn-process-connecting-line {
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    right: auto;
-    width: 3px;
-    height: 100%;
-    transform: translateX(-50%);
+  .saturn-process-angled-svg {
+    display: none;
   }
-  .saturn-process-line-progress {
-    width: 100% !important;
-  }
-  .saturn-circular-nodes-row {
+  .saturn-angled-nodes-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 36px;
+    min-height: auto;
   }
-  .saturn-process-node-col.is-up,
-  .saturn-process-node-col.is-down {
-    transform: none;
+  .saturn-angled-node-col.is-up-node,
+  .saturn-angled-node-col.is-down-node {
+    justify-content: center;
+    padding: 0;
   }
-  .saturn-circular-node-card {
-    width: 200px;
+  .saturn-angled-node-col.is-up-node .saturn-pure-circle-favicon {
+    order: 1;
+    margin-bottom: 12px;
   }
-  .saturn-radar-square {
+  .saturn-angled-node-col.is-up-node .saturn-node-text-outer.text-above {
+    order: 2;
+    min-height: auto;
+    margin-bottom: 0;
+  }
+  .saturn-angled-node-col.is-down-node .saturn-pure-circle-favicon {
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+  .saturn-angled-node-col.is-down-node .saturn-node-text-outer.text-below {
+    min-height: auto;
+  }
+  .saturn-node-text-outer {
+    max-width: 320px;
+  }
+  .saturn-radar-row {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    aspect-ratio: auto;
+    gap: 20px;
+  }
+  .saturn-radar-square-card {
+    aspect-ratio: 4 / 3;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
   }
   .saturn-band-actions-wrap {
     flex-direction: column;

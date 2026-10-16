@@ -16,6 +16,7 @@ import {
   BarChart3 
 } from 'lucide-react';
 import ShapeMosaic from '../components/originkit/ui/shape-mosaic-custom-style';
+import PredictiveArc from '../components/originkit/ui/predictive-arc';
 
 export default function SaturnFundPage({ onOpenModal, onNavigate }) {
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
 
   const [openFaq, setOpenFaq] = useState(0);
 
-  // 1. Key Features Cards with relevant photography
+  // 1. Key Features Cards with relevant photography (Reverted flip cards)
   const keyFeatures = [
     {
       id: 'return',
@@ -68,40 +69,35 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
     },
   ];
 
-  // 2. Five-Stage Process with circular cards and summarized info
+  // 2. Five-Stage Process: Circular Favicons Only, Text Outside, Angled Connecting Lines (No Numbers)
   const processStages = [
     {
-      num: '01',
+      id: 'discovery',
       title: 'Discovery',
-      fullTitle: 'Discovery Consultation',
       desc: 'Mapping mandate objectives, liquidity horizon, and risk tolerance profile.',
       icon: Search,
     },
     {
-      num: '02',
+      id: 'origination',
       title: 'Origination',
-      fullTitle: 'Opportunity Origination',
       desc: 'Sourcing high-conviction credit tranches and unlisted growth equity.',
       icon: Activity,
     },
     {
-      num: '03',
+      id: 'due-diligence',
       title: 'Due Diligence',
-      fullTitle: 'Deep‑Dive Diligence',
       desc: 'Institutional balance-sheet stress-testing and first-rank collateral analysis.',
       icon: FileCheck,
     },
     {
-      num: '04',
+      id: 'execution',
       title: 'Execution',
-      fullTitle: 'Execution & Settlement',
       desc: 'Structured documentation, legal clearance, and capital allocation.',
       icon: Layers,
     },
     {
-      num: '05',
+      id: 'governance',
       title: 'Governance',
-      fullTitle: 'Active Governance',
       desc: 'Indicative monthly cash distributions and quarterly portfolio surveillance.',
       icon: BarChart3,
     },
@@ -264,8 +260,38 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
           2. KEY FEATURES: Title & Background Only, Black Overlay Behind Title Only,
              Flips on X axis to reveal info on hover
           =================================================================== */}
+      {/* ===================================================================
+          2. KEY FEATURES: Natural Generated Images, Text & Favicon Only (No Card)
+          =================================================================== */}
       <section className="saturn-features-section">
-        <div className="container saturn-features-container">
+        {/* Background Originkit Predictive Arc: strictly background (WHY section background) */}
+        <div className="connected-arc-bg-wrap" style={{ height: '100%', zIndex: 0 }} aria-hidden="true">
+          <PredictiveArc
+            background="#07090E"
+            baseColor="#033826"
+            accentColor="#00E599"
+            highlight="#FFFFFF"
+            density={85}
+            dotSize={110}
+            speed={55}
+            arch={{ peak: 26, archHeight: 65, thickness: 110, falloff: 240 }}
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              width: '100%',
+              height: '100%',
+              minWidth: '100%',
+              minHeight: '100%',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}
+          />
+          <div className="connected-vignette-overlay" />
+        </div>
+
+        <div className="container saturn-features-container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="saturn-section-header text-center">
             <h2 className="saturn-section-headline">
               KEY FEATURES & WHAT YOU RECEIVE
@@ -324,8 +350,8 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
       </section>
 
       {/* ===================================================================
-          3. OUR FIVE-STAGE PROCESS: Circular Favicons, Alternating Up/Down,
-             Connected Through Line, White initially -> Turning Green on Scroll
+          3. OUR FIVE-STAGE PROCESS: Circular Favicons Only, Text Outside,
+             Angled Connecting Lines (No Numbers)
           =================================================================== */}
       <section className="saturn-process-section" ref={processRef}>
         <div className="container saturn-process-container">
@@ -338,41 +364,74 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
             </p>
           </div>
 
-          <div className="saturn-circular-process-track">
-            {/* Connecting Line Through The Center */}
-            <div className="saturn-process-connecting-line" aria-hidden="true">
-              <div 
-                className="saturn-process-line-progress" 
-                style={{ width: `${Math.min(100, Math.max(0, ((activeStep - 1) / 4) * 100))}%` }}
+          <div className="saturn-angled-process-track">
+            {/* Angled Connecting SVG Lines */}
+            <svg 
+              className="saturn-process-angled-svg" 
+              viewBox="0 0 1000 360" 
+              preserveAspectRatio="none" 
+              aria-hidden="true"
+            >
+              {/* Background Guide Line */}
+              <polyline 
+                points="100,110 300,250 500,110 700,250 900,110" 
+                fill="none" 
+                stroke="rgba(255, 255, 255, 0.16)" 
+                strokeWidth="3" 
+                strokeDasharray="6 6" 
               />
-            </div>
 
-            <div className="saturn-circular-nodes-row">
+              {/* Progress Line Illuminated on Scroll */}
+              {activeStep >= 2 && (
+                <polyline 
+                  points={
+                    activeStep === 2 ? "100,110 300,250" :
+                    activeStep === 3 ? "100,110 300,250 500,110" :
+                    activeStep === 4 ? "100,110 300,250 500,110 700,250" :
+                    "100,110 300,250 500,110 700,250 900,110"
+                  }
+                  fill="none" 
+                  stroke="#00E599" 
+                  strokeWidth="4" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                  style={{ filter: 'drop-shadow(0 0 10px rgba(0, 229, 153, 0.85))' }}
+                />
+              )}
+            </svg>
+
+            {/* 5 Alternating Node Columns */}
+            <div className="saturn-angled-nodes-grid">
               {processStages.map((step, idx) => {
                 const StepIcon = step.icon;
                 const isGreen = idx < activeStep;
-                const isAlternateUp = idx % 2 === 0;
+                const isUp = idx % 2 === 0;
 
                 return (
                   <div 
-                    key={step.num} 
-                    className={`saturn-process-node-col ${isAlternateUp ? 'is-up' : 'is-down'}`}
+                    key={step.id} 
+                    className={`saturn-angled-node-col ${isUp ? 'is-up-node' : 'is-down-node'}`}
                   >
-                    <div className={`saturn-circular-node-card ${isGreen ? 'is-green-state' : 'is-white-state'}`}>
-                      {/* Step Number Badge */}
-                      <span className="node-step-number">{step.num}</span>
-                      
-                      {/* Circular Favicon Pod */}
-                      <div className="node-favicon-pod">
-                        <StepIcon size={22} className="node-icon-svg" />
+                    {/* Text Above for UP nodes */}
+                    {isUp && (
+                      <div className="saturn-node-text-outer text-above">
+                        <h3 className="node-text-title">{step.title}</h3>
+                        <p className="node-text-desc">{step.desc}</p>
                       </div>
+                    )}
 
-                      {/* Title */}
-                      <h3 className="node-card-title">{step.title}</h3>
-
-                      {/* Summarized Info */}
-                      <p className="node-card-desc">{step.desc}</p>
+                    {/* Circular Card with ONLY Favicon Inside (No Numbers, No Text) */}
+                    <div className={`saturn-pure-circle-favicon ${isGreen ? 'is-green-state' : 'is-white-state'}`}>
+                      <StepIcon size={24} className="node-favicon-icon" />
                     </div>
+
+                    {/* Text Below for DOWN nodes */}
+                    {!isUp && (
+                      <div className="saturn-node-text-outer text-below">
+                        <h3 className="node-text-title">{step.title}</h3>
+                        <p className="node-text-desc">{step.desc}</p>
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -382,10 +441,37 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
       </section>
 
       {/* ===================================================================
-          4. MARKET INSIGHTS RADAR: A Square Made Up of 4 Rectangles with Generated Backgrounds
+          4. MARKET INSIGHTS RADAR: Smaller 2x2 Square with WHY Section Background
           =================================================================== */}
       <section className="saturn-insights-section">
-        <div className="container saturn-insights-container">
+        {/* Background Originkit Predictive Arc: strictly background (WHY section background) */}
+        <div className="connected-arc-bg-wrap" style={{ height: '100%', zIndex: 0 }} aria-hidden="true">
+          <PredictiveArc
+            background="#07090E"
+            baseColor="#033826"
+            accentColor="#00E599"
+            highlight="#FFFFFF"
+            density={85}
+            dotSize={110}
+            speed={55}
+            arch={{ peak: 26, archHeight: 65, thickness: 110, falloff: 240 }}
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
+              width: '100%',
+              height: '100%',
+              minWidth: '100%',
+              minHeight: '100%',
+              pointerEvents: 'none',
+              zIndex: 0,
+            }}
+          />
+          <div className="connected-vignette-overlay" />
+        </div>
+
+        <div className="container saturn-insights-container" style={{ position: 'relative', zIndex: 2 }}>
           <div className="saturn-section-header text-center">
             <h2 className="saturn-section-headline">
               MARKET INSIGHTS RADAR
@@ -395,27 +481,26 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
             </p>
           </div>
 
-          {/* Cohesive 2x2 Square of 4 Rectangles */}
-          <div className="saturn-radar-square">
+          {/* Row of Square Cards with White Outline and Text-Only Black Overlay */}
+          <div className="saturn-radar-row">
             {marketInsights.map((ins) => (
               <div 
                 key={ins.id} 
-                className="saturn-radar-quadrant-rect"
+                className="saturn-radar-square-card"
                 style={{ backgroundImage: `url('${ins.image}')` }}
                 onClick={() => onOpenModal && onOpenModal(`Market Insight: ${ins.title}`)}
                 role="button"
                 tabIndex={0}
               >
-                <div className="saturn-radar-quadrant-overlay" />
-                
-                <div className="saturn-radar-quadrant-content">
+                {/* Black overlay ONLY on the text area, rest of image fully visible */}
+                <div className="saturn-radar-text-overlay-box">
                   <span className="saturn-radar-tag-badge">{ins.tag}</span>
                   <h3 className="saturn-radar-quadrant-title">{ins.title}</h3>
                   <p className="saturn-radar-quadrant-desc">{ins.desc}</p>
                   
                   <div className="saturn-radar-quadrant-footer">
                     <span className="saturn-radar-link-text">Institutional Analysis</span>
-                    <ArrowUpRight size={16} className="saturn-radar-arrow-icon" />
+                    <ArrowUpRight size={14} className="saturn-radar-arrow-icon" />
                   </div>
                 </div>
               </div>
