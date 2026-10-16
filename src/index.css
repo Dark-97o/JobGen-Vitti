@@ -89,6 +89,7 @@ body {
   background-color: var(--bg-dark);
   scrollbar-width: none !important;
   -ms-overflow-style: none !important;
+  zoom: 0.9;
 }
 
 a {
