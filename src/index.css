@@ -5254,19 +5254,19 @@ img {
 }
 
 .footer-brand-middle .footer-brand-full-logo {
-  width: clamp(340px, 26vw, 480px) !important;
+  width: clamp(306px, 23.4vw, 432px) !important; /* 10% smaller */
   max-width: none !important;
   height: auto !important;
   object-fit: contain;
   display: block;
   margin: 0 auto;
-  transform: translateX(-20px); /* Move 20px to the left */
+  transform: translateX(-28px); /* Moved to the left by 8px more (total -28px) */
   filter: drop-shadow(0 0 28px rgba(0, 229, 153, 0.4));
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .footer-brand-middle .footer-brand-full-logo:hover {
-  transform: translateX(-20px) scale(1.04);
+  transform: translateX(-28px) scale(1.04);
   filter: drop-shadow(0 0 36px rgba(0, 229, 153, 0.55));
 }
 
