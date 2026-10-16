@@ -47,10 +47,6 @@ export default function WhoWeAre({ onOpenModal }) {
             LEFT COLUMN: CREME LIGHT SECTION CONTENT
             =================================================================== */}
         <div className="who-text-column">
-          <div className="who-pill-badge">
-            <span className="who-pill-accent" />
-            <span>Who we are?</span>
-          </div>
 
           <h2 className="who-headline-1">
             Who we are?

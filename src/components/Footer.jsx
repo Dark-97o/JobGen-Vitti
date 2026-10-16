@@ -40,11 +40,11 @@ export default function Footer() {
           <div className="footer-nav-column">
             <h4 className="footer-nav-title">Advisory Divisions</h4>
             <ul className="footer-links-list">
-              <li><a href="#universe">Capital Raising Advisory</a></li>
-              <li><a href="#universe">Private Credit Syndication</a></li>
-              <li><a href="#universe">Cross-Border M&A Advisory</a></li>
-              <li><a href="#universe">Structured Finance Solutions</a></li>
-              <li><a href="#universe">Pre-IPO & Dual-Listing</a></li>
+              <li><a href="#universe">Capital Raising</a></li>
+              <li><a href="#universe">Private Credit</a></li>
+              <li><a href="#universe">Cross-Border M&A</a></li>
+              <li><a href="#universe">Structured Finance</a></li>
+              <li><a href="#universe">Pre-IPO Advisory</a></li>
             </ul>
           </div>
 
@@ -53,10 +53,10 @@ export default function Footer() {
             <h4 className="footer-nav-title">Intelligence</h4>
             <ul className="footer-links-list">
               <li><a href="#market-updates">Market Updates</a></li>
-              <li><a href="#why-partner">Why Vitti Capital</a></li>
+              <li><a href="#why-partner">Why Vitti</a></li>
               <li><a href="#success-story">Success Stories</a></li>
-              <li><a href="#blogs">Blogs & Insights</a></li>
-              <li><a href="#faq">Frequently Asked Questions</a></li>
+              <li><a href="#blogs">Insights & Articles</a></li>
+              <li><a href="#faq">FAQs</a></li>
             </ul>
           </div>
 

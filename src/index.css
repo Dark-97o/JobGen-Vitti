@@ -395,14 +395,14 @@ img {
 
 /* Second headline in Who We Are section: Wholesale Investment Advisory in green */
 .who-headline-2 {
-  font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: clamp(24px, 2.4vw, 35px);
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: clamp(25px, 2.5vw, 36px);
   font-weight: 800;
   color: #00B377 !important;
   -webkit-text-fill-color: #00B377 !important;
   line-height: 1.25;
-  margin: 0 0 clamp(22px, 2.8vh, 32px) 0;
-  letter-spacing: -0.03em;
+  margin: 0 0 clamp(16px, 2vh, 24px) 0;
+  letter-spacing: -0.025em;
   text-align: left;
 }
 
@@ -413,7 +413,7 @@ img {
   color: #000000 !important; /* All dark black */
   font-weight: 600;
   line-height: 1.82;
-  margin: 0 0 26px 0;
+  margin: 0 0 22px 0;
   text-align: left;
 }
 
@@ -427,6 +427,8 @@ img {
   display: flex;
   align-items: center;
   width: 100%;
+  transform: translateY(-20px); /* Move text button a little up by 20px */
+  margin-bottom: -10px;
 }
 
 /* ==========================================================================
@@ -480,8 +482,8 @@ img {
 
 .who-region-card {
   position: relative;
-  height: clamp(140px, 16vh, 175px);
-  border-radius: 20px;
+  height: clamp(96px, 11vh, 124px); /* Decreased height */
+  border-radius: 18px;
   background-size: cover;
   background-position: center;
   border: 2px solid rgba(10, 14, 23, 0.16);
@@ -515,24 +517,24 @@ img {
 .who-region-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(7, 9, 14, 0.7) 0%, rgba(7, 9, 14, 0.32) 100%);
+  background: linear-gradient(to top, rgba(7, 9, 14, 0.34) 0%, rgba(7, 9, 14, 0.10) 100%); /* Lightened overlay */
   transition: background 0.3s ease;
 }
 
 .who-region-card.is-selected .who-region-overlay {
-  background: linear-gradient(to top, rgba(4, 77, 52, 0.78) 0%, rgba(7, 9, 14, 0.32) 100%);
+  background: linear-gradient(to top, rgba(4, 77, 52, 0.42) 0%, rgba(7, 9, 14, 0.12) 100%);
 }
 
 .who-region-label {
   position: relative;
   z-index: 2;
-  font-family: 'Unbounded', 'Syne', sans-serif;
-  font-size: clamp(24px, 2.6vw, 34px); /* Bigger & Bolder */
-  font-weight: 900;
-  letter-spacing: 0.14em;
+  font-family: 'Plus Jakarta Sans', var(--font-sans); /* Modern clean font */
+  font-size: clamp(20px, 2.1vw, 28px);
+  font-weight: 800;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #FFFFFF;
-  text-shadow: 0 4px 18px rgba(0, 0, 0, 0.95), 0 0 25px rgba(0, 229, 153, 0.4);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85), 0 0 16px rgba(0, 229, 153, 0.35);
 }
 
 .btn-dark-ink {
@@ -1982,11 +1984,11 @@ img {
 }
 
 .sydney-headline {
-  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-family: 'Unbounded', 'Syne', sans-serif;
   font-size: clamp(38px, 6.2vw, 92px);
   font-weight: 900;
   line-height: 1.08;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   color: #FFFFFF !important;
   -webkit-text-fill-color: #FFFFFF !important;
@@ -2272,11 +2274,11 @@ img {
 }
 
 .sydney-black-headline {
-  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-family: 'Unbounded', 'Syne', sans-serif;
   font-size: clamp(48px, 5.2vw, 76px);
   font-weight: 900;
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
   color: #0A0E17 !important;
   -webkit-text-fill-color: #0A0E17 !important;
@@ -4935,17 +4937,24 @@ img {
   z-index: 1;
 }
 
-.footer-container {
+.refined-footer .container,
+.refined-footer .footer-container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: clamp(20px, 3.2vw, 64px) !important;
+  padding-right: clamp(20px, 3.2vw, 64px) !important;
+  box-sizing: border-box;
   position: relative;
   z-index: 2;
 }
 
 .footer-top-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.65fr 1.05fr 1.15fr;
-  gap: clamp(20px, 2.5vw, 42px);
+  grid-template-columns: minmax(175px, 1.15fr) minmax(165px, 1fr) minmax(220px, 1.45fr) minmax(175px, 1.05fr) minmax(185px, 1.1fr);
+  gap: clamp(16px, 2.2vw, 36px);
   margin-bottom: 48px;
   align-items: start;
+  width: 100%;
 }
 
 .footer-brand-column {
@@ -5098,13 +5107,14 @@ img {
 
 .footer-links-list a {
   font-family: var(--font-sans);
-  font-size: clamp(14px, 1.12vw, 15.5px); /* Bigger Options Texts */
+  font-size: clamp(13.5px, 1.05vw, 15px);
   font-weight: 600;
   text-transform: none; /* Not all caps */
   letter-spacing: 0.01em;
   color: #CBD5E1;
   transition: color 0.2s, transform 0.2s;
   display: inline-block;
+  white-space: nowrap;
 }
 
 .footer-links-list a:hover {
@@ -5134,12 +5144,13 @@ img {
 
 .contact-list-val {
   font-family: var(--font-sans);
-  font-size: clamp(14.5px, 1.15vw, 16px); /* Bigger */
+  font-size: clamp(13.5px, 1.05vw, 15px);
   font-weight: 600;
   color: #FFFFFF;
   text-transform: none; /* Not all caps */
   letter-spacing: 0.01em;
   transition: color 0.2s;
+  white-space: nowrap;
 }
 
 .contact-list-val:hover {
