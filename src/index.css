@@ -435,20 +435,6 @@ img {
   overflow: hidden;
 }
 
-/* WHO WE ARE: Top Green Background overlay ending at ~74% of headline text height (matching reference) */
-.who-we-are-container::before {
-  content: '' !important;
-  display: block !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: calc(clamp(96px, 9.5vh, 125px) + 40px + (clamp(43px, 4.7vw, 68px) * 0.74));
-  background: linear-gradient(to bottom, #00FFA1 0%, #00E599 100%);
-  border-bottom: 2px solid rgba(10, 14, 23, 0.12);
-  pointer-events: none;
-  z-index: 1;
-}
 
 .who-we-are-snap-section {
   position: relative;
@@ -770,38 +756,6 @@ img {
   pointer-events: auto;
 }
 
-.hero-city-backdrop-layer {
-  position: absolute;
-  bottom: 0 !important;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: clamp(140px, 22vh, 270px);
-  pointer-events: none;
-  z-index: 4;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  line-height: 0;
-}
-
-.hero-city-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: bottom center;
-  pointer-events: none;
-  user-select: none;
-  display: block;
-  vertical-align: bottom;
-  filter: brightness(0) invert(1); /* Pure White */
-  opacity: 0.8; /* 80% transparency */
-  margin: 0;
-  padding: 0;
-}
 
 .hero-vignette-bottom {
   position: absolute;
@@ -2456,37 +2410,19 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   z-index: 8;
-  padding-top: clamp(48px, 6vh, 80px);
-  padding-bottom: 24px;
-  padding-left: clamp(16px, 2vw, 36px);
-  padding-right: clamp(16px, 2vw, 36px);
+  padding: 16px clamp(16px, 2vw, 36px);
   box-sizing: border-box;
   will-change: opacity, transform;
   background: transparent;
-  overflow: hidden;
-}
-
-/* YOUR MONEY REIMAGINED: Top Green Background overlay ending at ~74% of headline text height (matching reference) */
-.sydney-reimagined-stage::before {
-  content: '' !important;
-  display: block !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: calc(clamp(48px, 6vh, 80px) + (clamp(43px, 4.7vw, 68px) * 0.74));
-  background: linear-gradient(to bottom, #00FFA1 0%, #00E599 100%);
-  border-bottom: 2px solid rgba(10, 14, 23, 0.12);
-  pointer-events: none;
-  z-index: 1;
 }
 
 .sydney-reimagined-header {
   position: relative;
   z-index: 2;
-  margin-bottom: clamp(32px, 4.5vh, 60px);
+  margin-bottom: clamp(56px, 7.5vh, 88px);
+  transform: translateY(-10px);
   text-align: center;
 }
 
@@ -4392,7 +4328,7 @@ img {
 }
 
 /* ==========================================================================
-   LIGHT THEME: TOP BACKGROUND GREEN UNTIL THE HEADLINE
+   LIGHT THEME GREEN & BLUE SHADES GRADIENT BACKGROUND (Lines Removed)
    ========================================================================== */
 .light-theme-grid-bg {
   position: relative;
@@ -4404,7 +4340,11 @@ img {
       rgba(255, 255, 255, 0.72) 75%,
       rgba(255, 255, 255, 0.28) 100%
     ),
-    linear-gradient(135deg, #00FFA1 0%, #00E599 24%, #10B981 48%, #059669 72%, #047857 100%) !important;
+    linear-gradient(135deg, #00E599 0%, #10B981 22%, #06B6D4 52%, #3B82F6 78%, #1D4ED8 100%) !important;
+}
+
+.light-theme-grid-bg::before {
+  display: none !important; /* Lines removed */
 }
 
 .light-theme-grid-bg > .container {
@@ -4413,7 +4353,7 @@ img {
 }
 
 /* ==========================================================================
-   CONTACT SECTION ("Can We Help?" - TOP GREEN OVERLAY ENDING AT 74% OF HEADLINE)
+   CONTACT SECTION ("Can We Help?" - UNBOXED LIGHT THEME, ALL DARK BLACK TEXT)
    ========================================================================== */
 .contact-card-section {
   padding: clamp(80px, 10vh, 130px) 0;
@@ -4421,20 +4361,6 @@ img {
   z-index: 10;
   border-top: 1px solid rgba(10, 14, 23, 0.08);
   border-bottom: 1px solid rgba(10, 14, 23, 0.08);
-}
-
-.contact-card-section::before {
-  content: '' !important;
-  display: block !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: calc(clamp(80px, 10vh, 130px) + (clamp(48px, 5.2vw, 76px) * 0.74));
-  background: linear-gradient(to bottom, #00FFA1 0%, #00E599 100%);
-  border-bottom: 2px solid rgba(10, 14, 23, 0.12);
-  pointer-events: none;
-  z-index: 1;
 }
 
 .contact-header-block {
@@ -4904,7 +4830,7 @@ img {
 }
 
 /* ==========================================================================
-   FAQ SECTION (TOP GREEN OVERLAY ENDING AT 74% OF HEADLINE)
+   FAQ SECTION (LIGHT THEME)
    ========================================================================== */
 .faq-section-wrap {
   padding: clamp(70px, 9vh, 120px) 0;
@@ -4912,20 +4838,6 @@ img {
   z-index: 10;
   border-top: 1px solid rgba(10, 14, 23, 0.08);
   border-bottom: 1px solid rgba(10, 14, 23, 0.08);
-}
-
-.faq-section-wrap::before {
-  content: '' !important;
-  display: block !important;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: calc(clamp(70px, 9vh, 120px) + (clamp(34px, 4.4vw, 54px) * 0.74));
-  background: linear-gradient(to bottom, #00FFA1 0%, #00E599 100%);
-  border-bottom: 2px solid rgba(10, 14, 23, 0.12);
-  pointer-events: none;
-  z-index: 1;
 }
 
 .faq-header-center {

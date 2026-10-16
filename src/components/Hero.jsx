@@ -321,15 +321,6 @@ export default function Hero({ onOpenModal, selectedRegion = 'AU' }) {
             <div className="hero-vignette-bottom" />
           </div>
 
-          {/* City Silhouette Layer attached at the bottom over the background */}
-          <div className="hero-city-backdrop-layer" aria-hidden="true">
-            <img 
-              src="/assets/city.png" 
-              alt="City skyline" 
-              className="hero-city-img" 
-            />
-          </div>
-
           {/* Main Focus: Pure White Funky Headline + Book a Call button in Hero */}
           <div className="hero-card-content-center">
             <div 
