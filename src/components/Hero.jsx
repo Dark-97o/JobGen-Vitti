@@ -162,8 +162,8 @@ export default function Hero({ onOpenModal, selectedRegion = 'AU' }) {
           : '1px solid transparent',
       };
 
-  // Headline interpolation: shifts from left offset (-220px, 50px) to centered card (0px, 0px)
-  const headlineTranslateX = -220 * (1 - p);
+  // Headline interpolation: shifts from left offset (-165px, 50px) to centered card (0px, 0px) - added left spacing
+  const headlineTranslateX = -165 * (1 - p);
   const headlineTranslateY = 50 * (1 - p);
   // Title scales cleanly
   const titleFontSize = 40 + (1 - p) * 52;
@@ -328,17 +328,17 @@ export default function Hero({ onOpenModal, selectedRegion = 'AU' }) {
               style={{
                 transform: `translate(${headlineTranslateX.toFixed(1)}px, ${headlineTranslateY.toFixed(1)}px)`,
                 textAlign: p > 0.3 ? 'center' : 'left',
-                padding: p > 0.3 ? '0 20px' : '0',
+                padding: p > 0.3 ? '0 20px' : '0 20px 0 clamp(28px, 4vw, 70px)',
                 width: '100%',
                 boxSizing: 'border-box',
                 transition: 'none',
               }}
             >
-              {/* Hero headline: smoothly interpolates size with zero layout jumps */}
+              {/* Hero headline: smoothly interpolates size with zero layout jumps (scaled down by 10%) */}
               <h1 
                 className="hero-funky-title"
                 style={{
-                  fontSize: `clamp(${(32 + (1 - p) * 24).toFixed(1)}px, ${(2.7 + (1 - p) * 4.8).toFixed(2)}vw, ${(42 + (1 - p) * 64).toFixed(1)}px)`,
+                  fontSize: `clamp(${(29 + (1 - p) * 21.5).toFixed(1)}px, ${(2.4 + (1 - p) * 4.3).toFixed(2)}vw, ${(38 + (1 - p) * 57.5).toFixed(1)}px)`,
                   lineHeight: (1.15 - (1 - p) * 0.17).toFixed(2),
                   wordBreak: 'break-word',
                   overflowWrap: 'break-word',

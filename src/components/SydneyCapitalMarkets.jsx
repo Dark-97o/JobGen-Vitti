@@ -118,7 +118,7 @@ export default function SydneyCapitalMarkets() {
   const bgScale = 1 + ep * 0.05;
 
   // Card fan tucking offset (side cards tuck behind center card leaving outer edges poking out)
-  const tuckOffset = isMobile ? 45 : 155;
+  const tuckOffset = isMobile ? 70 : 210;
   const containerW = Math.min(windowSize.w - (isMobile ? 32 : 80), 1600);
   const centerShiftX = containerW * 0.325;
 

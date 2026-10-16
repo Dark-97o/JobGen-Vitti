@@ -435,14 +435,14 @@ img {
   overflow: hidden;
 }
 
-/* WHO WE ARE: Top Green Background with clear separation extending further below text */
+/* WHO WE ARE: Top Green Background with clear separation ending ~5px below text */
 .who-we-are-container::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: clamp(290px, 34vh, 350px);
+  height: clamp(215px, 25vh, 250px);
   background: linear-gradient(to bottom, #00FFA1 0%, #00E599 100%);
   border-bottom: 2px solid rgba(10, 14, 23, 0.1);
   pointer-events: none;
@@ -454,10 +454,10 @@ img {
   background: linear-gradient(
     to bottom,
     #00FFA1 0%,
-    #00E599 clamp(290px, 34vh, 350px),
-    rgba(10, 14, 23, 0.1) clamp(290px, 34vh, 350px),
-    rgba(10, 14, 23, 0.1) calc(clamp(290px, 34vh, 350px) + 1.5px),
-    #FBFBF5 calc(clamp(290px, 34vh, 350px) + 1.5px),
+    #00E599 clamp(215px, 25vh, 250px),
+    rgba(10, 14, 23, 0.1) clamp(215px, 25vh, 250px),
+    rgba(10, 14, 23, 0.1) calc(clamp(215px, 25vh, 250px) + 1.5px),
+    #FBFBF5 calc(clamp(215px, 25vh, 250px) + 1.5px),
     #FBFBF5 100%
   ) !important;
 }
@@ -617,7 +617,7 @@ img {
   pointer-events: none !important;
   z-index: 2;
   background: 
-    linear-gradient(to bottom, #00FFA1 0%, #00E599 clamp(290px, 34vh, 350px), transparent clamp(290px, 34vh, 350px)),
+    linear-gradient(to bottom, #00FFA1 0%, #00E599 clamp(215px, 25vh, 250px), transparent clamp(215px, 25vh, 250px)),
     radial-gradient(circle at 65% 50%, rgba(251, 251, 245, 0.45) 0%, rgba(251, 251, 245, 0.78) 65%, #FBFBF5 100%),
     linear-gradient(to right, #FBFBF5 0%, rgba(251, 251, 245, 0.6) 45%, rgba(251, 251, 245, 0.28) 100%);
 }
@@ -869,7 +869,7 @@ img {
   right: 58px;
   bottom: 78px;
   z-index: 10;
-  width: clamp(368px, 35.2vw, 528px);
+  width: clamp(294px, 28.1vw, 422px); /* Decreased by 20% */
   pointer-events: auto;
   animation: floatPhoneCorner 6s ease-in-out infinite alternate;
   transform-origin: right bottom;
@@ -919,7 +919,7 @@ img {
   right: 58px;
   bottom: 30px;
   z-index: 10;
-  width: clamp(368px, 35.2vw, 528px);
+  width: clamp(294px, 28.1vw, 422px); /* Decreased by 20% */
   pointer-events: auto;
   animation: floatPhoneCorner 6s ease-in-out infinite alternate;
   transform-origin: right bottom;
@@ -2126,10 +2126,10 @@ img {
   background: linear-gradient(
     to bottom,
     #00FFA1 0%,
-    #00E599 clamp(260px, 32vh, 320px),
-    rgba(10, 14, 23, 0.1) clamp(260px, 32vh, 320px),
-    rgba(10, 14, 23, 0.1) calc(clamp(260px, 32vh, 320px) + 1.5px),
-    #FBFBF5 calc(clamp(260px, 32vh, 320px) + 1.5px),
+    #00E599 clamp(155px, 18vh, 185px),
+    rgba(10, 14, 23, 0.1) clamp(155px, 18vh, 185px),
+    rgba(10, 14, 23, 0.1) calc(clamp(155px, 18vh, 185px) + 1.5px),
+    #FBFBF5 calc(clamp(155px, 18vh, 185px) + 1.5px),
     #FBFBF5 100%
   ) !important;
   z-index: 2;
@@ -2447,7 +2447,7 @@ img {
   top: 0;
   left: 0;
   right: 0;
-  height: clamp(260px, 32vh, 320px);
+  height: clamp(155px, 18vh, 185px);
   background: linear-gradient(to bottom, #00FFA1 0%, #00E599 100%);
   border-bottom: 2px solid rgba(10, 14, 23, 0.1);
   pointer-events: none;
@@ -2520,7 +2520,7 @@ img {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: clamp(14px, 2vw, 32px);
+  gap: clamp(4px, 0.8vw, 12px);
   width: auto;
   position: relative;
 }
@@ -4372,10 +4372,10 @@ img {
   background: linear-gradient(
     to bottom,
     #00FFA1 0%,
-    #00E599 clamp(320px, 38vh, 380px),
-    rgba(10, 14, 23, 0.1) clamp(320px, 38vh, 380px),
-    rgba(10, 14, 23, 0.1) calc(clamp(320px, 38vh, 380px) + 1.5px),
-    #FBFBF5 calc(clamp(320px, 38vh, 380px) + 1.5px),
+    #00E599 clamp(240px, 29vh, 275px),
+    rgba(10, 14, 23, 0.1) clamp(240px, 29vh, 275px),
+    rgba(10, 14, 23, 0.1) calc(clamp(240px, 29vh, 275px) + 1.5px),
+    #FBFBF5 calc(clamp(240px, 29vh, 275px) + 1.5px),
     #FBFBF5 100%
   ) !important;
 }
@@ -4390,7 +4390,7 @@ img {
 }
 
 /* ==========================================================================
-   CONTACT SECTION ("Can We Help?" - TOP GREEN WITH CLEAR SEPARATION EXTENDING BELOW TEXT)
+   CONTACT SECTION ("Can We Help?" - TOP GREEN WITH CLEAR SEPARATION ENDING ~5PX BELOW TEXT)
    ========================================================================== */
 .contact-card-section {
   padding: clamp(80px, 10vh, 130px) 0;
@@ -4401,10 +4401,10 @@ img {
   background: linear-gradient(
     to bottom,
     #00FFA1 0%,
-    #00E599 clamp(320px, 38vh, 380px),
-    rgba(10, 14, 23, 0.1) clamp(320px, 38vh, 380px),
-    rgba(10, 14, 23, 0.1) calc(clamp(320px, 38vh, 380px) + 1.5px),
-    #FBFBF5 calc(clamp(320px, 38vh, 380px) + 1.5px),
+    #00E599 clamp(240px, 29vh, 275px),
+    rgba(10, 14, 23, 0.1) clamp(240px, 29vh, 275px),
+    rgba(10, 14, 23, 0.1) calc(clamp(240px, 29vh, 275px) + 1.5px),
+    #FBFBF5 calc(clamp(240px, 29vh, 275px) + 1.5px),
     #FBFBF5 100%
   ) !important;
 }
@@ -4887,10 +4887,10 @@ img {
   background: linear-gradient(
     to bottom,
     #00FFA1 0%,
-    #00E599 clamp(270px, 33vh, 320px),
-    rgba(10, 14, 23, 0.1) clamp(270px, 33vh, 320px),
-    rgba(10, 14, 23, 0.1) calc(clamp(270px, 33vh, 320px) + 1.5px),
-    #FBFBF5 calc(clamp(270px, 33vh, 320px) + 1.5px),
+    #00E599 clamp(195px, 24vh, 230px),
+    rgba(10, 14, 23, 0.1) clamp(195px, 24vh, 230px),
+    rgba(10, 14, 23, 0.1) calc(clamp(195px, 24vh, 230px) + 1.5px),
+    #FBFBF5 calc(clamp(195px, 24vh, 230px) + 1.5px),
     #FBFBF5 100%
   ) !important;
 }
