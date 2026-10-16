@@ -3,11 +3,10 @@ import FibreArc from './originkit/ui/fibre-arc';
 import GlobeStudy from './originkit/ui/globe-study-custom-style';
 import Ticker from './Ticker';
 
-export default function Hero({ onOpenModal }) {
+export default function Hero({ onOpenModal, selectedRegion = 'AU' }) {
   const trackRef = useRef(null);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [selectedRegion, setSelectedRegion] = useState('AU'); // 'AU' for Australia, 'AE' for Dubai
 
   useEffect(() => {
     const handleResize = () => {
@@ -252,35 +251,27 @@ export default function Hero({ onOpenModal }) {
                   </button>
                 </div>
 
-                {/* 2 Region Cards below info text: Australia & Dubai with background images */}
-                <div className="who-region-cards-row" role="radiogroup" aria-label="Select Investment Desk">
+                {/* 2 Region Display Cards below info text: Australia & Dubai (Selected from navbar) */}
+                <div className="who-region-cards-row" aria-label="Investment Desks">
                   {/* Australia Card */}
-                  <button
-                    type="button"
-                    className={`who-region-card ${selectedRegion === 'AU' ? 'is-selected' : ''}`}
-                    onClick={() => setSelectedRegion('AU')}
+                  <div
+                    className={`who-region-card who-region-display-card ${selectedRegion === 'AU' ? 'is-selected' : ''}`}
                     style={{ backgroundImage: `url('/assets/australia-card.jpg')` }}
-                    aria-label="Select Australia desk"
-                    aria-checked={selectedRegion === 'AU'}
-                    role="radio"
+                    aria-label="Australia desk"
                   >
                     <div className="who-region-overlay" />
                     <span className="who-region-label">AUSTRALIA</span>
-                  </button>
+                  </div>
 
                   {/* Dubai Card */}
-                  <button
-                    type="button"
-                    className={`who-region-card ${selectedRegion === 'AE' ? 'is-selected' : ''}`}
-                    onClick={() => setSelectedRegion('AE')}
+                  <div
+                    className={`who-region-card who-region-display-card ${selectedRegion === 'AE' ? 'is-selected' : ''}`}
                     style={{ backgroundImage: `url('/assets/dubai-card.jpg')` }}
-                    aria-label="Select Dubai desk"
-                    aria-checked={selectedRegion === 'AE'}
-                    role="radio"
+                    aria-label="Dubai desk"
                   >
                     <div className="who-region-overlay" />
                     <span className="who-region-label">DUBAI</span>
-                  </button>
+                  </div>
                 </div>
               </div>
 
@@ -289,6 +280,20 @@ export default function Hero({ onOpenModal }) {
             </div>
 
           </div>
+
+          {/* Overlay images aus and dub in the bottom corners at 50% transparency */}
+          <img 
+            src="/assets/aus.png" 
+            alt="Australia" 
+            className="white-section-corner-overlay corner-overlay-aus" 
+            aria-hidden="true" 
+          />
+          <img 
+            src="/assets/dub.png" 
+            alt="Dubai" 
+            className="white-section-corner-overlay corner-overlay-dub" 
+            aria-hidden="true" 
+          />
         </div>
 
         {/* ===================================================================

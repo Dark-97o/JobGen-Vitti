@@ -435,6 +435,33 @@ img {
   overflow: hidden;
 }
 
+/* White Sections Corner Overlay Images (Australia and Dubai at 50% transparency) */
+.white-section-corner-overlay {
+  position: absolute;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 1;
+  user-select: none;
+  transition: opacity 0.3s ease;
+}
+
+.corner-overlay-aus {
+  left: 0;
+  max-height: clamp(140px, 20vh, 260px);
+  max-width: clamp(160px, 22vw, 300px);
+  object-fit: contain;
+  object-position: bottom left;
+}
+
+.corner-overlay-dub {
+  right: 0;
+  max-height: clamp(140px, 20vh, 260px);
+  max-width: clamp(160px, 22vw, 300px);
+  object-fit: contain;
+  object-position: bottom right;
+}
+
 .who-container-inner {
   max-width: 1440px;
   width: 100%;
@@ -442,6 +469,9 @@ img {
   display: flex;
   flex-direction: column;
   height: 100%;
+  transform: translateY(40px); /* Move everything down by 40px excluding hero card & background */
+  position: relative;
+  z-index: 2;
 }
 
 /* TOP HEADER: WHO WE ARE in all caps, clean natural spacing */
@@ -608,6 +638,23 @@ img {
 }
 
 .who-region-card.is-selected {
+  border-color: #00B377;
+  box-shadow: 0 0 28px rgba(0, 179, 119, 0.4), 8px 12px 28px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.who-region-card.who-region-display-card {
+  cursor: default !important;
+  pointer-events: none;
+}
+
+.who-region-card.who-region-display-card:hover {
+  transform: none;
+  box-shadow: 8px 10px 24px rgba(0, 0, 0, 0.18), -6px -6px 18px rgba(255, 255, 255, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  border-color: rgba(10, 14, 23, 0.16);
+}
+
+.who-region-card.who-region-display-card.is-selected {
   border-color: #00B377;
   box-shadow: 0 0 28px rgba(0, 179, 119, 0.4), 8px 12px 28px rgba(0, 0, 0, 0.2), inset 0 1px 2px rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
@@ -3636,42 +3683,47 @@ img {
   z-index: 2;
 }
 
-/* 3 Square Sector Cards below the options column (Infrastructure, Real Estate, Green Technologies) */
+/* 3 White Neomorphic Square Sector Cards below the options column (Infrastructure, Real Estate, Green Technologies) */
 .why-sector-cards-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(12px, 1.5vw, 18px);
-  margin-top: clamp(16px, 2.2vh, 26px);
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.4vw, 18px);
+  margin-top: clamp(16px, 2.2vh, 24px);
   width: 100%;
+  max-width: 480px; /* Smaller overall cards cluster */
 }
 
 .why-sector-card {
+  width: clamp(110px, 9.8vw, 142px); /* Smaller compact square cards */
+  height: clamp(110px, 9.8vw, 142px);
   aspect-ratio: 1 / 1;
-  background: #0B1019;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #FFFFFF; /* Pure white neomorphic card */
+  border: 1.5px solid rgba(255, 255, 255, 0.95);
   border-radius: 18px;
-  padding: clamp(12px, 1.5vw, 20px);
+  padding: 10px 8px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: clamp(8px, 1.2vh, 14px);
-  box-shadow: 6px 8px 24px rgba(0, 0, 0, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  gap: 6px;
+  /* Premium white neomorphic shadows */
+  box-shadow: 6px 10px 24px rgba(0, 0, 0, 0.35), -4px -4px 12px rgba(255, 255, 255, 0.12), inset 0 1px 2px rgba(255, 255, 255, 1);
   transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   box-sizing: border-box;
   cursor: default;
+  flex: 1;
 }
 
 .why-sector-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 229, 153, 0.7);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.55), 0 0 20px rgba(0, 229, 153, 0.22);
+  transform: translateY(-4px) scale(1.02);
+  border-color: #00E599;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 229, 153, 0.35);
 }
 
 .why-sector-logo-wrap {
-  width: clamp(48px, 4.8vw, 68px);
-  height: clamp(48px, 4.8vw, 68px);
+  width: clamp(52px, 5.2vw, 68px); /* Bigger logos */
+  height: clamp(52px, 5.2vw, 68px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -3682,23 +3734,23 @@ img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.16));
 }
 
 .why-sector-title {
   font-family: 'Plus Jakarta Sans', var(--font-sans);
-  font-size: clamp(12.5px, 1.1vw, 15.5px);
-  font-weight: 700;
-  color: #FFFFFF;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
+  font-size: clamp(12.5px, 1.1vw, 15px); /* Bigger name */
+  font-weight: 800;
+  color: #0A0E17; /* Dark black text on white card */
+  letter-spacing: -0.015em;
+  line-height: 1.18;
   margin: 0;
 }
 
 /* Responsive adjustments for WhyPartner */
 @media (max-width: 960px) {
   .why-sector-cards-row {
-    grid-template-columns: repeat(3, 1fr);
+    max-width: 100%;
     gap: 10px;
     margin-top: 20px;
     margin-bottom: 24px;
@@ -3718,11 +3770,11 @@ img {
   }
   .partner-image-morph {
     position: relative;
-    height: 380px;
+    height: 290px; /* Reduced WHY card height */
     width: 100%;
     inset: auto;
     border-radius: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   .partner-partitions-container {
     position: relative;
@@ -5176,18 +5228,19 @@ img {
 }
 
 .footer-brand-middle .footer-brand-full-logo {
-  height: clamp(96px, 11.5vh, 145px);
+  height: clamp(110px, 13.2vh, 167px); /* 15% bigger */
   width: auto;
   max-width: 100%;
   object-fit: contain;
   display: block;
   margin: 0 auto;
+  transform: translateX(-15px); /* Move 15px to the left without moving anything else */
   filter: drop-shadow(0 0 24px rgba(0, 229, 153, 0.35));
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .footer-brand-middle .footer-brand-full-logo:hover {
-  transform: scale(1.03);
+  transform: translateX(-15px) scale(1.03);
   filter: drop-shadow(0 0 32px rgba(0, 229, 153, 0.5));
 }
 

@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapPin, ChevronDown, Check } from 'lucide-react';
 
-export default function Navbar({ onOpenModal }) {
+export default function Navbar({ onOpenModal, location = 'AU', onSelectLocation }) {
   const [scrolled, setScrolled] = useState(false);
-  const [location, setLocation] = useState('AU'); // 'AU' for Australia, 'AE' for Dubai
   const [locationMenuOpen, setLocationMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -27,12 +26,14 @@ export default function Navbar({ onOpenModal }) {
   }, []);
 
   const handleSelectLocation = (loc) => {
-    setLocation(loc);
+    if (onSelectLocation) {
+      onSelectLocation(loc);
+    }
     setLocationMenuOpen(false);
-    // Smoothly scroll to the offices section to highlight the selected desk
-    const officesSection = document.getElementById('offices');
-    if (officesSection) {
-      officesSection.scrollIntoView({ behavior: 'smooth' });
+    // Smoothly scroll to the who-we-are section or offices section
+    const targetSection = document.getElementById('who-we-are') || document.getElementById('offices');
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 

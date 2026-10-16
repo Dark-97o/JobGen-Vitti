@@ -135,8 +135,8 @@ export default function WhyPartner({ onOpenModal }) {
         transform: 'translateY(10px)',
       }
     : {
-        top: p > 0.001 ? `calc(${(p * 9).toFixed(2)}vh + ${(p * 10).toFixed(1)}px)` : '0px',
-        bottom: p > 0.001 ? `calc(${(p * 9).toFixed(2)}vh - ${(p * 10).toFixed(1)}px)` : '0px',
+        top: p > 0.001 ? `calc(${(p * 16).toFixed(2)}vh + ${(p * 12).toFixed(1)}px)` : '0px',
+        bottom: p > 0.001 ? `calc(${(p * 16).toFixed(2)}vh + ${(p * 12).toFixed(1)}px)` : '0px',
         right: p > 0.001 ? `${(p * 40).toFixed(1)}px` : '0px',
         left: p > 0.001 ? `calc(${(p * 55).toFixed(2)}% + ${(p * 18).toFixed(1)}px)` : '0px',
         borderRadius: p > 0.001 ? `${(p * 26).toFixed(1)}px` : '0px',

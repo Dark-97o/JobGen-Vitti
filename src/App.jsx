@@ -66,6 +66,8 @@ export default function App() {
     };
   }, []);
 
+  const [location, setLocation] = useState('AU'); // 'AU' for Australia, 'AE' for Dubai
+
   const handleOpenModal = (topic = 'General Allocation') => {
     setModalTopic(topic);
     setModalOpen(true);
@@ -85,10 +87,18 @@ export default function App() {
   return (
     <div className="app-root">
       {/* 1. NAVBAR */}
-      <Navbar onOpenModal={handleOpenModal} onOpenEligibility={handleOpenEligibility} />
+      <Navbar 
+        location={location}
+        onSelectLocation={setLocation}
+        onOpenModal={handleOpenModal} 
+        onOpenEligibility={handleOpenEligibility} 
+      />
 
       {/* 2. FULL SCREEN HERO + WHO WE ARE (Hero morphs into card and floats to Who We Are on scroll) */}
-      <Hero onOpenModal={handleOpenModal} />
+      <Hero 
+        selectedRegion={location}
+        onOpenModal={handleOpenModal} 
+      />
 
       {/* 3. FROM SYDNEY TO GLOBAL CAPITAL MARKETS (Woman Background with half-cut bottom stroke) */}
       <SydneyCapitalMarkets />
