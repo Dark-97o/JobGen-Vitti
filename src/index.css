@@ -7054,6 +7054,338 @@ img {
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.75));
 }
 
+/* ==========================================================================
+   GLOBAL 10% REDUCTION: TEXT SIZES, CARDS SIZES, AND IMAGE SIZES ACROSS ALL WEBPAGES
+   ========================================================================== */
+
+/* 1. CONTAINER WIDTHS (-10%) */
+.container {
+  max-width: 1116px; /* 1240px * 0.9 */
+}
+
+.who-container-inner,
+.about-company-container,
+.about-values-why-container,
+.about-governance-container,
+.about-questions-band-container,
+.saturn-container {
+  max-width: 1296px; /* 1440px * 0.9 */
+}
+
+/* 2. ALL TEXT SIZES (-10%) */
+
+/* Global base root text */
+html {
+  font-size: 14.4px; /* 16px * 0.9 */
+}
+
+/* Home: Hero & Who We Are */
+.hero-funky-title {
+  font-size: clamp(50px, 7.6vw, 112px);
+}
+.hero-funky-subtitle {
+  font-size: clamp(14.5px, 1.4vw, 20px);
+}
+.who-headline-1 {
+  font-size: clamp(43px, 4.7vw, 68px);
+}
+.who-headline-2 {
+  font-size: clamp(22.5px, 2.25vw, 32px);
+}
+.who-body-text {
+  font-size: clamp(14px, 1.1vw, 16px);
+}
+
+/* Home: Sydney Capital Markets ("YOUR MONEY, REIMAGINED") */
+.sydney-black-headline {
+  font-size: clamp(43px, 4.7vw, 68px) !important;
+}
+.sydney-reimagined-story-title {
+  font-size: clamp(29px, 3.1vw, 41px);
+}
+.sydney-reimagined-story-text {
+  font-size: clamp(14px, 1.1vw, 16px);
+}
+
+/* Home: Connected Services (Divisions Bento) */
+.connected-section-title {
+  font-size: clamp(30px, 4vw, 48px);
+}
+.connected-section-sub {
+  font-size: clamp(13.5px, 1.1vw, 15px);
+}
+.connected-card-title {
+  font-size: 18px;
+}
+.connected-card-desc {
+  font-size: 12.5px;
+}
+
+/* Home: Why Partner With Vitti Capital */
+.why-headline {
+  font-size: clamp(30px, 4vw, 48px);
+}
+.why-subtitle {
+  font-size: clamp(13.5px, 1.1vw, 15px);
+}
+.partner-partition-title {
+  font-size: clamp(18px, 2vw, 25px);
+}
+.partner-partition-info-text {
+  font-size: 12.5px;
+}
+
+/* Home: Success Story */
+.success-story-title {
+  font-size: clamp(30px, 4vw, 48px);
+}
+.success-story-sub {
+  font-size: clamp(13.5px, 1.1vw, 15px);
+}
+.success-story-card-title {
+  font-size: 19.8px;
+}
+.success-story-card-text {
+  font-size: 12.5px;
+}
+
+/* Home: Market Updates Band & Blog Band */
+.market-band-headline,
+.blog-band-headline {
+  font-size: clamp(30px, 2.9vw, 43px) !important;
+}
+.market-card-title,
+.blog-card-title {
+  font-size: 13.5px;
+}
+.market-card-desc,
+.blog-card-desc {
+  font-size: 11.7px;
+}
+
+/* Home: Contact Section ("Can We Help?") */
+.contact-headline {
+  font-size: clamp(43px, 4.7vw, 68px) !important;
+}
+.contact-subheadline {
+  font-size: clamp(14.5px, 1.1vw, 17px) !important;
+}
+.contact-block-title {
+  font-size: 16px;
+}
+.contact-block-desc {
+  font-size: 12.5px;
+}
+
+/* Home: FAQ Section */
+.faq-main-title {
+  font-size: clamp(30px, 4vw, 48px) !important;
+}
+.faq-subtitle {
+  font-size: clamp(13.5px, 1.1vw, 15px);
+}
+.faq-question-text {
+  font-size: 14.5px;
+}
+.faq-answer-text,
+.faq-accordion-body p {
+  font-size: 13px;
+}
+
+/* Home: Stay In The Loop Card */
+.stay-in-loop-headline {
+  font-size: clamp(23px, 2.7vw, 36px);
+}
+.stay-in-loop-desc {
+  font-size: 13.5px;
+}
+
+/* About Us Page Typography */
+.about-company-headline {
+  font-size: clamp(30px, 3.4vw, 48px);
+}
+.about-story-paragraphs p {
+  font-size: 14px;
+}
+.about-story-paragraphs .lead-paragraph {
+  font-size: 15.8px;
+}
+.about-tenet-card .tenet-info h4 {
+  font-size: 13px;
+}
+.about-tenet-card .tenet-info p {
+  font-size: 11.5px;
+}
+.about-values-main-headline {
+  font-size: clamp(30px, 3.8vw, 52px);
+}
+.about-values-stage-subtext {
+  font-size: clamp(14px, 1.1vw, 16px);
+}
+.about-values-wordmark {
+  font-size: clamp(46px, 5.4vw, 75px);
+}
+.about-governance-main-title {
+  font-size: clamp(28px, 3.4vw, 46px);
+}
+.desk-card-title,
+.desk-card-content h3 {
+  font-size: clamp(20px, 2vw, 27px);
+}
+.desk-address {
+  font-size: 12.5px;
+}
+.about-mission-heading {
+  font-size: clamp(23px, 2.9vw, 38px);
+}
+.about-mission-statement {
+  font-size: clamp(15px, 1.35vw, 20.5px);
+}
+.about-questions-band-headline {
+  font-size: clamp(28px, 3.1vw, 45px) !important;
+}
+.about-questions-band-subtext {
+  font-size: clamp(13px, 1.1vw, 15px) !important;
+}
+
+/* Saturn Fund Page Typography */
+.saturn-hero-headline {
+  font-size: clamp(32px, 4vw, 52px);
+}
+.saturn-hero-sub {
+  font-size: 14px;
+}
+.saturn-section-title {
+  font-size: clamp(27px, 3.2vw, 43px);
+}
+.saturn-section-sub {
+  font-size: 13.5px;
+}
+.saturn-feature-title {
+  font-size: 16px;
+}
+.saturn-feature-desc {
+  font-size: 12.5px;
+}
+.saturn-cta-heading {
+  font-size: clamp(20px, 2.3vw, 30px);
+}
+.saturn-cta-sub {
+  font-size: 13.5px;
+}
+
+/* Buttons & UI across all pages */
+.btn,
+.who-cta-btn,
+.about-questions-band-btn,
+.saturn-primary-cta-btn,
+.contact-submit-btn {
+  font-size: 13px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.site-navbar a,
+.nav-link {
+  font-size: 12.5px;
+}
+
+/* 3. ALL CARD SIZES (-10%) */
+
+/* Who We Are region selector cards */
+.who-region-card {
+  height: clamp(86px, 10vh, 112px);
+}
+
+/* Sydney Capital Markets cards */
+.sydney-card {
+  width: clamp(210px, 18vw, 265px);
+  height: clamp(315px, 39vh, 414px);
+}
+.sydney-card-mini {
+  width: clamp(153px, 13.5vw, 202px);
+  height: clamp(260px, 32vh, 342px);
+}
+
+/* Divisions Bento connected cards */
+.connected-card {
+  min-height: 288px;
+  padding: clamp(22px, 2.5vw, 32px);
+}
+
+/* Market Updates & Blog cards */
+.market-update-card,
+.blog-card-item {
+  width: 252px;
+  min-height: 216px;
+  padding: 18px;
+}
+
+/* About Us: Location & Values cards */
+.about-desk-card {
+  min-height: 342px;
+}
+.desk-card-content {
+  padding: 28px;
+}
+.about-values-preview-card {
+  min-height: 468px;
+}
+.about-mission-box {
+  padding: clamp(36px, 5.4vh, 64px) clamp(22px, 4.5vw, 58px);
+}
+
+/* Saturn Fund cards */
+.saturn-feature-card,
+.saturn-pillar-card,
+.saturn-process-card {
+  min-height: 234px;
+  padding: 22px;
+}
+.saturn-metric-box {
+  padding: 16px 22px;
+}
+
+/* Regulatory disclosures & contact boxes */
+.footer-regulatory-card {
+  padding: clamp(18px, 2.2vw, 25px);
+}
+.contact-info-direct {
+  padding: 24px;
+}
+.contact-form-wrap {
+  padding: clamp(24px, 3.6vw, 42px);
+}
+
+/* 4. ALL IMAGE SIZES (-10%) */
+
+/* Tablet Floating image in About Us */
+.about-tablet-float-wrap {
+  max-width: 520px; /* 580px * 0.9 */
+}
+
+/* Section corner overlays (Australia and Dubai on right corner) */
+.section-corner-overlay,
+.white-section-corner-overlay {
+  max-height: clamp(250px, 36vh, 468px); /* 520px * 0.9 */
+  max-width: clamp(288px, 40vw, 540px); /* 600px * 0.9 */
+}
+
+/* Phone cutout in Hero */
+.hero-phone-cutout {
+  max-width: 90%;
+  transform: scale(0.9);
+  transform-origin: bottom right;
+}
+
+/* Saturn hero preview image */
+.saturn-preview-img,
+.saturn-hero-image-wrap {
+  max-width: 520px;
+}
+
 
 
 
