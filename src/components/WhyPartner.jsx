@@ -286,6 +286,42 @@ export default function WhyPartner({ onOpenModal }) {
                 );
               })}
             </div>
+
+            {/* 3 Sector Square Cards below the options column */}
+            <div className="why-sector-cards-row">
+              <div className="why-sector-card">
+                <div className="why-sector-logo-wrap">
+                  <img 
+                    src="/assets/Infrastructure.webp" 
+                    alt="Infrastructure" 
+                    className="why-sector-logo" 
+                  />
+                </div>
+                <span className="why-sector-title">Infrastructure</span>
+              </div>
+
+              <div className="why-sector-card">
+                <div className="why-sector-logo-wrap">
+                  <img 
+                    src="/assets/RealEstate-removebg-preview.webp" 
+                    alt="Real Estate" 
+                    className="why-sector-logo" 
+                  />
+                </div>
+                <span className="why-sector-title">Real Estate</span>
+              </div>
+
+              <div className="why-sector-card">
+                <div className="why-sector-logo-wrap">
+                  <img 
+                    src="/assets/Green.webp" 
+                    alt="Green Technologies" 
+                    className="why-sector-logo" 
+                  />
+                </div>
+                <span className="why-sector-title">Green Technologies</span>
+              </div>
+            </div>
           </div>
         </div>
 

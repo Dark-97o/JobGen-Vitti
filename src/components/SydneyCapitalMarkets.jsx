@@ -554,6 +554,8 @@ export default function SydneyCapitalMarkets() {
                   <span className="sydney-value-label">Integrity</span>
                 </div>
 
+                <div className="sydney-value-connector" aria-hidden="true" />
+
                 <div className="sydney-value-item">
                   <div className="sydney-value-icon">
                     <Sparkles size={34} strokeWidth={2.2} />
@@ -561,12 +563,16 @@ export default function SydneyCapitalMarkets() {
                   <span className="sydney-value-label">Innovation</span>
                 </div>
 
+                <div className="sydney-value-connector" aria-hidden="true" />
+
                 <div className="sydney-value-item">
                   <div className="sydney-value-icon">
                     <Users size={34} strokeWidth={2.2} />
                   </div>
                   <span className="sydney-value-label">Collaboration</span>
                 </div>
+
+                <div className="sydney-value-connector" aria-hidden="true" />
 
                 <div className="sydney-value-item">
                   <div className="sydney-value-icon">
