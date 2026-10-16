@@ -226,7 +226,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
         <div className="container about-governance-container">
           <div className="about-governance-header text-center">
             <h2 className="about-governance-main-title">
-              Dual-Desk Global Presence
+              DUAL-DESK GLOBAL PRESENCE
             </h2>
             <p className="about-section-subtext">
               Direct presence and regulatory licensing across Asia-Pacific and Gulf financial hubs.
@@ -242,7 +242,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
               />
               <div className="desk-card-overlay" />
               <div className="desk-card-content">
-                <h3 className="desk-card-title">Sydney Desk</h3>
+                <h3 className="desk-card-title">SYDNEY DESK</h3>
                 <p className="desk-address">Level 49, 8 Parramatta Square, 10 Darcy St, Parramatta NSW 2150</p>
                 <div className="desk-meta">
                   <span>Phone: (02) 8528 4508</span>
@@ -259,7 +259,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
               />
               <div className="desk-card-overlay" />
               <div className="desk-card-content">
-                <h3 className="desk-card-title">Dubai Desk</h3>
+                <h3 className="desk-card-title">DUBAI DESK</h3>
                 <p className="desk-address">DIFC Capital Gate, Dubai, United Arab Emirates</p>
                 <div className="desk-meta">
                   <span>Licensing: DET License No. 1537728</span>
@@ -275,7 +275,7 @@ export default function AboutUsPage({ onOpenModal, onNavigate }) {
             
             <div className="about-mission-inner">
               <h2 className="about-mission-heading">
-                Empowering Growth, Together.
+                EMPOWERING GROWTH, TOGETHER.
               </h2>
               
               <blockquote className="about-mission-statement">
