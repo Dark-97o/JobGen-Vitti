@@ -2,7 +2,14 @@ import React from 'react';
 import { ShieldCheck, ArrowUpRight } from 'lucide-react';
 import ShapeMosaic from './originkit/ui/shape-mosaic-custom-style';
 
-export default function Footer() {
+export default function Footer({ onNavigate }) {
+  const handleNav = (e, route, hash) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate(route, hash);
+    }
+  };
+
   return (
     <footer className="refined-footer" id="footer">
       {/* Originkit Shape Mosaic Background Canvas */}
@@ -40,11 +47,11 @@ export default function Footer() {
           <div className="footer-nav-column">
             <h4 className="footer-nav-title">Advisory Divisions</h4>
             <ul className="footer-links-list">
-              <li><a href="#universe">Capital Raising</a></li>
-              <li><a href="#universe">Private Credit</a></li>
-              <li><a href="#universe">Cross-Border M&A</a></li>
-              <li><a href="#universe">Structured Finance</a></li>
-              <li><a href="#universe">Pre-IPO Advisory</a></li>
+              <li><a href="/#divisions" onClick={(e) => handleNav(e, 'home', '#divisions')}>Capital Raising</a></li>
+              <li><a href="/#divisions" onClick={(e) => handleNav(e, 'home', '#divisions')}>Private Credit</a></li>
+              <li><a href="/#divisions" onClick={(e) => handleNav(e, 'home', '#divisions')}>Cross-Border M&A</a></li>
+              <li><a href="/#divisions" onClick={(e) => handleNav(e, 'home', '#divisions')}>Structured Finance</a></li>
+              <li><a href="/#divisions" onClick={(e) => handleNav(e, 'home', '#divisions')}>Pre-IPO Advisory</a></li>
             </ul>
           </div>
 
@@ -52,22 +59,29 @@ export default function Footer() {
           <div className="footer-nav-column">
             <h4 className="footer-nav-title">Intelligence</h4>
             <ul className="footer-links-list">
-              <li><a href="#market-updates">Market Updates</a></li>
-              <li><a href="#why-partner">Why Vitti</a></li>
-              <li><a href="#success-story">Success Stories</a></li>
-              <li><a href="#blogs">Insights & Articles</a></li>
-              <li><a href="#faq">FAQs</a></li>
+              <li><a href="/about-us" onClick={(e) => handleNav(e, 'about')}>About Us</a></li>
+              <li><a href="/saturn-unit-trust-fund" onClick={(e) => handleNav(e, 'saturn')}>Saturn Fund</a></li>
+              <li><a href="/#why-partner" onClick={(e) => handleNav(e, 'home', '#why-partner')}>Why Vitti</a></li>
+              <li><a href="/#success-story" onClick={(e) => handleNav(e, 'home', '#success-story')}>Success Stories</a></li>
+              <li><a href="/#faq" onClick={(e) => handleNav(e, 'home', '#faq')}>FAQs</a></li>
             </ul>
           </div>
 
           {/* Middle Column: Big Vitti Full Logo */}
           <div className="footer-brand-column footer-brand-middle">
             <div className="footer-brand-header">
-              <img 
-                src="/assets/vitti-full.png" 
-                alt="Vitti Capital" 
-                className="footer-brand-full-logo" 
-              />
+              <a 
+                href="/" 
+                onClick={(e) => handleNav(e, 'home')} 
+                style={{ display: 'block', textDecoration: 'none' }}
+                aria-label="Vitti Capital Home"
+              >
+                <img 
+                  src="/assets/vitti-full.png" 
+                  alt="Vitti Capital" 
+                  className="footer-brand-full-logo" 
+                />
+              </a>
             </div>
           </div>
 

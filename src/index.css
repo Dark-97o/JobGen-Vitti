@@ -5664,6 +5664,1123 @@ img {
   }
 }
 
+/* ==========================================================================
+   SUBPAGE ARCHITECTURE & COMMON SYSTEM (ABOUT US & SATURN FUND)
+   ========================================================================== */
+
+.subpage-wrapper {
+  position: relative;
+  background-color: #07090E;
+  color: #FFFFFF;
+  min-height: 100vh;
+  padding-top: 88px; /* Room for fixed navbar */
+  overflow: hidden;
+}
+
+/* Navbar active route underline */
+.nav-item-link.is-active-route {
+  color: #00E599 !important;
+  font-weight: 700;
+  position: relative;
+}
+
+.nav-item-link.is-active-route::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #00E599;
+  border-radius: 999px;
+  box-shadow: 0 0 8px rgba(0, 229, 153, 0.6);
+}
+
+/* Subpage Hero Section */
+.subpage-hero-section {
+  position: relative;
+  min-height: 52vh;
+  display: flex;
+  align-items: center;
+  padding: clamp(60px, 8vh, 100px) 0 clamp(44px, 6vh, 72px);
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 20%, rgba(3, 56, 38, 0.28) 0%, #07090E 70%);
+}
+
+.subpage-arc-bg-wrap,
+.subpage-mosaic-bg-wrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.65;
+}
+
+.subpage-hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 30%, rgba(7, 9, 14, 0.95) 100%);
+  pointer-events: none;
+}
+
+.subpage-hero-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 40px);
+}
+
+/* Breadcrumbs */
+.subpage-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.breadcrumb-link {
+  background: transparent;
+  border: none;
+  color: #64748B;
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+  color: #00E599;
+}
+
+.breadcrumb-separator {
+  color: #475569;
+}
+
+.breadcrumb-current {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  color: #00E599;
+}
+
+/* Prominent Bold Headline without top pills (strictly per Project Rules) */
+.subpage-hero-headline {
+  font-family: 'Unbounded', 'Syne', sans-serif;
+  font-size: clamp(38px, 4.8vw, 68px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #FFFFFF;
+  margin: 0 0 22px;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.7);
+}
+
+.subpage-hero-subtext {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.65;
+  color: #CBD5E1;
+  max-width: 780px;
+  margin: 0 0 36px;
+}
+
+.subpage-hero-subtext strong {
+  color: #00E599;
+}
+
+/* Quick Metrics Ribbon */
+.subpage-metrics-ribbon {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(18px, 2.8vw, 36px);
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 16px 28px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+}
+
+.subpage-metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.metric-val {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(16px, 1.4vw, 20px);
+  font-weight: 800;
+  color: #00E599;
+  letter-spacing: -0.02em;
+}
+
+.metric-lbl {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.subpage-metric-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ==========================================================================
+   ABOUT US PAGE SPECIFIC SECTIONS
+   ========================================================================== */
+
+.about-narrative-section {
+  padding: clamp(60px, 8vh, 100px) 0;
+  background: #0A0E17;
+  position: relative;
+  z-index: 1;
+}
+
+.about-narrative-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) minmax(380px, 1.35fr);
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+}
+
+.about-story-visual-card {
+  position: relative;
+  min-height: 480px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1.5px solid rgba(0, 229, 153, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 229, 153, 0.14);
+}
+
+.about-visual-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.04);
+  transition: transform 0.6s ease;
+}
+
+.about-story-visual-card:hover .about-visual-bg {
+  transform: scale(1.08);
+}
+
+.about-visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 9, 14, 0.94) 0%, rgba(7, 9, 14, 0.45) 55%, rgba(7, 9, 14, 0.75) 100%);
+}
+
+.about-visual-content {
+  position: absolute;
+  inset: 0;
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 2;
+}
+
+.about-visual-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #00E599;
+  margin-bottom: 12px;
+}
+
+.about-visual-quote {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: clamp(19px, 1.6vw, 23px);
+  font-weight: 700;
+  line-height: 1.45;
+  color: #FFFFFF;
+  margin: 0 0 20px;
+}
+
+.about-visual-signature .sig-line {
+  display: block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+.about-visual-signature .sig-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #94A3B8;
+}
+
+.about-section-heading {
+  font-family: 'Unbounded', 'Syne', sans-serif;
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin: 0 0 20px;
+}
+
+.about-section-subtext {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 16px;
+  color: #94A3B8;
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.about-story-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.about-story-paragraphs p {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #CBD5E1;
+  margin: 0;
+}
+
+.about-story-paragraphs .lead-paragraph {
+  font-size: 17px;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.about-story-paragraphs strong {
+  color: #00E599;
+}
+
+.about-tenets-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.about-tenet-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 16px 18px;
+}
+
+.tenet-icon {
+  color: #00E599;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.tenet-info h4 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 4px;
+}
+
+.tenet-info p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #94A3B8;
+  margin: 0;
+}
+
+/* Core Values Section */
+.about-values-section {
+  padding: clamp(70px, 9vh, 120px) 0;
+  background: #07090E;
+  position: relative;
+}
+
+.about-values-header {
+  margin-bottom: clamp(36px, 5vh, 60px);
+}
+
+.about-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2.2vw, 28px);
+}
+
+.about-value-card {
+  position: relative;
+  min-height: 380px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  background: #0C111C;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-value-card:hover {
+  transform: translateY(-8px);
+  border-color: #00E599;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 28px rgba(0, 229, 153, 0.25);
+}
+
+.about-value-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.32;
+  transition: opacity 0.4s ease, transform 0.6s ease;
+}
+
+.about-value-card:hover .about-value-card-bg {
+  opacity: 0.45;
+  transform: scale(1.06);
+}
+
+.about-value-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 9, 14, 0.96) 0%, rgba(7, 9, 14, 0.7) 60%, rgba(7, 9, 14, 0.5) 100%);
+}
+
+.about-value-card-content {
+  position: relative;
+  z-index: 2;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.value-icon-bubble {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(0, 229, 153, 0.15);
+  border: 1.5px solid rgba(0, 229, 153, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00E599;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 18px rgba(0, 229, 153, 0.25);
+}
+
+.value-tag-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #00E599;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.value-card-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+
+.value-card-sub {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #94A3B8;
+  margin: 0 0 14px;
+}
+
+.value-card-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #CBD5E1;
+  margin: 0;
+  margin-top: auto;
+}
+
+/* Our Mission Callout Stage */
+.about-mission-section {
+  padding: clamp(60px, 8vh, 100px) 0;
+  background: #0A0E17;
+}
+
+.about-mission-box {
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, #033826 0%, #07090E 75%);
+  border: 1.5px solid rgba(0, 229, 153, 0.45);
+  border-radius: 32px;
+  padding: clamp(40px, 6vh, 72px) clamp(24px, 5vw, 64px);
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 229, 153, 0.15);
+  overflow: hidden;
+}
+
+.mission-glow-orb {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(0, 229, 153, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.about-mission-heading {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(26px, 3.2vw, 42px);
+  font-weight: 900;
+  color: #00E599;
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+}
+
+.about-mission-statement {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: clamp(17px, 1.5vw, 23px);
+  line-height: 1.65;
+  font-weight: 500;
+  color: #FFFFFF;
+  max-width: 920px;
+  margin: 0 auto 32px;
+}
+
+.mission-author-line {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mission-author-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mission-author-loc {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #94A3B8;
+}
+
+/* Dual-Desk Governance Section */
+.about-governance-section {
+  padding: clamp(60px, 8vh, 100px) 0;
+  background: #07090E;
+}
+
+.about-governance-header {
+  margin-bottom: clamp(32px, 5vh, 52px);
+}
+
+.about-desks-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 36px);
+}
+
+.about-desk-card {
+  position: relative;
+  min-height: 320px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+.desk-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.38;
+}
+
+.desk-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7, 9, 14, 0.96) 0%, rgba(7, 9, 14, 0.6) 65%, rgba(7, 9, 14, 0.4) 100%);
+}
+
+.desk-card-content {
+  position: relative;
+  z-index: 2;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.desk-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: rgba(0, 229, 153, 0.18);
+  border: 1px solid rgba(0, 229, 153, 0.45);
+  color: #00E599;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.desk-card-content h3 {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 8px;
+}
+
+.desk-address {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  color: #CBD5E1;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.desk-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #94A3B8;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 12px;
+}
+
+/* Call to Action Sections */
+.about-cta-section,
+.saturn-cta-section {
+  padding: clamp(50px, 7vh, 90px) 0 clamp(70px, 9vh, 110px);
+  background: #0A0E17;
+}
+
+.about-cta-banner,
+.saturn-cta-banner {
+  background: linear-gradient(135deg, rgba(10, 14, 23, 0.95) 0%, rgba(3, 56, 38, 0.65) 100%);
+  border: 1.5px solid rgba(0, 229, 153, 0.45);
+  border-radius: 28px;
+  padding: clamp(32px, 5vh, 52px) clamp(24px, 4vw, 48px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 229, 153, 0.15);
+}
+
+.about-cta-heading,
+.saturn-cta-heading {
+  font-family: 'Unbounded', sans-serif;
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: 900;
+  color: #FFFFFF;
+  letter-spacing: -0.03em;
+  margin: 0 0 10px;
+}
+
+.about-cta-sub,
+.saturn-cta-sub {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  color: #CBD5E1;
+  margin: 0;
+  max-width: 600px;
+}
+
+.about-cta-btn,
+.saturn-primary-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #00E599;
+  color: #07090E;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 229, 153, 0.4);
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.about-cta-btn:hover,
+.saturn-primary-cta-btn:hover {
+  background: #33FFB5;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0, 229, 153, 0.65);
+}
+
+.saturn-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.saturn-secondary-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 13px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.22s ease;
+  white-space: nowrap;
+}
+
+.saturn-secondary-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: #00E599;
+  color: #00E599;
+}
+
+/* ==========================================================================
+   SATURN FUND PAGE SPECIFIC SECTIONS
+   ========================================================================== */
+
+.saturn-features-section {
+  padding: clamp(60px, 8vh, 100px) 0;
+  background: #0A0E17;
+}
+
+.saturn-section-header {
+  margin-bottom: clamp(36px, 5vh, 60px);
+}
+
+.saturn-features-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2.2vw, 28px);
+}
+
+.saturn-feature-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 30px 24px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.saturn-feature-card:hover {
+  transform: translateY(-6px);
+  border-color: #00E599;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 24px rgba(0, 229, 153, 0.2);
+}
+
+.saturn-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.feature-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: rgba(0, 229, 153, 0.12);
+  border: 1px solid rgba(0, 229, 153, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-metric-block {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-metric-num {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.feature-metric-sub {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #94A3B8;
+  text-transform: uppercase;
+}
+
+.saturn-card-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 12px;
+}
+
+.saturn-card-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #CBD5E1;
+  margin: 0;
+}
+
+/* 5-Stage Process Section */
+.saturn-process-section {
+  padding: clamp(70px, 9vh, 120px) 0;
+  background: #07090E;
+}
+
+.saturn-process-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  position: relative;
+}
+
+.saturn-process-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.step-num-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #07090E;
+  border: 2px solid #00E599;
+  color: #00E599;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  box-shadow: 0 0 16px rgba(0, 229, 153, 0.4);
+}
+
+.step-card {
+  background: #0C111C;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 24px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover {
+  border-color: #00E599;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5), 0 0 16px rgba(0, 229, 153, 0.15);
+}
+
+.step-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(0, 229, 153, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.step-icon {
+  color: #00E599;
+}
+
+.step-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.step-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #94A3B8;
+  margin: 0;
+}
+
+/* Market Insights Radar */
+.saturn-insights-section {
+  padding: clamp(60px, 8vh, 100px) 0;
+  background: #0A0E17;
+  position: relative;
+}
+
+.saturn-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(16px, 2vw, 24px);
+}
+
+.saturn-insight-card {
+  background: #07090E;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 22px;
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+
+.saturn-insight-card:hover {
+  border-color: #00E599;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 153, 0.16);
+}
+
+.insight-badge {
+  align-self: flex-start;
+  background: rgba(0, 229, 153, 0.15);
+  border: 1px solid rgba(0, 229, 153, 0.35);
+  color: #00E599;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.insight-title {
+  font-family: 'Unbounded', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.insight-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #CBD5E1;
+  margin: 0 0 20px;
+}
+
+.insight-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #00E599;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Saturn FAQs Section */
+.saturn-faqs-section {
+  padding: clamp(60px, 8vh, 100px) 0;
+  background: #07090E;
+}
+
+.saturn-accordion-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.saturn-accordion-item {
+  background: #0A0E17;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.saturn-accordion-item.is-open {
+  border-color: rgba(0, 229, 153, 0.5);
+  background: #0C121E;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
+.saturn-accordion-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+
+.accordion-q-text {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: clamp(15px, 1.2vw, 17px);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.4;
+}
+
+.accordion-icon-box {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(0, 229, 153, 0.14);
+  color: #00E599;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.saturn-accordion-body {
+  padding: 0 24px 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.saturn-accordion-body p {
+  font-family: 'Plus Jakarta Sans', var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: #CBD5E1;
+  margin: 14px 0 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE QUERIES FOR SUBPAGES
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .about-narrative-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .saturn-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .saturn-process-timeline {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .saturn-insights-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .subpage-wrapper {
+    padding-top: 76px;
+  }
+  .subpage-hero-section {
+    padding: 40px 0 36px;
+  }
+  .subpage-metrics-ribbon {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+  }
+  .subpage-metric-divider {
+    display: none;
+  }
+  .about-values-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-tenets-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-desks-grid {
+    grid-template-columns: 1fr;
+  }
+  .saturn-features-grid {
+    grid-template-columns: 1fr;
+  }
+  .saturn-insights-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-cta-banner,
+  .saturn-cta-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .saturn-cta-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .saturn-primary-cta-btn,
+  .saturn-secondary-cta-btn {
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+
 
 
 

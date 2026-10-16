@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MapPin, ChevronDown, Check } from 'lucide-react';
 
-export default function Navbar({ onOpenModal, location = 'AU', onSelectLocation }) {
+export default function Navbar({ onOpenModal, location = 'AU', onSelectLocation, currentRoute = 'home', onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [locationMenuOpen, setLocationMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -37,12 +37,24 @@ export default function Navbar({ onOpenModal, location = 'AU', onSelectLocation 
     }
   };
 
+  const handleLinkClick = (e, route, hash) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate(route, hash);
+    }
+  };
+
   return (
     <header className={`site-navbar ${scrolled ? 'scrolled-floating-rect' : 'transparent-hero'}`}>
       <div className="container nav-fullscreen-container">
         
         {/* Official Vitti Full Logo (Bigger) */}
-        <a href="#" className="nav-brand-logo-wrap" aria-label="Vitti Capital Home">
+        <a 
+          href="/" 
+          onClick={(e) => handleLinkClick(e, 'home')} 
+          className="nav-brand-logo-wrap" 
+          aria-label="Vitti Capital Home"
+        >
           <img 
             src="/assets/vitti-full.png" 
             alt="Vitti Capital" 
@@ -52,12 +64,55 @@ export default function Navbar({ onOpenModal, location = 'AU', onSelectLocation 
 
         {/* Navigation Bar Options */}
         <nav className="nav-menu">
-          <a href="#divisions" className="nav-item-link">Divisions</a>
-          <a href="#saturn-fund" className="nav-item-link">Saturn Fund</a>
-          <a href="#execution" className="nav-item-link">Methodology</a>
-          <a href="#track-record" className="nav-item-link">Mandates</a>
-          <a href="#vitti-lens" className="nav-item-link">Lens</a>
-          <a href="#offices" className="nav-item-link">Offices</a>
+          <a 
+            href="/about-us" 
+            onClick={(e) => handleLinkClick(e, 'about')}
+            className={`nav-item-link ${currentRoute === 'about' ? 'is-active-route' : ''}`}
+          >
+            About Us
+          </a>
+          <a 
+            href="/saturn-unit-trust-fund" 
+            onClick={(e) => handleLinkClick(e, 'saturn')}
+            className={`nav-item-link ${currentRoute === 'saturn' ? 'is-active-route' : ''}`}
+          >
+            Saturn Fund
+          </a>
+          <a 
+            href="/#divisions" 
+            onClick={(e) => handleLinkClick(e, 'home', '#divisions')}
+            className="nav-item-link"
+          >
+            Divisions
+          </a>
+          <a 
+            href="/#why-partner" 
+            onClick={(e) => handleLinkClick(e, 'home', '#why-partner')}
+            className="nav-item-link"
+          >
+            Methodology
+          </a>
+          <a 
+            href="/#success-story" 
+            onClick={(e) => handleLinkClick(e, 'home', '#success-story')}
+            className="nav-item-link"
+          >
+            Mandates
+          </a>
+          <a 
+            href="/#market-updates" 
+            onClick={(e) => handleLinkClick(e, 'home', '#market-updates')}
+            className="nav-item-link"
+          >
+            Lens
+          </a>
+          <a 
+            href="/#contact" 
+            onClick={(e) => handleLinkClick(e, 'home', '#contact')}
+            className="nav-item-link"
+          >
+            Contact
+          </a>
         </nav>
 
         {/* Nav Actions: Location Favicon Dropdown Selector (Australia & Dubai) */}

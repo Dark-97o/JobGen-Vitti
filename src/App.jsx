@@ -2,16 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import SydneyCapitalMarkets from './components/SydneyCapitalMarkets';
-import DivisionsBento from './components/DivisionsBento';
-import WhyPartner from './components/WhyPartner';
-import SuccessStory from './components/SuccessStory';
-import MarketUpdatesBand from './components/MarketUpdatesBand';
-import ContactSection from './components/ContactSection';
-import BlogBand from './components/BlogBand';
-import FaqSection from './components/FaqSection';
-import StayInTheLoopCard from './components/StayInTheLoopCard';
+import HomePage from './pages/HomePage';
+import AboutUsPage from './pages/AboutUsPage';
+import SaturnFundPage from './pages/SaturnFundPage';
 import RegulatoryDisclosures from './components/RegulatoryDisclosures';
 import Footer from './components/Footer';
 import InquiryModal from './components/InquiryModal';
@@ -20,6 +13,61 @@ import FloatingAssistant from './components/FloatingAssistant';
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalTopic, setModalTopic] = useState('General Allocation');
+  const [location, setLocation] = useState('AU'); // 'AU' for Australia, 'AE' for Dubai
+
+  // Route state: 'home' | 'about' | 'saturn'
+  const getRouteFromUrl = () => {
+    const path = window.location.pathname.toLowerCase().replace(/\/$/, '') || '/';
+    if (path === '/about-us' || path === '/about') return 'about';
+    if (path === '/saturn-unit-trust-fund' || path === '/saturn-fund' || path === '/saturn') return 'saturn';
+    const hash = window.location.hash.toLowerCase();
+    if (hash.includes('about')) return 'about';
+    if (hash.includes('saturn')) return 'saturn';
+    return 'home';
+  };
+
+  const [currentRoute, setCurrentRoute] = useState(getRouteFromUrl);
+
+  // Synchronize route state with browser back/forward and hash
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentRoute(getRouteFromUrl());
+      window.scrollTo(0, 0);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('hashchange', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('hashchange', handlePopState);
+    };
+  }, []);
+
+  // Programmatic navigation helper
+  const navigate = (route, hash) => {
+    let url = '/';
+    if (route === 'about') url = '/about-us';
+    else if (route === 'saturn') url = '/saturn-unit-trust-fund';
+    else if (hash) url = '/' + hash;
+
+    window.history.pushState({}, '', url);
+    setCurrentRoute(route);
+
+    if (window.__lenis) {
+      if (hash && route === 'home') {
+        setTimeout(() => {
+          const target = document.querySelector(hash);
+          if (target) {
+            window.__lenis.scrollTo(target, { offset: -30, duration: 1.2 });
+          }
+        }, 80);
+      } else {
+        window.__lenis.scrollTo(0, { immediate: true });
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  };
 
   // Initialize frictionless Lenis smooth scrolling
   useEffect(() => {
@@ -67,22 +115,13 @@ export default function App() {
     };
   }, []);
 
-  const [location, setLocation] = useState('AU'); // 'AU' for Australia, 'AE' for Dubai
-
   const handleOpenModal = (topic = 'General Allocation') => {
     setModalTopic(topic);
     setModalOpen(true);
   };
 
   const handleOpenEligibility = () => {
-    if (window.__lenis) {
-      window.__lenis.scrollTo('#contact', { offset: -50, duration: 1.2 });
-    } else {
-      const el = document.getElementById('contact');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    navigate('home', '#contact');
   };
 
   return (
@@ -93,51 +132,44 @@ export default function App() {
         onSelectLocation={setLocation}
         onOpenModal={handleOpenModal} 
         onOpenEligibility={handleOpenEligibility} 
+        currentRoute={currentRoute}
+        onNavigate={navigate}
       />
 
-      {/* 2. FULL SCREEN HERO + WHO WE ARE (Hero morphs into card and floats to Who We Are on scroll) */}
-      <Hero 
-        selectedRegion={location}
-        onOpenModal={handleOpenModal} 
-      />
+      {/* 2. PAGE CONTENT BASED ON CURRENT ROUTE */}
+      <main className="main-page-content" id="main-content">
+        {currentRoute === 'about' && (
+          <AboutUsPage 
+            onOpenModal={handleOpenModal} 
+            onNavigate={navigate} 
+          />
+        )}
 
-      {/* 3. FROM SYDNEY TO GLOBAL CAPITAL MARKETS (Woman Background with half-cut bottom stroke) */}
-      <SydneyCapitalMarkets />
+        {currentRoute === 'saturn' && (
+          <SaturnFundPage 
+            onOpenModal={handleOpenModal} 
+            onNavigate={navigate} 
+          />
+        )}
 
-      {/* 4. CONNECTED SERVICES (Dark Horizontal Rotation) */}
-      <DivisionsBento onOpenModal={handleOpenModal} />
+        {currentRoute === 'home' && (
+          <HomePage 
+            location={location}
+            onOpenModal={handleOpenModal} 
+          />
+        )}
+      </main>
 
-      {/* 5. WHY PARTNER WITH VITTI CAPITAL? (Morphing Partner Image & 5 Partitions) */}
-      <WhyPartner onOpenModal={handleOpenModal} />
-
-      {/* 6. SUCCESS STORY (Nasdaq Bell Ringing Background + Scroll Light Black Overlay + Braiin Link) */}
-      <SuccessStory onOpenModal={handleOpenModal} />
-
-      {/* 7. MARKET UPDATES BAND (Solid Black, Left 30% "Market Updates", Right 70% scrolling ticker) */}
-      <MarketUpdatesBand onOpenModal={handleOpenModal} />
-
-      {/* 8. CONTACT CARD (Can We Help? headline + Head Office + Contact Conversation + Form) */}
-      <ContactSection onOpenModal={handleOpenModal} />
-
-      {/* 9. BLOG BAND (Solid Black, Left 30% "Blogs", Right 70% scrolling blogs just like daily updates) */}
-      <BlogBand onOpenModal={handleOpenModal} />
-
-      {/* 10. FAQ SECTION (7 Exact FAQs from vitti.capital) */}
-      <FaqSection />
-
-      {/* 11. BIG WHITE STROKE CARD WITH SMALLER INNER CARD ("Stay in the loop. Get the latest insights") */}
-      <StayInTheLoopCard />
-
-      {/* 12. STATUTORY REGULATORY DISCLOSURES & WHOLESALE NOTICE (Above Footer) */}
+      {/* 3. STATUTORY REGULATORY DISCLOSURES & WHOLESALE NOTICE (Above Footer) */}
       <RegulatoryDisclosures />
 
-      {/* 13. REFINED INSTITUTIONAL FOOTER */}
-      <Footer />
+      {/* 4. REFINED INSTITUTIONAL FOOTER */}
+      <Footer onNavigate={navigate} />
 
-      {/* FLOATING 3D MODEL ASSISTANT & SECTION-AWARE CHAT */}
+      {/* 5. FLOATING 3D MODEL ASSISTANT */}
       <FloatingAssistant />
 
-      {/* GLOBAL MODAL */}
+      {/* 6. GLOBAL MODAL */}
       <InquiryModal 
         isOpen={modalOpen} 
         onClose={() => setModalOpen(false)} 
