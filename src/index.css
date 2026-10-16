@@ -435,21 +435,16 @@ img {
   overflow: hidden;
 }
 
-/* WHO WE ARE: Top Green Background until the headline */
+/* WHO WE ARE: Top Green Background with clear separation extending further below text */
 .who-we-are-container::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: clamp(230px, 27vh, 300px);
-  background: linear-gradient(
-    to bottom,
-    #00FFA1 0%,
-    #00E599 clamp(160px, 20vh, 230px),
-    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
-    transparent 100%
-  );
+  height: clamp(290px, 34vh, 350px);
+  background: linear-gradient(to bottom, #00FFA1 0%, #00E599 100%);
+  border-bottom: 2px solid rgba(10, 14, 23, 0.1);
   pointer-events: none;
   z-index: 1;
 }
@@ -459,9 +454,10 @@ img {
   background: linear-gradient(
     to bottom,
     #00FFA1 0%,
-    #00E599 clamp(160px, 20vh, 230px),
-    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
-    #FBFBF5 clamp(260px, 30vh, 330px),
+    #00E599 clamp(290px, 34vh, 350px),
+    rgba(10, 14, 23, 0.1) clamp(290px, 34vh, 350px),
+    rgba(10, 14, 23, 0.1) calc(clamp(290px, 34vh, 350px) + 1.5px),
+    #FBFBF5 calc(clamp(290px, 34vh, 350px) + 1.5px),
     #FBFBF5 100%
   ) !important;
 }
@@ -621,7 +617,7 @@ img {
   pointer-events: none !important;
   z-index: 2;
   background: 
-    linear-gradient(to bottom, #00FFA1 0%, #00E599 clamp(160px, 20vh, 230px), rgba(0, 229, 153, 0.3) clamp(210px, 25vh, 280px), transparent clamp(260px, 30vh, 330px)),
+    linear-gradient(to bottom, #00FFA1 0%, #00E599 clamp(290px, 34vh, 350px), transparent clamp(290px, 34vh, 350px)),
     radial-gradient(circle at 65% 50%, rgba(251, 251, 245, 0.45) 0%, rgba(251, 251, 245, 0.78) 65%, #FBFBF5 100%),
     linear-gradient(to right, #FBFBF5 0%, rgba(251, 251, 245, 0.6) 45%, rgba(251, 251, 245, 0.28) 100%);
 }
@@ -2130,9 +2126,10 @@ img {
   background: linear-gradient(
     to bottom,
     #00FFA1 0%,
-    #00E599 clamp(160px, 20vh, 230px),
-    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
-    #FBFBF5 clamp(260px, 30vh, 330px),
+    #00E599 clamp(260px, 32vh, 320px),
+    rgba(10, 14, 23, 0.1) clamp(260px, 32vh, 320px),
+    rgba(10, 14, 23, 0.1) calc(clamp(260px, 32vh, 320px) + 1.5px),
+    #FBFBF5 calc(clamp(260px, 32vh, 320px) + 1.5px),
     #FBFBF5 100%
   ) !important;
   z-index: 2;
@@ -2450,14 +2447,9 @@ img {
   top: 0;
   left: 0;
   right: 0;
-  height: clamp(220px, 26vh, 290px);
-  background: linear-gradient(
-    to bottom,
-    #00FFA1 0%,
-    #00E599 clamp(160px, 20vh, 230px),
-    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
-    transparent 100%
-  );
+  height: clamp(260px, 32vh, 320px);
+  background: linear-gradient(to bottom, #00FFA1 0%, #00E599 100%);
+  border-bottom: 2px solid rgba(10, 14, 23, 0.1);
   pointer-events: none;
   z-index: 1;
 }
@@ -4380,9 +4372,10 @@ img {
   background: linear-gradient(
     to bottom,
     #00FFA1 0%,
-    #00E599 clamp(160px, 20vh, 230px),
-    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
-    #FBFBF5 clamp(260px, 30vh, 330px),
+    #00E599 clamp(320px, 38vh, 380px),
+    rgba(10, 14, 23, 0.1) clamp(320px, 38vh, 380px),
+    rgba(10, 14, 23, 0.1) calc(clamp(320px, 38vh, 380px) + 1.5px),
+    #FBFBF5 calc(clamp(320px, 38vh, 380px) + 1.5px),
     #FBFBF5 100%
   ) !important;
 }
@@ -4397,7 +4390,7 @@ img {
 }
 
 /* ==========================================================================
-   CONTACT SECTION ("Can We Help?" - TOP GREEN UNTIL HEADLINE, ALL DARK BLACK TEXT)
+   CONTACT SECTION ("Can We Help?" - TOP GREEN WITH CLEAR SEPARATION EXTENDING BELOW TEXT)
    ========================================================================== */
 .contact-card-section {
   padding: clamp(80px, 10vh, 130px) 0;
@@ -4408,9 +4401,10 @@ img {
   background: linear-gradient(
     to bottom,
     #00FFA1 0%,
-    #00E599 clamp(160px, 20vh, 230px),
-    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
-    #FBFBF5 clamp(260px, 30vh, 330px),
+    #00E599 clamp(320px, 38vh, 380px),
+    rgba(10, 14, 23, 0.1) clamp(320px, 38vh, 380px),
+    rgba(10, 14, 23, 0.1) calc(clamp(320px, 38vh, 380px) + 1.5px),
+    #FBFBF5 calc(clamp(320px, 38vh, 380px) + 1.5px),
     #FBFBF5 100%
   ) !important;
 }
@@ -4893,9 +4887,10 @@ img {
   background: linear-gradient(
     to bottom,
     #00FFA1 0%,
-    #00E599 clamp(160px, 20vh, 230px),
-    rgba(0, 229, 153, 0.35) clamp(210px, 25vh, 280px),
-    #FBFBF5 clamp(260px, 30vh, 330px),
+    #00E599 clamp(270px, 33vh, 320px),
+    rgba(10, 14, 23, 0.1) clamp(270px, 33vh, 320px),
+    rgba(10, 14, 23, 0.1) calc(clamp(270px, 33vh, 320px) + 1.5px),
+    #FBFBF5 calc(clamp(270px, 33vh, 320px) + 1.5px),
     #FBFBF5 100%
   ) !important;
 }
