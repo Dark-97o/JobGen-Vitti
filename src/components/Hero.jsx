@@ -318,6 +318,15 @@ export default function Hero({ onOpenModal, selectedRegion = 'AU' }) {
                 minHeight: '100%',
               }}
             />
+            {/* City Silhouette Layer attached at the bottom over the background */}
+            <div className="hero-city-backdrop-layer">
+              <img 
+                src="/assets/city.png" 
+                alt="City skyline" 
+                className="hero-city-img" 
+                aria-hidden="true" 
+              />
+            </div>
             <div className="hero-vignette-bottom" />
           </div>
 
