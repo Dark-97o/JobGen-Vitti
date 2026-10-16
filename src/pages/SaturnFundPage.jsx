@@ -481,7 +481,7 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
             </p>
           </div>
 
-          {/* Row of Square Cards with White Outline and Text-Only Black Overlay */}
+          {/* Row of Square Cards with White Outline and Pure Text over Background Image (No Black Box) */}
           <div className="saturn-radar-row">
             {marketInsights.map((ins) => (
               <div 
@@ -492,9 +492,8 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
                 role="button"
                 tabIndex={0}
               >
-                {/* Black overlay ONLY on the text area, rest of image fully visible */}
-                <div className="saturn-radar-text-overlay-box">
-                  <span className="saturn-radar-tag-badge">{ins.tag}</span>
+                {/* Pure text directly over the card background (no black box) */}
+                <div className="saturn-radar-card-content">
                   <h3 className="saturn-radar-quadrant-title">{ins.title}</h3>
                   <p className="saturn-radar-quadrant-desc">{ins.desc}</p>
                   
