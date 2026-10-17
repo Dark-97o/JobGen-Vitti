@@ -271,7 +271,12 @@ function __OriginkitBase_GlobeStudy(props: Props) {
         const soil: number[] = []
         const land8: number[][] = []
 
+        let isVisible = true
         const render = (now: number) => {
+            if (!isVisible) {
+                raf = 0
+                return
+            }
             const dt = Math.min(0.05, (now - last) / 1000)
             last = now
             const v = vRef.current
@@ -534,10 +539,30 @@ function __OriginkitBase_GlobeStudy(props: Props) {
         window.addEventListener("pointerup", onUp)
         window.addEventListener("pointercancel", onUp)
         canvas.addEventListener("wheel", onWheel, { passive: false })
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                const visible = entry.isIntersecting
+                if (visible !== isVisible) {
+                    isVisible = visible
+                    if (isVisible && !raf) {
+                        last = performance.now()
+                        raf = requestAnimationFrame(render)
+                    } else if (!isVisible && raf) {
+                        cancelAnimationFrame(raf)
+                        raf = 0
+                    }
+                }
+            },
+            { threshold: 0.01 }
+        )
+        observer.observe(canvas)
+
         raf = requestAnimationFrame(render)
 
         return () => {
-            cancelAnimationFrame(raf)
+            observer.disconnect()
+            if (raf) cancelAnimationFrame(raf)
             canvas.removeEventListener("pointermove", track)
             canvas.removeEventListener("pointerenter", track)
             canvas.removeEventListener("pointerleave", onLeave)

@@ -481,7 +481,7 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
             </p>
           </div>
 
-          {/* Row of Square Cards with White Outline and Pure Text over Background Image (No Black Box) */}
+          {/* Row of Square Cards with Left Green Vertical Title Bar and Black Overlay Behind Info */}
           <div className="saturn-radar-row">
             {marketInsights.map((ins) => (
               <div 
@@ -492,14 +492,20 @@ export default function SaturnFundPage({ onOpenModal, onNavigate }) {
                 role="button"
                 tabIndex={0}
               >
-                {/* Pure text directly over the card background (no black box) */}
-                <div className="saturn-radar-card-content">
-                  <h3 className="saturn-radar-quadrant-title">{ins.title}</h3>
-                  <p className="saturn-radar-quadrant-desc">{ins.desc}</p>
-                  
-                  <div className="saturn-radar-quadrant-footer">
-                    <span className="saturn-radar-link-text">Institutional Analysis</span>
-                    <ArrowUpRight size={14} className="saturn-radar-arrow-icon" />
+                {/* Left side: Green bar with vertical title */}
+                <div className="saturn-radar-vertical-bar" aria-hidden="true">
+                  <span className="saturn-radar-vertical-title">{ins.title}</span>
+                </div>
+
+                {/* Right side: Body area with black overlay behind info text (no title inside square card) */}
+                <div className="saturn-radar-body-area">
+                  <div className="saturn-radar-black-overlay">
+                    <p className="saturn-radar-quadrant-desc">{ins.desc}</p>
+                    
+                    <div className="saturn-radar-quadrant-footer">
+                      <span className="saturn-radar-link-text">Institutional Analysis</span>
+                      <ArrowUpRight size={14} className="saturn-radar-arrow-icon" />
+                    </div>
                   </div>
                 </div>
               </div>

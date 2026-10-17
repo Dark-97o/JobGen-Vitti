@@ -253,13 +253,31 @@ class MosaicScene {
         this.wantHold = 0
     }
 
+    private isRunning = false
+
     start() {
+        if (this.isRunning || this.disposed) return
+        this.isRunning = true
         this.lastT = performance.now()
         const loop = () => {
+            if (!this.isRunning || this.disposed) return
             this.frameId = requestAnimationFrame(loop)
             this.step()
         }
-        loop()
+        this.frameId = requestAnimationFrame(loop)
+    }
+
+    stop() {
+        this.isRunning = false
+        if (this.frameId) {
+            cancelAnimationFrame(this.frameId)
+            this.frameId = 0
+        }
+    }
+
+    resume() {
+        if (this.isRunning || this.disposed) return
+        this.start()
     }
 
     setSize(width: number, height: number) {
@@ -387,7 +405,18 @@ function __OriginkitBase_ShapeMosaic(props: ShapeMosaicProps) {
             scene.setSize(container.clientWidth, container.clientHeight)
         })
         ro.observe(container)
+
+        const io = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                scene.resume()
+            } else {
+                scene.stop()
+            }
+        }, { threshold: 0.01 })
+        io.observe(container)
+
         return () => {
+            io.disconnect()
             ro.disconnect()
             scene.dispose()
             sceneRef.current = null

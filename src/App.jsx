@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import Navbar from './components/Navbar';
@@ -9,6 +9,7 @@ import RegulatoryDisclosures from './components/RegulatoryDisclosures';
 import Footer from './components/Footer';
 import InquiryModal from './components/InquiryModal';
 import FloatingAssistant from './components/FloatingAssistant';
+import PageTransitionCurtain from './components/PageTransitionCurtain';
 
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -27,12 +28,41 @@ export default function App() {
   };
 
   const [currentRoute, setCurrentRoute] = useState(getRouteFromUrl);
+  // Page Transition Stage: 'idle' | 'entering' | 'covered' | 'leaving'
+  const [transitionStage, setTransitionStage] = useState('leaving');
+  const isTransitioningRef = useRef(false);
+
+  // Initial page load curtain unveil animation
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTransitionStage('idle');
+    }, 650);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Synchronize route state with browser back/forward and hash
   useEffect(() => {
     const handlePopState = () => {
-      setCurrentRoute(getRouteFromUrl());
-      window.scrollTo(0, 0);
+      const nextRoute = getRouteFromUrl();
+      if (nextRoute !== currentRoute && !isTransitioningRef.current) {
+        isTransitioningRef.current = true;
+        setTransitionStage('entering');
+
+        setTimeout(() => {
+          setCurrentRoute(nextRoute);
+          window.scrollTo(0, 0);
+          if (window.__lenis) window.__lenis.scrollTo(0, { immediate: true });
+          setTransitionStage('leaving');
+
+          setTimeout(() => {
+            setTransitionStage('idle');
+            isTransitioningRef.current = false;
+          }, 520);
+        }, 460);
+      } else {
+        setCurrentRoute(nextRoute);
+        window.scrollTo(0, 0);
+      }
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -41,32 +71,76 @@ export default function App() {
       window.removeEventListener('popstate', handlePopState);
       window.removeEventListener('hashchange', handlePopState);
     };
-  }, []);
+  }, [currentRoute]);
 
-  // Programmatic navigation helper
+  // Programmatic navigation helper with 3-bar curtain transition
   const navigate = (route, hash) => {
     let url = '/';
     if (route === 'about') url = '/about-us';
     else if (route === 'saturn') url = '/saturn-unit-trust-fund';
     else if (hash) url = '/' + hash;
 
-    window.history.pushState({}, '', url);
-    setCurrentRoute(route);
-
-    if (window.__lenis) {
-      if (hash && route === 'home') {
+    // Same route navigation: anchor scroll without curtain
+    if (route === currentRoute) {
+      window.history.pushState({}, '', url);
+      if (hash) {
         setTimeout(() => {
           const target = document.querySelector(hash);
           if (target) {
-            window.__lenis.scrollTo(target, { offset: -30, duration: 1.2 });
+            if (window.__lenis) {
+              window.__lenis.scrollTo(target, { offset: -30, duration: 1.2 });
+            } else {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
           }
-        }, 80);
+        }, 50);
       } else {
-        window.__lenis.scrollTo(0, { immediate: true });
+        if (window.__lenis) window.__lenis.scrollTo(0, { duration: 0.8 });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
       }
-    } else {
-      window.scrollTo(0, 0);
+      return;
     }
+
+    // Different route: Run 3-Bar Full Screen Transition
+    if (isTransitioningRef.current) return;
+    isTransitioningRef.current = true;
+
+    setTransitionStage('entering');
+
+    // At 460ms: 3 bars have fully cascaded from top to cover the screen
+    setTimeout(() => {
+      window.history.pushState({}, '', url);
+      setCurrentRoute(route);
+
+      // Reset scroll position immediately while screen is covered
+      if (window.__lenis) {
+        window.__lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo(0, 0);
+      }
+
+      // Phase 2: 3 bars cascade downwards to unveil new page
+      setTransitionStage('leaving');
+
+      setTimeout(() => {
+        setTransitionStage('idle');
+        isTransitioningRef.current = false;
+
+        // If target hash exists on new page, smoothly scroll to it
+        if (hash) {
+          setTimeout(() => {
+            const target = document.querySelector(hash);
+            if (target) {
+              if (window.__lenis) {
+                window.__lenis.scrollTo(target, { offset: -30, duration: 1.0 });
+              } else {
+                target.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+          }, 80);
+        }
+      }, 520);
+    }, 460);
   };
 
   // Initialize frictionless Lenis smooth scrolling
@@ -126,6 +200,9 @@ export default function App() {
 
   return (
     <div className="app-root">
+      {/* 0. 3-BAR FULL-SCREEN PAGE TRANSITION CURTAIN */}
+      <PageTransitionCurtain stage={transitionStage} />
+
       {/* 1. NAVBAR */}
       <Navbar 
         location={location}

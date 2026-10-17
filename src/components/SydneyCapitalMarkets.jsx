@@ -35,12 +35,17 @@ export default function SydneyCapitalMarkets() {
             return;
           }
           const rect = trackRef.current.getBoundingClientRect();
+          // Avoid work and state updates if track is completely outside the viewport
+          if (rect.bottom < -100 || rect.top > window.innerHeight + 100) {
+            ticking = false;
+            return;
+          }
           const scrollableDistance = rect.height - window.innerHeight;
 
           if (scrollableDistance > 0) {
             const scrolled = -rect.top;
             const progress = Math.min(Math.max(scrolled / scrollableDistance, 0), 1);
-            setScrollProgress(progress);
+            setScrollProgress(prev => Math.abs(prev - progress) > 0.001 ? progress : prev);
           }
           ticking = false;
         });
@@ -130,11 +135,11 @@ export default function SydneyCapitalMarkets() {
       aria-label="From Sydney to Global Capital Markets"
     >
       <div className="sydney-sticky-frame">
-        {/* Full Background Image: woman.png */}
+        {/* Full Background Image: woman.webp */}
         <div 
           className="sydney-bg-image" 
           style={{ 
-            backgroundImage: `url('/assets/woman.png')`,
+            backgroundImage: `url('/assets/woman.webp')`,
             transform: `scale(${bgScale.toFixed(3)})`,
           }}
         >
@@ -339,7 +344,7 @@ export default function SydneyCapitalMarkets() {
                   >
                     <div 
                       className="sydney-card-bg"
-                      style={{ backgroundImage: `url('/assets/woman.png')` }}
+                      style={{ backgroundImage: `url('/assets/woman.webp')` }}
                     >
                       <div className="sydney-card-vignette" />
                     </div>
