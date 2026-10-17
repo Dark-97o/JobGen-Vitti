@@ -357,12 +357,14 @@ img {
   display: flex;
   align-items: center;
   text-decoration: none;
+  transform: translateX(-12px);
+  margin-right: -20px;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .nav-brand-logo-wrap:hover {
-  opacity: 0.85;
-  transform: translateY(-1px) scale(1.02);
+  opacity: 0.9;
+  transform: translateX(-12px) translateY(-1px);
 }
 
 .nav-brand-logo {
