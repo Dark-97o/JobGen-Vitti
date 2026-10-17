@@ -357,18 +357,23 @@ img {
   display: flex;
   align-items: center;
   text-decoration: none;
-  transform: translateX(-15px);
-  margin-right: -25px; /* Keeps layout box intact so nav-menu does not shift */
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .nav-brand-logo-wrap:hover {
-  opacity: 0.9;
-  transform: translateX(-15px) translateY(-1px);
+  opacity: 0.85;
+  transform: translateY(-1px) scale(1.02);
+}
+
+.nav-brand-logo {
+  height: clamp(38px, 4.4vh, 48px);
+  width: auto;
+  object-fit: contain;
+  display: block;
 }
 
 .nav-brand-full-logo {
-  height: clamp(44px, 5.1vh, 60px); /* 15% larger */
+  height: clamp(44px, 5.1vh, 60px);
   width: auto;
   object-fit: contain;
   display: block;

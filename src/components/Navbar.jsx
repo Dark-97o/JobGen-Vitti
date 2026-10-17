@@ -48,7 +48,7 @@ export default function Navbar({ onOpenModal, location = 'AU', onSelectLocation,
     <header className={`site-navbar ${scrolled ? 'scrolled-floating-rect' : 'transparent-hero'}`}>
       <div className="container nav-fullscreen-container">
         
-        {/* Official Vitti Full Logo (Bigger) */}
+        {/* Official Vitti Logo */}
         <a 
           href="/" 
           onClick={(e) => handleLinkClick(e, 'home')} 
@@ -56,9 +56,10 @@ export default function Navbar({ onOpenModal, location = 'AU', onSelectLocation,
           aria-label="Vitti Capital Home"
         >
           <img 
-            src="/assets/vitti-full.png" 
+            src="/assets/vitti.webp" 
+            onError={(e) => { e.currentTarget.src = '/assets/vitti.png'; }}
             alt="Vitti Capital" 
-            className="nav-brand-full-logo" 
+            className="nav-brand-logo" 
           />
         </a>
 
