@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import InquiryModal from './components/InquiryModal';
 import FloatingAssistant from './components/FloatingAssistant';
 import PageTransitionCurtain from './components/PageTransitionCurtain';
+import ScrollRevealController from './components/ScrollRevealController';
 
 export default function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -202,6 +203,12 @@ export default function App() {
     <div className="app-root">
       {/* 0. 3-BAR FULL-SCREEN PAGE TRANSITION CURTAIN */}
       <PageTransitionCurtain stage={transitionStage} />
+
+      {/* 0.1 GLOBAL SCROLL REVEAL CONTROLLER (Fade In Info & Cards on Scroll) */}
+      <ScrollRevealController 
+        currentRoute={currentRoute} 
+        transitionStage={transitionStage} 
+      />
 
       {/* 1. NAVBAR */}
       <Navbar 

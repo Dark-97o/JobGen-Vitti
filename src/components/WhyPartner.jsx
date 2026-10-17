@@ -104,7 +104,7 @@ export default function WhyPartner({ onOpenModal }) {
         bottom: p > 0.001 ? `calc(${(p * 16).toFixed(2)}vh + ${(p * 12 - 30).toFixed(1)}px)` : '0px',
         right: p > 0.001 ? `${(p * 40).toFixed(1)}px` : '0px',
         left: p > 0.001 ? `calc(${(p * 55).toFixed(2)}% + ${(p * 18).toFixed(1)}px)` : '0px',
-        borderRadius: p > 0.001 ? `${(p * 26).toFixed(1)}px` : '0px',
+        borderRadius: p > 0.001 ? `${(p * 48).toFixed(1)}px ${(p * 48).toFixed(1)}px 0 0` : '0px',
         boxShadow: p > 0.05 
           ? `0 28px 72px rgba(0, 0, 0, ${0.45 + p * 0.45}), 0 0 36px rgba(0, 229, 153, ${p * 0.22})`
           : 'none',

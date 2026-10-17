@@ -62,7 +62,7 @@ export default function SaturnCalculator({ onOpenModal }) {
               <img 
                 src="/assets/saturn-vault.jpg" 
                 alt="Saturn Fund Asset Management Visualization" 
-                style={{ width: '100%', borderRadius: 14 }}
+                style={{ width: '100%', borderRadius: '32px 32px 0 0' }}
               />
             </div>
           </div>

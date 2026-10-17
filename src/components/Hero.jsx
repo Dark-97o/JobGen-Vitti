@@ -153,7 +153,7 @@ export default function Hero({ onOpenModal, selectedRegion = 'AU' }) {
         bottom: p > 0.001 ? `calc(${(p * 26).toFixed(2)}vh + ${(p * 10).toFixed(1)}px)` : '0px',
         right: p > 0.001 ? `${(p * 80).toFixed(1)}px` : '0px',
         left: `${(p * 65).toFixed(2)}%`,
-        borderRadius: `${(p * 26).toFixed(1)}px`,
+        borderRadius: p > 0.001 ? `${(p * 48).toFixed(1)}px ${(p * 48).toFixed(1)}px 0 0` : '0px',
         boxShadow: p > 0.04 
           ? `0 25px 60px rgba(0, 0, 0, ${0.25 + p * 0.35}), 0 0 40px rgba(0, 229, 153, ${p * 0.2})` 
           : 'none',
@@ -328,34 +328,41 @@ export default function Hero({ onOpenModal, selectedRegion = 'AU' }) {
               style={{
                 transform: `translate(${headlineTranslateX.toFixed(1)}px, ${headlineTranslateY.toFixed(1)}px)`,
                 textAlign: p > 0.3 ? 'center' : 'left',
-                padding: p > 0.3 ? '0 20px' : '0 20px 0 clamp(28px, 4vw, 70px)',
+                padding: p > 0.3 ? '0 clamp(12px, 1.8vw, 24px)' : '0 20px 0 clamp(28px, 4vw, 70px)',
                 width: '100%',
                 boxSizing: 'border-box',
                 transition: 'none',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: p > 0.3 ? 'center' : 'flex-start',
+                justifyContent: 'center',
               }}
             >
-              {/* Hero headline: smoothly interpolates size with zero layout jumps (scaled down by 10%) */}
+              {/* Hero headline: 50% bigger in Who We Are card state and centered */}
               <h1 
                 className="hero-funky-title"
                 style={{
-                  fontSize: `clamp(${(29 + (1 - p) * 21.5).toFixed(1)}px, ${(2.4 + (1 - p) * 4.3).toFixed(2)}vw, ${(38 + (1 - p) * 57.5).toFixed(1)}px)`,
-                  lineHeight: (1.15 - (1 - p) * 0.17).toFixed(2),
+                  fontSize: `clamp(${(43.5 + (1 - p) * 10.5).toFixed(1)}px, ${(3.6 + (1 - p) * 3.4).toFixed(2)}vw, ${(57 + (1 - p) * 41).toFixed(1)}px)`,
+                  lineHeight: (1.06 - (1 - p) * 0.08).toFixed(2),
                   wordBreak: 'break-word',
                   overflowWrap: 'break-word',
+                  textAlign: p > 0.3 ? 'center' : 'left',
+                  margin: '0 auto',
                 }}
               >
                 GET MORE <br />
                 FROM YOUR MONEY
               </h1>
 
-              {/* Book a Call button: fades out smoothly with zero layout reflow */}
+              {/* Book a Call button: fades out smoothly and removed from flow in card state */}
               <div 
                 className="hero-action-row"
                 style={{
                   opacity: Math.max(0, 1 - p * 3.5),
                   pointerEvents: p < 0.15 ? 'auto' : 'none',
                   justifyContent: 'flex-start',
-                  marginTop: '32px',
+                  marginTop: p > 0.35 ? '0px' : '32px',
+                  display: p > 0.35 ? 'none' : 'flex',
                   visibility: p > 0.35 ? 'hidden' : 'visible',
                   transition: 'opacity 0.2s ease',
                 }}
